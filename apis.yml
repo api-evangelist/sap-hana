@@ -1,0 +1,107 @@
+name: SAP HANA
+description: APIs for SAP HANA, an in-memory, column-oriented, relational database management system developed and marketed by SAP SE
+image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+tags:
+- Database
+- In-Memory
+- Enterprise
+- Analytics
+- Cloud
+created: '2024'
+modified: '2024'
+url: https://www.sap.com/products/technology-platform/hana.html
+apis:
+- name: SAP HANA Cloud REST API
+  description: REST API for managing SAP HANA Cloud instances, monitoring, and administration
+  image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+  humanURL: https://help.sap.com/docs/HANA_CLOUD
+  baseURL: https://api.cf.{region}.hana.ondemand.com
+  tags:
+  - Cloud
+  - Database Management
+  - Administration
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/
+  - type: OpenAPI
+    url: https://api.sap.com/api/hana_cloud_admin/overview
+  - type: Authentication
+    url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
+- name: SAP HANA SQL API
+  description: SQL interface for querying and managing data in SAP HANA databases
+  image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+  humanURL: https://help.sap.com/docs/SAP_HANA_PLATFORM
+  baseURL: jdbc:sap://{host}:{port}
+  tags:
+  - SQL
+  - Database
+  - Query
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/SAP_HANA_PLATFORM/4fe29514fd584807ac9f2a04f6754767/
+  - type: SQL Reference
+    url: https://help.sap.com/docs/SAP_HANA_PLATFORM/4fe29514fd584807ac9f2a04f6754767/20a61f5075191014b3c5a0b9b37e5ce1.html
+  - type: JDBC Driver
+    url: https://help.sap.com/docs/SAP_HANA_CLIENT/f1b440ded6144a54ada97ff95dac7adf/
+- name: SAP HANA XS Engine API
+  description: Extended Application Services (XS) for building applications directly on SAP HANA
+  image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+  humanURL: https://help.sap.com/docs/SAP_HANA_PLATFORM
+  baseURL: https://{host}:{port}
+  tags:
+  - Application Development
+  - XS
+  - JavaScript
+  - OData
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/SAP_HANA_PLATFORM/4505d0bdaf4948449b7f7379d24d0f0d/
+  - type: JavaScript API
+    url: https://help.sap.com/docs/SAP_HANA_PLATFORM/4505d0bdaf4948449b7f7379d24d0f0d/2a2d5865bc97443fbc4436c85d5d694b.html
+  - type: OData Services
+    url: https://help.sap.com/docs/SAP_HANA_PLATFORM/4505d0bdaf4948449b7f7379d24d0f0d/5b5c3a8b67924c43a92e35e38c55daa5.html
+- name: SAP HANA Cockpit API
+  description: RESTful API for SAP HANA Cockpit administration and monitoring
+  image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+  humanURL: https://help.sap.com/docs/SAP_HANA_COCKPIT
+  baseURL: https://{host}:{port}/sap/hana/
+  tags:
+  - Administration
+  - Monitoring
+  - Management
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/SAP_HANA_COCKPIT/afa922439b204e9caf22c78b6b69e4f2/
+  - type: REST API
+    url: https://help.sap.com/docs/SAP_HANA_COCKPIT/afa922439b204e9caf22c78b6b69e4f2/461114e1a8ab4bb085fef7c83f797e52.html
+- name: SAP HANA Smart Data Integration API
+  description: APIs for data provisioning, replication, and integration
+  image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+  humanURL: https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION
+  baseURL: https://{host}:{port}
+  tags:
+  - Data Integration
+  - ETL
+  - Replication
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION/7952ef28a6914997abc01745fef1b607/
+  - type: Adapters
+    url: https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION/7952ef28a6914997abc01745fef1b607/935315b2d6ae4970836a93bb06e93799.html
+common:
+- type: Developer Portal
+  url: https://api.sap.com/
+- type: Support
+  url: https://support.sap.com/
+- type: Community
+  url: https://community.sap.com/topics/hana
+- type: Pricing
+  url: https://www.sap.com/products/technology-platform/hana/pricing.html
+- type: Status
+  url: https://www.sap.com/about/trust-center/cloud-service-status.html
+- type: Terms of Service
+  url: https://www.sap.com/about/trust-center/agreements.html
+maintainers:
+- FN: SAP SE
+  email: support@sap.com
+  url: https://www.sap.com
