@@ -1,0 +1,489 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "saphana": "https://help.sap.com/docs/HANA_CLOUD/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "DatabaseInstance": {
+      "@id": "saphana:DatabaseInstance",
+      "@context": {
+        "id": {
+          "@id": "dcterms:identifier",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "service_plan_id": {
+          "@id": "saphana:servicePlanId",
+          "@type": "xsd:string"
+        },
+        "service_plan_name": {
+          "@id": "saphana:servicePlanName",
+          "@type": "xsd:string"
+        },
+        "platform_id": {
+          "@id": "saphana:platformId",
+          "@type": "xsd:string"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "ready": {
+          "@id": "saphana:ready",
+          "@type": "xsd:boolean"
+        },
+        "usable": {
+          "@id": "saphana:usable",
+          "@type": "xsd:boolean"
+        },
+        "provisioningState": {
+          "@id": "saphana:provisioningState",
+          "@type": "xsd:string"
+        },
+        "operationalState": {
+          "@id": "saphana:operationalState",
+          "@type": "xsd:string"
+        },
+        "labels": {
+          "@id": "saphana:labels",
+          "@type": "@id"
+        },
+        "context": {
+          "@id": "saphana:instanceContext",
+          "@type": "@id"
+        },
+        "parameters": {
+          "@id": "saphana:instanceConfiguration",
+          "@type": "@id"
+        },
+        "last_operation": {
+          "@id": "saphana:lastOperation",
+          "@type": "@id"
+        },
+        "connectionEndpoints": {
+          "@id": "saphana:connectionEndpoints",
+          "@type": "@id"
+        },
+        "alerts": {
+          "@id": "saphana:alerts",
+          "@container": "@set"
+        },
+        "metrics": {
+          "@id": "saphana:instanceMetrics",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "InstanceContext": {
+      "@id": "saphana:InstanceContext",
+      "@context": {
+        "subaccount_id": {
+          "@id": "saphana:subaccountId",
+          "@type": "xsd:string"
+        },
+        "organization_guid": {
+          "@id": "saphana:organizationGuid",
+          "@type": "xsd:string"
+        },
+        "space_guid": {
+          "@id": "saphana:spaceGuid",
+          "@type": "xsd:string"
+        },
+        "instance_name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "region": {
+          "@id": "saphana:region",
+          "@type": "xsd:string"
+        },
+        "landscapeLabel": {
+          "@id": "saphana:landscapeLabel",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "InstanceConfiguration": {
+      "@id": "saphana:InstanceConfiguration",
+      "@context": {
+        "edition": {
+          "@id": "saphana:edition",
+          "@type": "xsd:string"
+        },
+        "memory": {
+          "@id": "saphana:memoryGB",
+          "@type": "xsd:integer"
+        },
+        "vcpu": {
+          "@id": "saphana:vcpuCount",
+          "@type": "xsd:integer"
+        },
+        "storage": {
+          "@id": "saphana:storageGB",
+          "@type": "xsd:integer"
+        },
+        "whitelistIPs": {
+          "@id": "saphana:whitelistIPs",
+          "@container": "@set"
+        },
+        "serviceStopped": {
+          "@id": "saphana:serviceStopped",
+          "@type": "xsd:boolean"
+        },
+        "availabilityZone": {
+          "@id": "saphana:availabilityZone",
+          "@type": "xsd:string"
+        },
+        "slaLevel": {
+          "@id": "saphana:slaLevel",
+          "@type": "xsd:string"
+        },
+        "enabledservices": {
+          "@id": "saphana:enabledServices",
+          "@type": "@id"
+        },
+        "replicaCount": {
+          "@id": "saphana:replicaCount",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "EnabledServices": {
+      "@id": "saphana:EnabledServices",
+      "@context": {
+        "scriptserver": {
+          "@id": "saphana:scriptServerEnabled",
+          "@type": "xsd:boolean"
+        },
+        "docstore": {
+          "@id": "saphana:documentStoreEnabled",
+          "@type": "xsd:boolean"
+        },
+        "dpserver": {
+          "@id": "saphana:dataProvisioningServerEnabled",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "ConnectionEndpoints": {
+      "@id": "saphana:ConnectionEndpoints",
+      "@context": {
+        "host": {
+          "@id": "schema:url",
+          "@type": "xsd:string"
+        },
+        "port": {
+          "@id": "saphana:port",
+          "@type": "xsd:integer"
+        },
+        "sqlEndpoint": {
+          "@id": "saphana:sqlEndpoint",
+          "@type": "xsd:string"
+        },
+        "httpsEndpoint": {
+          "@id": "saphana:httpsEndpoint",
+          "@type": "xsd:anyURI"
+        }
+      }
+    },
+
+    "LastOperation": {
+      "@id": "saphana:LastOperation",
+      "@context": {
+        "type": {
+          "@id": "saphana:operationType",
+          "@type": "xsd:string"
+        },
+        "state": {
+          "@id": "saphana:operationState",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "AlertEvent": {
+      "@id": "saphana:AlertEvent",
+      "@context": {
+        "alertId": {
+          "@id": "dcterms:identifier",
+          "@type": "xsd:string"
+        },
+        "alertRuleId": {
+          "@id": "saphana:alertRuleId",
+          "@type": "xsd:string"
+        },
+        "alertName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "alertState": {
+          "@id": "saphana:alertState",
+          "@type": "xsd:string"
+        },
+        "severity": {
+          "@id": "saphana:severity",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "triggeredAt": {
+          "@id": "saphana:triggeredAt",
+          "@type": "xsd:dateTime"
+        },
+        "resolvedAt": {
+          "@id": "saphana:resolvedAt",
+          "@type": "xsd:dateTime"
+        },
+        "currentValue": {
+          "@id": "saphana:currentValue",
+          "@type": "xsd:double"
+        },
+        "thresholdValue": {
+          "@id": "saphana:thresholdValue",
+          "@type": "xsd:double"
+        },
+        "unit": {
+          "@id": "saphana:unit",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "AlertRule": {
+      "@id": "saphana:AlertRule",
+      "@context": {
+        "ruleId": {
+          "@id": "dcterms:identifier",
+          "@type": "xsd:string"
+        },
+        "ruleName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "ruleType": {
+          "@id": "saphana:ruleType",
+          "@type": "xsd:string"
+        },
+        "enabled": {
+          "@id": "saphana:enabled",
+          "@type": "xsd:boolean"
+        },
+        "severity": {
+          "@id": "saphana:severity",
+          "@type": "xsd:string"
+        },
+        "metric": {
+          "@id": "saphana:metric",
+          "@type": "xsd:string"
+        },
+        "thresholdOperator": {
+          "@id": "saphana:thresholdOperator",
+          "@type": "xsd:string"
+        },
+        "thresholdValue": {
+          "@id": "saphana:thresholdValue",
+          "@type": "xsd:double"
+        },
+        "unit": {
+          "@id": "saphana:unit",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "MetricSeries": {
+      "@id": "saphana:MetricSeries",
+      "@context": {
+        "metricType": {
+          "@id": "saphana:metricType",
+          "@type": "xsd:string"
+        },
+        "unit": {
+          "@id": "saphana:unit",
+          "@type": "xsd:string"
+        },
+        "dataPoints": {
+          "@id": "saphana:dataPoints",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "MetricDataPoint": {
+      "@id": "saphana:MetricDataPoint",
+      "@context": {
+        "timestamp": {
+          "@id": "dcterms:date",
+          "@type": "xsd:dateTime"
+        },
+        "value": {
+          "@id": "saphana:value",
+          "@type": "xsd:double"
+        },
+        "min": {
+          "@id": "saphana:minValue",
+          "@type": "xsd:double"
+        },
+        "max": {
+          "@id": "saphana:maxValue",
+          "@type": "xsd:double"
+        },
+        "avg": {
+          "@id": "saphana:avgValue",
+          "@type": "xsd:double"
+        }
+      }
+    },
+
+    "MeteringValue": {
+      "@id": "saphana:MeteringValue",
+      "@context": {
+        "timestamp": {
+          "@id": "dcterms:date",
+          "@type": "xsd:dateTime"
+        },
+        "computeUnitHours": {
+          "@id": "saphana:computeUnitHours",
+          "@type": "xsd:double"
+        },
+        "storageGB": {
+          "@id": "saphana:storageGB",
+          "@type": "xsd:double"
+        },
+        "dataLakeCapacityGB": {
+          "@id": "saphana:dataLakeCapacityGB",
+          "@type": "xsd:double"
+        },
+        "backupStorageGB": {
+          "@id": "saphana:backupStorageGB",
+          "@type": "xsd:double"
+        }
+      }
+    },
+
+    "InstanceMapping": {
+      "@id": "saphana:InstanceMapping",
+      "@context": {
+        "mappingId": {
+          "@id": "dcterms:identifier",
+          "@type": "xsd:string"
+        },
+        "serviceInstanceId": {
+          "@id": "saphana:serviceInstanceId",
+          "@type": "xsd:string"
+        },
+        "targetSubaccountId": {
+          "@id": "saphana:targetSubaccountId",
+          "@type": "xsd:string"
+        },
+        "targetEnvironmentInstanceId": {
+          "@id": "saphana:targetEnvironmentInstanceId",
+          "@type": "xsd:string"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "InstanceMetrics": {
+      "@id": "saphana:InstanceMetrics",
+      "@context": {
+        "cpuUsagePercent": {
+          "@id": "saphana:cpuUsagePercent",
+          "@type": "xsd:double"
+        },
+        "memoryUsedGB": {
+          "@id": "saphana:memoryUsedGB",
+          "@type": "xsd:double"
+        },
+        "memoryAllocatedGB": {
+          "@id": "saphana:memoryAllocatedGB",
+          "@type": "xsd:double"
+        },
+        "diskUsedGB": {
+          "@id": "saphana:diskUsedGB",
+          "@type": "xsd:double"
+        },
+        "diskAllocatedGB": {
+          "@id": "saphana:diskAllocatedGB",
+          "@type": "xsd:double"
+        },
+        "activeConnections": {
+          "@id": "saphana:activeConnections",
+          "@type": "xsd:integer"
+        },
+        "totalConnections": {
+          "@id": "saphana:totalConnections",
+          "@type": "xsd:integer"
+        },
+        "statementsPerSecond": {
+          "@id": "saphana:statementsPerSecond",
+          "@type": "xsd:double"
+        },
+        "longRunningStatements": {
+          "@id": "saphana:longRunningStatements",
+          "@type": "xsd:integer"
+        },
+        "columnStoreUnloads": {
+          "@id": "saphana:columnStoreUnloads",
+          "@type": "xsd:integer"
+        },
+        "lastBackupTimestamp": {
+          "@id": "saphana:lastBackupTimestamp",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Error": {
+      "@id": "saphana:Error",
+      "@context": {
+        "error": {
+          "@id": "saphana:errorCode",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "statusCode": {
+          "@id": "saphana:httpStatusCode",
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  }
+}
