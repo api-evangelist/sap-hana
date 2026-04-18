@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceInstanceList",
+  "type": "object",
+  "description": "A paginated list of SAP HANA Cloud service instances in the subaccount.",
+  "properties": {
+    "num_items": {
+      "type": "integer",
+      "description": "Total number of service instances matching the query criteria."
+    },
+    "items": {
+      "type": "array",
+      "description": "The list of service instances for the current page."
+    },
+    "token": {
+      "type": "string",
+      "description": "Pagination token to retrieve the next page of results."
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InstanceParameters",
+  "type": "object",
+  "description": "Configuration parameters for an SAP HANA Cloud service instance defining resource allocation, features, and operational settings.",
+  "properties": {
+    "data": {
+      "type": "object",
+      "description": "The instance configuration data."
+    }
+  }
+}

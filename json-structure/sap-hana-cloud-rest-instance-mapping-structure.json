@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "InstanceMapping",
+  "type": "object",
+  "properties": {
+    "mappingId": {
+      "type": "string"
+    },
+    "serviceInstanceId": {
+      "type": "string"
+    },
+    "targetSubaccountId": {
+      "type": "string"
+    },
+    "targetEnvironmentInstanceId": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreateServiceInstanceRequest",
+  "type": "object",
+  "description": "Request body for creating a new SAP HANA Cloud service instance.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name for the new service instance. Must be unique within the subaccount."
+    },
+    "service_plan_id": {
+      "type": "string",
+      "description": "The service plan identifier determining the instance type and available features."
+    },
+    "labels": {
+      "type": "object",
+      "description": "Labels to assign to the instance for organization and filtering."
+    }
+  }
+}

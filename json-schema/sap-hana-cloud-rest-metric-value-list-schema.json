@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MetricValueList",
+  "type": "object",
+  "description": "A collection of metric data points for an SAP HANA Cloud service instance.",
+  "properties": {
+    "metrics": {
+      "type": "array",
+      "description": "The list of metric series."
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UpdateAlertRulesRequest",
+  "type": "object",
+  "description": "Request body for updating alert rules.",
+  "properties": {
+    "rules": {
+      "type": "array",
+      "description": "The list of alert rule updates to apply."
+    }
+  }
+}

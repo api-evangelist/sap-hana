@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AlertRule",
+  "type": "object",
+  "properties": {
+    "ruleId": {
+      "type": "string"
+    },
+    "ruleName": {
+      "type": "string"
+    },
+    "ruleType": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "severity": {
+      "type": "string"
+    },
+    "metric": {
+      "type": "string"
+    },
+    "thresholdOperator": {
+      "type": "string"
+    },
+    "thresholdValue": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceInstance",
+  "type": "object",
+  "description": "An SAP HANA Cloud service instance representing a provisioned database with its configuration, status, and connection details.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier assigned to the service instance during provisioning."
+    },
+    "name": {
+      "type": "string",
+      "description": "The user-defined name of the SAP HANA Cloud service instance, used for identification in the cockpit and API responses."
+    },
+    "service_plan_id": {
+      "type": "string",
+      "description": "The identifier of the service plan used to provision this instance, determining the available features and resource tiers."
+    },
+    "platform_id": {
+      "type": "string",
+      "description": "The platform identifier indicating the runtime environment (e.g., cloud-foundry or kubernetes)."
+    },
+    "context": {
+      "type": "object",
+      "description": "Platform-specific context information including subaccount, organization, and space details."
+    },
+    "labels": {
+      "type": "object",
+      "description": "Key-value labels assigned to the instance for organization and filtering purposes."
+    },
+    "created_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the service instance was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the service instance was last updated."
+    },
+    "ready": {
+      "type": "boolean",
+      "description": "Indicates whether the service instance is fully provisioned and ready for use."
+    },
+    "usable": {
+      "type": "boolean",
+      "description": "Indicates whether the service instance is currently usable, accounting for both provisioning state and operational status."
+    }
+  }
+}

@@ -1,0 +1,248 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "SAP HANA Cloud Administration"
+  description: "Unified workflow for SAP HANA Cloud database administration including instance lifecycle management, monitoring alerts, performance metrics, and metering. Used by database administrators and cloud platform engineers."
+  tags:
+    - SAP HANA
+    - Cloud
+    - Administration
+    - Monitoring
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SAP_HANA_OAUTH_TOKEN: SAP_HANA_OAUTH_TOKEN
+
+capability:
+  consumes:
+    - import: hana-cloud-rest
+      location: ./shared/hana-cloud-rest.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: hana-cloud-admin-api
+      description: "Unified REST API for SAP HANA Cloud administration."
+      resources:
+        - path: /v1/instances
+          name: instances
+          description: "Instance lifecycle management."
+          operations:
+            - method: GET
+              name: list-instances
+              description: "List all SAP HANA Cloud instances."
+              call: "hana-cloud-rest.list-service-instances"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-instance
+              description: "Provision a new instance."
+              call: "hana-cloud-rest.create-service-instance"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/instances/{instanceId}
+          name: instance-details
+          description: "Individual instance operations."
+          operations:
+            - method: GET
+              name: get-instance
+              description: "Get instance details."
+              call: "hana-cloud-rest.get-service-instance"
+              with:
+                instanceId: "rest.instanceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PATCH
+              name: update-instance
+              description: "Update an instance."
+              call: "hana-cloud-rest.update-service-instance"
+              with:
+                instanceId: "rest.instanceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-instance
+              description: "Delete an instance."
+              call: "hana-cloud-rest.delete-service-instance"
+              with:
+                instanceId: "rest.instanceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/alerts
+          name: alerts
+          description: "Alert monitoring."
+          operations:
+            - method: GET
+              name: list-alerts
+              description: "List alert events."
+              call: "hana-cloud-rest.list-alert-events"
+              with:
+                instanceId: "rest.instanceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/metrics
+          name: metrics
+          description: "Performance metrics."
+          operations:
+            - method: GET
+              name: get-metrics
+              description: "Get database metrics."
+              call: "hana-cloud-rest.get-metric-values"
+              with:
+                instanceId: "rest.instanceId"
+                metricName: "rest.metricName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: hana-cloud-admin-mcp
+      transport: http
+      description: "MCP server for AI-assisted SAP HANA Cloud database administration."
+      tools:
+        - name: list-instances
+          description: "List all SAP HANA Cloud service instances."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "hana-cloud-rest.list-service-instances"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-instance
+          description: "Provision a new SAP HANA Cloud instance."
+          hints:
+            readOnly: false
+          call: "hana-cloud-rest.create-service-instance"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-instance
+          description: "Get details of a specific instance."
+          hints:
+            readOnly: true
+          call: "hana-cloud-rest.get-service-instance"
+          with:
+            instanceId: "tools.instanceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-instance
+          description: "Update instance configuration."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "hana-cloud-rest.update-service-instance"
+          with:
+            instanceId: "tools.instanceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-instance
+          description: "Delete a service instance permanently."
+          hints:
+            destructive: true
+            idempotent: true
+          call: "hana-cloud-rest.delete-service-instance"
+          with:
+            instanceId: "tools.instanceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-inventory
+          description: "List all instances in the inventory."
+          hints:
+            readOnly: true
+          call: "hana-cloud-rest.list-inventory-instances"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-alerts
+          description: "List triggered alert events for an instance."
+          hints:
+            readOnly: true
+          call: "hana-cloud-rest.list-alert-events"
+          with:
+            instanceId: "tools.instanceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-alert-rules
+          description: "List alert rules for an instance."
+          hints:
+            readOnly: true
+          call: "hana-cloud-rest.list-alert-rules"
+          with:
+            instanceId: "tools.instanceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-alert-rules
+          description: "Update alert rules for an instance."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "hana-cloud-rest.update-alert-rules"
+          with:
+            instanceId: "tools.instanceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-metrics
+          description: "Retrieve database performance metrics."
+          hints:
+            readOnly: true
+          call: "hana-cloud-rest.get-metric-values"
+          with:
+            instanceId: "tools.instanceId"
+            metricName: "tools.metricName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-metering
+          description: "Retrieve consumption metering data."
+          hints:
+            readOnly: true
+          call: "hana-cloud-rest.get-metering-values"
+          with:
+            instanceId: "tools.instanceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-mappings
+          description: "List instance mappings."
+          hints:
+            readOnly: true
+          call: "hana-cloud-rest.list-instance-mappings"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-mapping
+          description: "Create a new instance mapping."
+          hints:
+            readOnly: false
+          call: "hana-cloud-rest.create-instance-mapping"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-mapping
+          description: "Delete an instance mapping."
+          hints:
+            destructive: true
+            idempotent: true
+          call: "hana-cloud-rest.delete-instance-mapping"
+          with:
+            mappingId: "tools.mappingId"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MetricSeries",
+  "type": "object",
+  "properties": {
+    "metricType": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "dataPoints": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MeteringValue",
+  "type": "object",
+  "description": "A metering data record representing resource consumption for billing purposes.",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "description": "ISO 8601 timestamp for the metering period."
+    },
+    "computeUnitHours": {
+      "type": "number",
+      "description": "The number of compute unit hours consumed during the metering period. Compute units are based on memory and vCPU allocation."
+    },
+    "storageGB": {
+      "type": "number",
+      "description": "The storage consumption in gigabytes during the metering period."
+    },
+    "dataLakeCapacityGB": {
+      "type": "number",
+      "description": "The data lake storage consumption in gigabytes during the metering period, if a data lake instance is attached."
+    },
+    "backupStorageGB": {
+      "type": "number",
+      "description": "The backup storage consumption in gigabytes during the metering period."
+    }
+  }
+}

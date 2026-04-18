@@ -1,0 +1,12 @@
+{
+  "serviceInstanceId": "500123",
+  "servicePlanName": "example_value",
+  "instanceName": "example_value",
+  "provisioningState": "example_value",
+  "operationalState": "example_value",
+  "memory": 10,
+  "vcpu": 10,
+  "storage": 10,
+  "createdAt": "example_value",
+  "modifiedAt": "example_value"
+}

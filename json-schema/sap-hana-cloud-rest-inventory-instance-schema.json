@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InventoryInstance",
+  "type": "object",
+  "description": "An SAP HANA Cloud instance as represented in the inventory service, providing a consolidated view of instance status and configuration.",
+  "properties": {
+    "serviceInstanceId": {
+      "type": "string",
+      "description": "The unique identifier of the service instance."
+    },
+    "servicePlanName": {
+      "type": "string",
+      "description": "The name of the service plan (e.g., hana, hana-td, relational-data-lake)."
+    },
+    "instanceName": {
+      "type": "string",
+      "description": "The display name of the instance."
+    },
+    "provisioningState": {
+      "type": "string",
+      "description": "The current provisioning state of the instance."
+    },
+    "operationalState": {
+      "type": "string",
+      "description": "The current operational state of the instance."
+    },
+    "memory": {
+      "type": "integer",
+      "description": "Allocated memory in gigabytes."
+    },
+    "vcpu": {
+      "type": "integer",
+      "description": "Number of allocated virtual CPUs."
+    },
+    "storage": {
+      "type": "integer",
+      "description": "Allocated persistent storage in gigabytes."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the instance was created."
+    },
+    "modifiedAt": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the instance was last modified."
+    }
+  }
+}

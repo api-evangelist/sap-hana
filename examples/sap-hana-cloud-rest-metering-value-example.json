@@ -1,0 +1,7 @@
+{
+  "timestamp": "example_value",
+  "computeUnitHours": 42.5,
+  "storageGB": 42.5,
+  "dataLakeCapacityGB": 42.5,
+  "backupStorageGB": 42.5
+}

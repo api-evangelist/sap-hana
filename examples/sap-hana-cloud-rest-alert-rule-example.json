@@ -1,0 +1,12 @@
+{
+  "ruleId": "500123",
+  "ruleName": "example_value",
+  "ruleType": "example_value",
+  "enabled": true,
+  "severity": "example_value",
+  "metric": "example_value",
+  "thresholdOperator": "example_value",
+  "thresholdValue": 42.5,
+  "unit": "example_value",
+  "description": "A sample description."
+}

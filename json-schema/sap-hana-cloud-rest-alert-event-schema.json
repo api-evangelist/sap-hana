@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AlertEvent",
+  "type": "object",
+  "description": "An alert event representing a triggered alert condition on an SAP HANA Cloud service instance. Alerts monitor database health, resources, and operational thresholds.",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "The unique identifier of the alert event."
+    },
+    "alertRuleId": {
+      "type": "string",
+      "description": "The identifier of the alert rule that triggered this event."
+    },
+    "alertName": {
+      "type": "string",
+      "description": "The human-readable name of the alert (e.g., Memory Usage, Disk Usage, Long-Running Statements)."
+    },
+    "alertState": {
+      "type": "string",
+      "description": "The current state of the alert event."
+    },
+    "severity": {
+      "type": "string",
+      "description": "The severity level of the alert."
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the alert condition."
+    },
+    "triggeredAt": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the alert was triggered."
+    },
+    "resolvedAt": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the alert was resolved. Null if the alert is still active."
+    },
+    "currentValue": {
+      "type": "number",
+      "description": "The current metric value that triggered or relates to the alert."
+    },
+    "thresholdValue": {
+      "type": "number",
+      "description": "The threshold value configured in the alert rule."
+    },
+    "unit": {
+      "type": "string",
+      "description": "The unit of measurement for the metric values (e.g., %, GB, count)."
+    },
+    "serviceInstanceId": {
+      "type": "string",
+      "description": "The service instance identifier associated with this alert."
+    }
+  }
+}

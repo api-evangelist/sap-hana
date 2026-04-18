@@ -1,0 +1,14 @@
+{
+  "alertId": "500123",
+  "alertRuleId": "500123",
+  "alertName": "example_value",
+  "alertState": "example_value",
+  "severity": "example_value",
+  "description": "A sample description.",
+  "triggeredAt": "example_value",
+  "resolvedAt": "example_value",
+  "currentValue": 42.5,
+  "thresholdValue": 42.5,
+  "unit": "example_value",
+  "serviceInstanceId": "500123"
+}

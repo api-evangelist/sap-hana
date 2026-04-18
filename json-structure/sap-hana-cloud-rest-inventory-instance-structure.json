@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "InventoryInstance",
+  "type": "object",
+  "properties": {
+    "serviceInstanceId": {
+      "type": "string"
+    },
+    "servicePlanName": {
+      "type": "string"
+    },
+    "instanceName": {
+      "type": "string"
+    },
+    "provisioningState": {
+      "type": "string"
+    },
+    "operationalState": {
+      "type": "string"
+    },
+    "memory": {
+      "type": "integer"
+    },
+    "vcpu": {
+      "type": "integer"
+    },
+    "storage": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "modifiedAt": {
+      "type": "string"
+    }
+  }
+}

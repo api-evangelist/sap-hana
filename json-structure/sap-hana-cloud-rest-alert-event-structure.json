@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AlertEvent",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string"
+    },
+    "alertRuleId": {
+      "type": "string"
+    },
+    "alertName": {
+      "type": "string"
+    },
+    "alertState": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "triggeredAt": {
+      "type": "string"
+    },
+    "resolvedAt": {
+      "type": "string"
+    },
+    "currentValue": {
+      "type": "number"
+    },
+    "thresholdValue": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "serviceInstanceId": {
+      "type": "string"
+    }
+  }
+}

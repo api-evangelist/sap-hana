@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ServiceInstanceList",
+  "type": "object",
+  "properties": {
+    "num_items": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array"
+    },
+    "token": {
+      "type": "string"
+    }
+  }
+}

@@ -21,75 +21,75 @@ info:
   x-logo:
     url: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
 servers:
-  - url: https://api.cf.{region}.hana.ondemand.com
-    description: SAP HANA Cloud API (Cloud Foundry environment)
-    variables:
-      region:
-        default: eu10
-        description: >-
-          SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt),
-          us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo),
-          and others based on your SAP BTP subaccount provisioning.
-        enum:
-          - eu10
-          - eu11
-          - eu20
-          - eu30
-          - us10
-          - us20
-          - us21
-          - us30
-          - ap10
-          - ap11
-          - ap12
-          - ap20
-          - ap21
-          - jp10
-          - jp20
-          - br10
-          - ca10
-          - in30
+- url: https://api.cf.{region}.hana.ondemand.com
+  description: SAP HANA Cloud API (Cloud Foundry environment)
+  variables:
+    region:
+      default: eu10
+      description: >-
+        SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt),
+        us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo),
+        and others based on your SAP BTP subaccount provisioning.
+      enum:
+      - eu10
+      - eu11
+      - eu20
+      - eu30
+      - us10
+      - us20
+      - us21
+      - us30
+      - ap10
+      - ap11
+      - ap12
+      - ap20
+      - ap21
+      - jp10
+      - jp20
+      - br10
+      - ca10
+      - in30
 security:
-  - oauth2: []
+- oauth2: []
 tags:
-  - name: Instances
-    description: >-
-      Operations for managing SAP HANA Cloud database instances including
-      provisioning, configuration, lifecycle management, and status retrieval.
-  - name: Alerts
-    description: >-
-      Operations for accessing and managing triggered alerts for SAP HANA Cloud
-      instances, including alert state queries, severity filtering, and alert
-      rule configuration.
-  - name: Metrics
-    description: >-
-      Operations for retrieving database performance metrics and resource
-      utilization data for SAP HANA Cloud instances.
-  - name: Metering
-    description: >-
-      Operations for accessing consumption metering data used for billing and
-      capacity planning for SAP HANA Cloud instances.
-  - name: Instance Mappings
-    description: >-
-      Operations for creating and managing instance mappings that associate
-      SAP HANA Cloud instances across subaccounts and environments.
+- name: Instances
+  description: >-
+    Operations for managing SAP HANA Cloud database instances including
+    provisioning, configuration, lifecycle management, and status retrieval.
+- name: Alerts
+  description: >-
+    Operations for accessing and managing triggered alerts for SAP HANA Cloud
+    instances, including alert state queries, severity filtering, and alert
+    rule configuration.
+- name: Metrics
+  description: >-
+    Operations for retrieving database performance metrics and resource
+    utilization data for SAP HANA Cloud instances.
+- name: Metering
+  description: >-
+    Operations for accessing consumption metering data used for billing and
+    capacity planning for SAP HANA Cloud instances.
+- name: Instance Mappings
+  description: >-
+    Operations for creating and managing instance mappings that associate
+    SAP HANA Cloud instances across subaccounts and environments.
 paths:
   /v1/service_instances:
     get:
       operationId: listServiceInstances
-      summary: List all SAP HANA Cloud service instances
+      summary: List All Sap Hana Cloud Service Instances
       description: >-
         Retrieves a list of all SAP HANA Cloud service instances provisioned
         in the current subaccount. Results can be filtered using query parameters
         to narrow down by service plan, label, or other criteria. The response
         includes instance metadata, configuration parameters, and current status.
       tags:
-        - Instances
+      - Instances
       parameters:
-        - $ref: '#/components/parameters/FieldQuery'
-        - $ref: '#/components/parameters/LabelQuery'
-        - $ref: '#/components/parameters/PageSize'
-        - $ref: '#/components/parameters/PageToken'
+      - $ref: '#/components/parameters/FieldQuery'
+      - $ref: '#/components/parameters/LabelQuery'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
       responses:
         '200':
           description: Successfully retrieved the list of service instances.
@@ -97,6 +97,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceInstanceList'
+              examples:
+                Listserviceinstances200Example:
+                  summary: Default listServiceInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    num_items: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      service_plan_id: '500123'
+                      platform_id: '500123'
+                      context: {}
+                      labels: example_value
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+                      ready: true
+                      usable: true
+                    token: example_value
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -105,9 +123,12 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createServiceInstance
-      summary: Create a new SAP HANA Cloud service instance
+      summary: Create a New Sap Hana Cloud Service Instance
       description: >-
         Provisions a new SAP HANA Cloud database instance in the current
         subaccount. The request body must include the service plan identifier,
@@ -117,13 +138,33 @@ paths:
         asynchronously and the response includes the instance identifier for
         tracking provisioning status.
       tags:
-        - Instances
+      - Instances
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateServiceInstanceRequest'
+            examples:
+              CreateserviceinstanceRequestExample:
+                summary: Default createServiceInstance request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  service_plan_id: '500123'
+                  parameters:
+                    data:
+                      edition: cloud
+                      memory: 10
+                      vcpu: 10
+                      storage: 10
+                      systempassword: example_value
+                      whitelistIPs: {}
+                      enabledservices: {}
+                      serviceStopped: true
+                      availabilityZone: example_value
+                      slaLevel: standard
+                  labels: example_value
       responses:
         '201':
           description: Service instance creation initiated successfully.
@@ -131,12 +172,86 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Createserviceinstance201Example:
+                  summary: Default createServiceInstance 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
         '202':
           description: Service instance creation accepted and processing asynchronously.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Createserviceinstance202Example:
+                  summary: Default createServiceInstance 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -151,18 +266,21 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/service_instances/{instanceId}:
     get:
       operationId: getServiceInstance
-      summary: Retrieve a specific SAP HANA Cloud service instance
+      summary: Retrieve a Specific Sap Hana Cloud Service Instance
       description: >-
         Retrieves the details of a specific SAP HANA Cloud service instance
         identified by its unique instance ID. The response includes the full
         configuration, current status, connection endpoints, and metadata.
       tags:
-        - Instances
+      - Instances
       parameters:
-        - $ref: '#/components/parameters/InstanceId'
+      - $ref: '#/components/parameters/InstanceId'
       responses:
         '200':
           description: Successfully retrieved the service instance details.
@@ -170,6 +288,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Getserviceinstance200Example:
+                  summary: Default getServiceInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -180,9 +335,12 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: updateServiceInstance
-      summary: Update an SAP HANA Cloud service instance
+      summary: Update an Sap Hana Cloud Service Instance
       description: >-
         Updates the configuration of an existing SAP HANA Cloud service instance.
         This operation supports starting and stopping instances by setting the
@@ -190,15 +348,35 @@ paths:
         allowed IP addresses, modifying storage size, and changing other
         configuration parameters. The update is processed asynchronously.
       tags:
-        - Instances
+      - Instances
       parameters:
-        - $ref: '#/components/parameters/InstanceId'
+      - $ref: '#/components/parameters/InstanceId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateServiceInstanceRequest'
+            examples:
+              UpdateserviceinstanceRequestExample:
+                summary: Default updateServiceInstance request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  parameters:
+                    data:
+                      edition: cloud
+                      memory: 10
+                      vcpu: 10
+                      storage: 10
+                      systempassword: example_value
+                      whitelistIPs: {}
+                      enabledservices: {}
+                      serviceStopped: true
+                      availabilityZone: example_value
+                      slaLevel: standard
+                  labels: example_value
+                  service_plan_id: '500123'
       responses:
         '200':
           description: Service instance update completed successfully.
@@ -206,12 +384,86 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Updateserviceinstance200Example:
+                  summary: Default updateServiceInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
         '202':
           description: Service instance update accepted and processing asynchronously.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Updateserviceinstance202Example:
+                  summary: Default updateServiceInstance 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -228,18 +480,21 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteServiceInstance
-      summary: Delete an SAP HANA Cloud service instance
+      summary: Delete an Sap Hana Cloud Service Instance
       description: >-
         Deletes an SAP HANA Cloud service instance and all associated data.
         This operation is irreversible and permanently removes the database
         instance, all stored data, backups, and configuration. The deletion
         is processed asynchronously.
       tags:
-        - Instances
+      - Instances
       parameters:
-        - $ref: '#/components/parameters/InstanceId'
+      - $ref: '#/components/parameters/InstanceId'
       responses:
         '200':
           description: Service instance deletion completed successfully.
@@ -257,30 +512,34 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /inventory/v2/serviceInstances:
     get:
       operationId: listInventoryInstances
-      summary: List SAP HANA Cloud instances in inventory
+      summary: List Sap Hana Cloud Instances in Inventory
       description: >-
         Retrieves an inventory listing of all SAP HANA Cloud instances across
         the subaccount, including both SAP HANA database and data lake instances.
         The inventory provides a consolidated view of all instances with their
         current operational status, resource allocation, and basic configuration.
       tags:
-        - Instances
+      - Instances
       parameters:
-        - name: provisioningState
-          in: query
-          description: Filter instances by their current provisioning state.
-          schema:
-            type: string
-            enum:
-              - Provisioned
-              - Provisioning
-              - Deprovisioning
-              - Error
-        - $ref: '#/components/parameters/PageSize'
-        - $ref: '#/components/parameters/PageToken'
+      - name: provisioningState
+        in: query
+        description: Filter instances by their current provisioning state.
+        schema:
+          type: string
+          enum:
+          - Provisioned
+          - Provisioning
+          - Deprovisioning
+          - Error
+        example: Provisioned
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
       responses:
         '200':
           description: Successfully retrieved the inventory of service instances.
@@ -288,6 +547,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryInstanceList'
+              examples:
+                Listinventoryinstances200Example:
+                  summary: Default listInventoryInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    totalCount: 10
+                    items:
+                    - serviceInstanceId: '500123'
+                      servicePlanName: example_value
+                      instanceName: example_value
+                      provisioningState: Provisioned
+                      operationalState: Started
+                      memory: 10
+                      vcpu: 10
+                      storage: 10
+                      createdAt: '2026-01-15T10:30:00Z'
+                      modifiedAt: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -296,59 +572,66 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /alerts/v1/serviceInstances/{serviceInstanceId}/events:
     get:
       operationId: listAlertEvents
-      summary: List alert events for a service instance
+      summary: List Alert Events for a Service Instance
       description: >-
         Retrieves a list of triggered alert events for a specific SAP HANA Cloud
         service instance. Alerts monitor database health, resource utilization,
         availability, and operational thresholds. Results can be filtered by
         alert state and severity to focus on active or critical alerts.
       tags:
-        - Alerts
+      - Alerts
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
-        - name: alertState
-          in: query
-          description: >-
-            Filter alerts by their current state. Use Active to retrieve
-            currently triggered alerts, or Resolved for previously triggered
-            alerts that have returned to normal.
-          schema:
-            type: string
-            enum:
-              - Active
-              - Resolved
-              - All
-        - name: severity
-          in: query
-          description: >-
-            Filter alerts by severity level. High severity alerts indicate
-            critical conditions requiring immediate attention.
-          schema:
-            type: string
-            enum:
-              - High
-              - Medium
-              - Low
-              - Information
-        - name: fromTimestamp
-          in: query
-          description: >-
-            Start timestamp for the alert event query window in ISO 8601 format.
-            Only alerts triggered on or after this timestamp are returned.
-          schema:
-            type: string
-            format: date-time
-        - name: toTimestamp
-          in: query
-          description: >-
-            End timestamp for the alert event query window in ISO 8601 format.
-            Only alerts triggered on or before this timestamp are returned.
-          schema:
-            type: string
-            format: date-time
+      - $ref: '#/components/parameters/ServiceInstanceId'
+      - name: alertState
+        in: query
+        description: >-
+          Filter alerts by their current state. Use Active to retrieve
+          currently triggered alerts, or Resolved for previously triggered
+          alerts that have returned to normal.
+        schema:
+          type: string
+          enum:
+          - Active
+          - Resolved
+          - All
+        example: Active
+      - name: severity
+        in: query
+        description: >-
+          Filter alerts by severity level. High severity alerts indicate
+          critical conditions requiring immediate attention.
+        schema:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+          - Information
+        example: High
+      - name: fromTimestamp
+        in: query
+        description: >-
+          Start timestamp for the alert event query window in ISO 8601 format.
+          Only alerts triggered on or after this timestamp are returned.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
+      - name: toTimestamp
+        in: query
+        description: >-
+          End timestamp for the alert event query window in ISO 8601 format.
+          Only alerts triggered on or before this timestamp are returned.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: Successfully retrieved the list of alert events.
@@ -356,6 +639,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AlertEventList'
+              examples:
+                Listalertevents200Example:
+                  summary: Default listAlertEvents 200 response
+                  x-microcks-default: true
+                  value:
+                    items:
+                    - alertId: '500123'
+                      alertRuleId: '500123'
+                      alertName: example_value
+                      alertState: Active
+                      severity: High
+                      description: A sample description.
+                      triggeredAt: '2026-01-15T10:30:00Z'
+                      resolvedAt: '2026-01-15T10:30:00Z'
+                      currentValue: 42.5
+                      thresholdValue: 42.5
+                      unit: example_value
+                      serviceInstanceId: '500123'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -366,19 +667,22 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /alerts/v1/serviceInstances/{serviceInstanceId}/rules:
     get:
       operationId: listAlertRules
-      summary: List alert rules for a service instance
+      summary: List Alert Rules for a Service Instance
       description: >-
         Retrieves all configured alert rules for a specific SAP HANA Cloud
         service instance. Alert rules define the conditions and thresholds
         that trigger alerts, including both cloud-native rules and embedded
         statistics server (ESS) rules.
       tags:
-        - Alerts
+      - Alerts
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
+      - $ref: '#/components/parameters/ServiceInstanceId'
       responses:
         '200':
           description: Successfully retrieved the list of alert rules.
@@ -386,6 +690,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AlertRuleList'
+              examples:
+                Listalertrules200Example:
+                  summary: Default listAlertRules 200 response
+                  x-microcks-default: true
+                  value:
+                    items:
+                    - ruleId: '500123'
+                      ruleName: example_value
+                      ruleType: cloud-native
+                      enabled: true
+                      severity: High
+                      metric: example_value
+                      thresholdOperator: GREATER_THAN
+                      thresholdValue: 42.5
+                      unit: example_value
+                      description: A sample description.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -396,24 +716,37 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: updateAlertRules
-      summary: Update alert rules for a service instance
+      summary: Update Alert Rules for a Service Instance
       description: >-
         Updates the configuration of alert rules for a specific SAP HANA Cloud
         service instance. This allows administrators to modify alert thresholds,
         enable or disable specific rules, and customize alerting behavior for
         both cloud-native rules and ESS rules.
       tags:
-        - Alerts
+      - Alerts
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
+      - $ref: '#/components/parameters/ServiceInstanceId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateAlertRulesRequest'
+            examples:
+              UpdatealertrulesRequestExample:
+                summary: Default updateAlertRules request
+                x-microcks-default: true
+                value:
+                  rules:
+                  - ruleId: '500123'
+                    enabled: true
+                    thresholdValue: 42.5
+                    severity: High
       responses:
         '200':
           description: Successfully updated the alert rules.
@@ -421,6 +754,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AlertRuleList'
+              examples:
+                Updatealertrules200Example:
+                  summary: Default updateAlertRules 200 response
+                  x-microcks-default: true
+                  value:
+                    items:
+                    - ruleId: '500123'
+                      ruleName: example_value
+                      ruleType: cloud-native
+                      enabled: true
+                      severity: High
+                      metric: example_value
+                      thresholdOperator: GREATER_THAN
+                      thresholdValue: 42.5
+                      unit: example_value
+                      description: A sample description.
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -435,10 +784,13 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metrics/v1/serviceInstances/{serviceInstanceId}/values:
     get:
       operationId: getMetricValues
-      summary: Retrieve metric values for a service instance
+      summary: Retrieve Metric Values for a Service Instance
       description: >-
         Retrieves database performance and resource utilization metrics for a
         specific SAP HANA Cloud service instance. Metrics include CPU usage,
@@ -446,51 +798,55 @@ paths:
         execution statistics, and other operational indicators. Data can be
         queried for specific time ranges and metric types.
       tags:
-        - Metrics
+      - Metrics
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
-        - name: metricType
-          in: query
-          description: >-
-            Filter metrics by type. Specify one or more metric types to retrieve
-            specific categories of performance data.
-          schema:
-            type: string
-            enum:
-              - cpu
-              - memory
-              - disk
-              - connections
-              - statements
-              - network
-              - rowstore
-              - columnstore
-        - name: fromTimestamp
-          in: query
-          description: >-
-            Start timestamp for the metrics query window in ISO 8601 format.
-          schema:
-            type: string
-            format: date-time
-        - name: toTimestamp
-          in: query
-          description: >-
-            End timestamp for the metrics query window in ISO 8601 format.
-          schema:
-            type: string
-            format: date-time
-        - name: granularity
-          in: query
-          description: >-
-            The aggregation granularity for metric data points. Determines the
-            time interval between data points in the response.
-          schema:
-            type: string
-            enum:
-              - MINUTE
-              - FIVE_MINUTES
-              - HOUR
-              - DAY
+      - $ref: '#/components/parameters/ServiceInstanceId'
+      - name: metricType
+        in: query
+        description: >-
+          Filter metrics by type. Specify one or more metric types to retrieve
+          specific categories of performance data.
+        schema:
+          type: string
+          enum:
+          - cpu
+          - memory
+          - disk
+          - connections
+          - statements
+          - network
+          - rowstore
+          - columnstore
+        example: cpu
+      - name: fromTimestamp
+        in: query
+        description: >-
+          Start timestamp for the metrics query window in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
+      - name: toTimestamp
+        in: query
+        description: >-
+          End timestamp for the metrics query window in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
+      - name: granularity
+        in: query
+        description: >-
+          The aggregation granularity for metric data points. Determines the
+          time interval between data points in the response.
+        schema:
+          type: string
+          enum:
+          - MINUTE
+          - FIVE_MINUTES
+          - HOUR
+          - DAY
+        example: MINUTE
       responses:
         '200':
           description: Successfully retrieved metric values.
@@ -498,6 +854,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetricValueList'
+              examples:
+                Getmetricvalues200Example:
+                  summary: Default getMetricValues 200 response
+                  x-microcks-default: true
+                  value:
+                    metrics:
+                    - metricType: example_value
+                      unit: example_value
+                      dataPoints: {}
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -508,33 +873,38 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metering/v1/serviceInstances/{serviceInstanceId}/values:
     get:
       operationId: getMeteringValues
-      summary: Retrieve metering data for a service instance
+      summary: Retrieve Metering Data for a Service Instance
       description: >-
         Retrieves consumption metering data for a specific SAP HANA Cloud
         service instance. Metering data includes compute unit hours, storage
         consumption, data lake capacity utilization, and other billable metrics
         used for cost tracking and capacity planning.
       tags:
-        - Metering
+      - Metering
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
-        - name: fromTimestamp
-          in: query
-          description: >-
-            Start timestamp for the metering data query window in ISO 8601 format.
-          schema:
-            type: string
-            format: date-time
-        - name: toTimestamp
-          in: query
-          description: >-
-            End timestamp for the metering data query window in ISO 8601 format.
-          schema:
-            type: string
-            format: date-time
+      - $ref: '#/components/parameters/ServiceInstanceId'
+      - name: fromTimestamp
+        in: query
+        description: >-
+          Start timestamp for the metering data query window in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
+      - name: toTimestamp
+        in: query
+        description: >-
+          End timestamp for the metering data query window in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: Successfully retrieved metering data.
@@ -542,6 +912,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MeteringValueList'
+              examples:
+                Getmeteringvalues200Example:
+                  summary: Default getMeteringValues 200 response
+                  x-microcks-default: true
+                  value:
+                    values:
+                    - timestamp: '2026-01-15T10:30:00Z'
+                      computeUnitHours: 42.5
+                      storageGB: 42.5
+                      dataLakeCapacityGB: 42.5
+                      backupStorageGB: 42.5
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -552,18 +933,21 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings:
     get:
       operationId: listInstanceMappings
-      summary: List instance mappings for a service instance
+      summary: List Instance Mappings for a Service Instance
       description: >-
         Retrieves the list of instance mappings associated with a specific
         SAP HANA Cloud service instance. Instance mappings define associations
         between instances across different subaccounts or environments.
       tags:
-        - Instance Mappings
+      - Instance Mappings
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
+      - $ref: '#/components/parameters/ServiceInstanceId'
       responses:
         '200':
           description: Successfully retrieved instance mappings.
@@ -571,6 +955,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstanceMappingList'
+              examples:
+                Listinstancemappings200Example:
+                  summary: Default listInstanceMappings 200 response
+                  x-microcks-default: true
+                  value:
+                    items:
+                    - mappingId: '500123'
+                      serviceInstanceId: '500123'
+                      targetSubaccountId: '500123'
+                      targetEnvironmentInstanceId: '500123'
+                      createdAt: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -581,23 +976,33 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createInstanceMapping
-      summary: Create an instance mapping
+      summary: Create an Instance Mapping
       description: >-
         Creates a new instance mapping that associates an SAP HANA Cloud service
         instance with another instance or environment. This enables cross-subaccount
         access and multi-environment configurations.
       tags:
-        - Instance Mappings
+      - Instance Mappings
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
+      - $ref: '#/components/parameters/ServiceInstanceId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateInstanceMappingRequest'
+            examples:
+              CreateinstancemappingRequestExample:
+                summary: Default createInstanceMapping request
+                x-microcks-default: true
+                value:
+                  targetSubaccountId: '500123'
+                  targetEnvironmentInstanceId: '500123'
       responses:
         '201':
           description: Instance mapping created successfully.
@@ -605,6 +1010,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstanceMapping'
+              examples:
+                Createinstancemapping201Example:
+                  summary: Default createInstanceMapping 201 response
+                  x-microcks-default: true
+                  value:
+                    mappingId: '500123'
+                    serviceInstanceId: '500123'
+                    targetSubaccountId: '500123'
+                    targetEnvironmentInstanceId: '500123'
+                    createdAt: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -619,24 +1034,28 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings/{mappingId}:
     delete:
       operationId: deleteInstanceMapping
-      summary: Delete an instance mapping
+      summary: Delete an Instance Mapping
       description: >-
         Deletes an existing instance mapping, removing the association between
         the SAP HANA Cloud service instance and the mapped target.
       tags:
-        - Instance Mappings
+      - Instance Mappings
       parameters:
-        - $ref: '#/components/parameters/ServiceInstanceId'
-        - name: mappingId
-          in: path
-          required: true
-          description: The unique identifier of the instance mapping to delete.
-          schema:
-            type: string
-            format: uuid
+      - $ref: '#/components/parameters/ServiceInstanceId'
+      - name: mappingId
+        in: path
+        required: true
+        description: The unique identifier of the instance mapping to delete.
+        schema:
+          type: string
+          format: uuid
+        example: '500123'
       responses:
         '200':
           description: Instance mapping deleted successfully.
@@ -650,6 +1069,9 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     oauth2:
@@ -728,14 +1150,17 @@ components:
         num_items:
           type: integer
           description: Total number of service instances matching the query criteria.
+          example: 10
         items:
           type: array
           description: The list of service instances for the current page.
           items:
             $ref: '#/components/schemas/ServiceInstance'
+          example: []
         token:
           type: string
           description: Pagination token to retrieve the next page of results.
+          example: example_value
     ServiceInstance:
       type: object
       description: >-
@@ -748,22 +1173,26 @@ components:
           description: >-
             The unique identifier assigned to the service instance during
             provisioning.
+          example: abc123
         name:
           type: string
           description: >-
             The user-defined name of the SAP HANA Cloud service instance,
             used for identification in the cockpit and API responses.
+          example: Example Title
         service_plan_id:
           type: string
           format: uuid
           description: >-
             The identifier of the service plan used to provision this instance,
             determining the available features and resource tiers.
+          example: '500123'
         platform_id:
           type: string
           description: >-
             The platform identifier indicating the runtime environment
             (e.g., cloud-foundry or kubernetes).
+          example: '500123'
         context:
           type: object
           description: >-
@@ -782,6 +1211,7 @@ components:
             instance_name:
               type: string
               description: The display name of the instance in the platform context.
+          example: example_value
         parameters:
           $ref: '#/components/schemas/InstanceParameters'
         labels:
@@ -793,26 +1223,31 @@ components:
             type: array
             items:
               type: string
+          example: example_value
         created_at:
           type: string
           format: date-time
           description: >-
             ISO 8601 timestamp when the service instance was created.
+          example: '2026-01-15T10:30:00Z'
         updated_at:
           type: string
           format: date-time
           description: >-
             ISO 8601 timestamp when the service instance was last updated.
+          example: '2026-01-15T10:30:00Z'
         ready:
           type: boolean
           description: >-
             Indicates whether the service instance is fully provisioned and
             ready for use.
+          example: true
         usable:
           type: boolean
           description: >-
             Indicates whether the service instance is currently usable,
             accounting for both provisioning state and operational status.
+          example: true
         last_operation:
           $ref: '#/components/schemas/LastOperation'
     InstanceParameters:
@@ -831,8 +1266,8 @@ components:
                 The SAP HANA Cloud edition. Determines available features and
                 resource limits.
               enum:
-                - cloud
-                - enterprise
+              - cloud
+              - enterprise
             memory:
               type: integer
               description: >-
@@ -900,8 +1335,9 @@ components:
               description: >-
                 The service level agreement tier for the instance.
               enum:
-                - standard
-                - premium
+              - standard
+              - premium
+          example: example_value
     LastOperation:
       type: object
       description: >-
@@ -911,47 +1347,54 @@ components:
           type: string
           description: The type of operation that was performed.
           enum:
-            - create
-            - update
-            - delete
+          - create
+          - update
+          - delete
+          example: create
         state:
           type: string
           description: The current state of the operation.
           enum:
-            - succeeded
-            - in progress
-            - failed
+          - succeeded
+          - in progress
+          - failed
+          example: succeeded
         description:
           type: string
           description: A human-readable description of the operation status.
+          example: A sample description.
         created_at:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the operation was initiated.
+          example: '2026-01-15T10:30:00Z'
         updated_at:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the operation status was last updated.
+          example: '2026-01-15T10:30:00Z'
     CreateServiceInstanceRequest:
       type: object
       description: >-
         Request body for creating a new SAP HANA Cloud service instance.
       required:
-        - name
-        - service_plan_id
-        - parameters
+      - name
+      - service_plan_id
+      - parameters
       properties:
         name:
           type: string
           description: >-
             The name for the new service instance. Must be unique within the
             subaccount.
+          example: Example Title
         service_plan_id:
           type: string
           format: uuid
           description: >-
             The service plan identifier determining the instance type and
             available features.
+          example: '500123'
         parameters:
           $ref: '#/components/schemas/InstanceParameters'
         labels:
@@ -962,6 +1405,7 @@ components:
             type: array
             items:
               type: string
+          example: example_value
     UpdateServiceInstanceRequest:
       type: object
       description: >-
@@ -971,6 +1415,7 @@ components:
         name:
           type: string
           description: The updated name for the service instance.
+          example: Example Title
         parameters:
           $ref: '#/components/schemas/InstanceParameters'
         labels:
@@ -980,11 +1425,13 @@ components:
             type: array
             items:
               type: string
+          example: example_value
         service_plan_id:
           type: string
           format: uuid
           description: >-
             The new service plan identifier if changing the instance plan.
+          example: '500123'
     InventoryInstanceList:
       type: object
       description: >-
@@ -993,11 +1440,13 @@ components:
         totalCount:
           type: integer
           description: Total number of instances matching the query criteria.
+          example: 10
         items:
           type: array
           description: The list of inventory instances for the current page.
           items:
             $ref: '#/components/schemas/InventoryInstance'
+          example: []
     InventoryInstance:
       type: object
       description: >-
@@ -1008,47 +1457,57 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the service instance.
+          example: '500123'
         servicePlanName:
           type: string
           description: >-
             The name of the service plan (e.g., hana, hana-td, relational-data-lake).
+          example: example_value
         instanceName:
           type: string
           description: The display name of the instance.
+          example: example_value
         provisioningState:
           type: string
           description: The current provisioning state of the instance.
           enum:
-            - Provisioned
-            - Provisioning
-            - Deprovisioning
-            - Error
+          - Provisioned
+          - Provisioning
+          - Deprovisioning
+          - Error
+          example: Provisioned
         operationalState:
           type: string
           description: The current operational state of the instance.
           enum:
-            - Started
-            - Starting
-            - Stopped
-            - Stopping
-            - Error
+          - Started
+          - Starting
+          - Stopped
+          - Stopping
+          - Error
+          example: Started
         memory:
           type: integer
           description: Allocated memory in gigabytes.
+          example: 10
         vcpu:
           type: integer
           description: Number of allocated virtual CPUs.
+          example: 10
         storage:
           type: integer
           description: Allocated persistent storage in gigabytes.
+          example: 10
         createdAt:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the instance was created.
+          example: '2026-01-15T10:30:00Z'
         modifiedAt:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the instance was last modified.
+          example: '2026-01-15T10:30:00Z'
     AlertEventList:
       type: object
       description: A list of alert events for an SAP HANA Cloud service instance.
@@ -1058,6 +1517,7 @@ components:
           description: The list of alert events.
           items:
             $ref: '#/components/schemas/AlertEvent'
+          example: []
     AlertEvent:
       type: object
       description: >-
@@ -1068,56 +1528,68 @@ components:
         alertId:
           type: string
           description: The unique identifier of the alert event.
+          example: '500123'
         alertRuleId:
           type: string
           description: The identifier of the alert rule that triggered this event.
+          example: '500123'
         alertName:
           type: string
           description: >-
             The human-readable name of the alert (e.g., Memory Usage,
             Disk Usage, Long-Running Statements).
+          example: example_value
         alertState:
           type: string
           description: The current state of the alert event.
           enum:
-            - Active
-            - Resolved
+          - Active
+          - Resolved
+          example: Active
         severity:
           type: string
           description: The severity level of the alert.
           enum:
-            - High
-            - Medium
-            - Low
-            - Information
+          - High
+          - Medium
+          - Low
+          - Information
+          example: High
         description:
           type: string
           description: A detailed description of the alert condition.
+          example: A sample description.
         triggeredAt:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the alert was triggered.
+          example: '2026-01-15T10:30:00Z'
         resolvedAt:
           type: string
           format: date-time
           description: >-
             ISO 8601 timestamp when the alert was resolved. Null if the alert
             is still active.
+          example: '2026-01-15T10:30:00Z'
         currentValue:
           type: number
           format: double
           description: The current metric value that triggered or relates to the alert.
+          example: 42.5
         thresholdValue:
           type: number
           format: double
           description: The threshold value configured in the alert rule.
+          example: 42.5
         unit:
           type: string
           description: The unit of measurement for the metric values (e.g., %, GB, count).
+          example: example_value
         serviceInstanceId:
           type: string
           format: uuid
           description: The service instance identifier associated with this alert.
+          example: '500123'
     AlertRuleList:
       type: object
       description: A list of alert rules configured for an SAP HANA Cloud service instance.
@@ -1127,6 +1599,7 @@ components:
           description: The list of alert rules.
           items:
             $ref: '#/components/schemas/AlertRule'
+          example: []
     AlertRule:
       type: object
       description: >-
@@ -1137,50 +1610,60 @@ components:
         ruleId:
           type: string
           description: The unique identifier of the alert rule.
+          example: '500123'
         ruleName:
           type: string
           description: >-
             The human-readable name of the alert rule (e.g., Memory Usage Alert,
             Disk Full Alert).
+          example: example_value
         ruleType:
           type: string
           description: The type of alert rule.
           enum:
-            - cloud-native
-            - ess
+          - cloud-native
+          - ess
+          example: cloud-native
         enabled:
           type: boolean
           description: Whether the alert rule is currently active.
+          example: true
         severity:
           type: string
           description: The severity level assigned to alerts triggered by this rule.
           enum:
-            - High
-            - Medium
-            - Low
-            - Information
+          - High
+          - Medium
+          - Low
+          - Information
+          example: High
         metric:
           type: string
           description: The metric being monitored by this rule.
+          example: example_value
         thresholdOperator:
           type: string
           description: The comparison operator used to evaluate the threshold.
           enum:
-            - GREATER_THAN
-            - GREATER_THAN_OR_EQUAL
-            - LESS_THAN
-            - LESS_THAN_OR_EQUAL
-            - EQUAL
+          - GREATER_THAN
+          - GREATER_THAN_OR_EQUAL
+          - LESS_THAN
+          - LESS_THAN_OR_EQUAL
+          - EQUAL
+          example: GREATER_THAN
         thresholdValue:
           type: number
           format: double
           description: The threshold value that triggers the alert when exceeded.
+          example: 42.5
         unit:
           type: string
           description: The unit of measurement for the threshold value.
+          example: example_value
         description:
           type: string
           description: A description of what this alert rule monitors.
+          example: A sample description.
     UpdateAlertRulesRequest:
       type: object
       description: Request body for updating alert rules.
@@ -1205,10 +1688,11 @@ components:
                 type: string
                 description: The updated severity level.
                 enum:
-                  - High
-                  - Medium
-                  - Low
-                  - Information
+                - High
+                - Medium
+                - Low
+                - Information
+          example: []
     MetricValueList:
       type: object
       description: >-
@@ -1219,6 +1703,7 @@ components:
           description: The list of metric series.
           items:
             $ref: '#/components/schemas/MetricSeries'
+          example: []
     MetricSeries:
       type: object
       description: >-
@@ -1230,14 +1715,17 @@ components:
           description: >-
             The type of metric (e.g., cpu_usage, memory_used, disk_used,
             active_connections).
+          example: example_value
         unit:
           type: string
           description: The unit of measurement (e.g., percent, bytes, count).
+          example: example_value
         dataPoints:
           type: array
           description: The time-ordered list of metric data points.
           items:
             $ref: '#/components/schemas/MetricDataPoint'
+          example: []
     MetricDataPoint:
       type: object
       description: A single metric data point at a specific timestamp.
@@ -1246,25 +1734,30 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp for the data point.
+          example: '2026-01-15T10:30:00Z'
         value:
           type: number
           format: double
           description: The metric value at the given timestamp.
+          example: 42.5
         min:
           type: number
           format: double
           description: >-
             The minimum value observed during the aggregation interval.
+          example: 42.5
         max:
           type: number
           format: double
           description: >-
             The maximum value observed during the aggregation interval.
+          example: 42.5
         avg:
           type: number
           format: double
           description: >-
             The average value observed during the aggregation interval.
+          example: 42.5
     MeteringValueList:
       type: object
       description: >-
@@ -1275,6 +1768,7 @@ components:
           description: The list of metering records.
           items:
             $ref: '#/components/schemas/MeteringValue'
+          example: []
     MeteringValue:
       type: object
       description: >-
@@ -1285,29 +1779,34 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp for the metering period.
+          example: '2026-01-15T10:30:00Z'
         computeUnitHours:
           type: number
           format: double
           description: >-
             The number of compute unit hours consumed during the metering period.
             Compute units are based on memory and vCPU allocation.
+          example: 42.5
         storageGB:
           type: number
           format: double
           description: >-
             The storage consumption in gigabytes during the metering period.
+          example: 42.5
         dataLakeCapacityGB:
           type: number
           format: double
           description: >-
             The data lake storage consumption in gigabytes during the metering
             period, if a data lake instance is attached.
+          example: 42.5
         backupStorageGB:
           type: number
           format: double
           description: >-
             The backup storage consumption in gigabytes during the metering
             period.
+          example: 42.5
     InstanceMappingList:
       type: object
       description: A list of instance mappings for an SAP HANA Cloud service instance.
@@ -1317,6 +1816,7 @@ components:
           description: The list of instance mappings.
           items:
             $ref: '#/components/schemas/InstanceMapping'
+          example: []
     InstanceMapping:
       type: object
       description: >-
@@ -1327,32 +1827,39 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the instance mapping.
+          example: '500123'
         serviceInstanceId:
           type: string
           format: uuid
           description: The source service instance identifier.
+          example: '500123'
         targetSubaccountId:
           type: string
           description: The target subaccount identifier.
+          example: '500123'
         targetEnvironmentInstanceId:
           type: string
           description: The target environment instance identifier.
+          example: '500123'
         createdAt:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the mapping was created.
+          example: '2026-01-15T10:30:00Z'
     CreateInstanceMappingRequest:
       type: object
       description: Request body for creating a new instance mapping.
       required:
-        - targetSubaccountId
+      - targetSubaccountId
       properties:
         targetSubaccountId:
           type: string
           description: The target subaccount identifier for the mapping.
+          example: '500123'
         targetEnvironmentInstanceId:
           type: string
           description: The target environment instance identifier.
+          example: '500123'
     Error:
       type: object
       description: >-
@@ -1362,12 +1869,15 @@ components:
         error:
           type: string
           description: The error code identifying the type of error.
+          example: example_value
         description:
           type: string
           description: A human-readable description of the error.
+          example: A sample description.
         statusCode:
           type: integer
           description: The HTTP status code associated with the error.
+          example: 10
   responses:
     BadRequest:
       description: >-

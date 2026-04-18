@@ -1,0 +1,12 @@
+name: sap-hana API Vocabulary
+provider: sap-hana
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 14
+schemas: 22
+tags:
+- Alerts
+- Instance Mappings
+- Instances
+- Metering
+- Metrics

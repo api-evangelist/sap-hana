@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InstanceMapping",
+  "type": "object",
+  "description": "An instance mapping that associates an SAP HANA Cloud service instance with a target in another subaccount or environment.",
+  "properties": {
+    "mappingId": {
+      "type": "string",
+      "description": "The unique identifier of the instance mapping."
+    },
+    "serviceInstanceId": {
+      "type": "string",
+      "description": "The source service instance identifier."
+    },
+    "targetSubaccountId": {
+      "type": "string",
+      "description": "The target subaccount identifier."
+    },
+    "targetEnvironmentInstanceId": {
+      "type": "string",
+      "description": "The target environment instance identifier."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when the mapping was created."
+    }
+  }
+}

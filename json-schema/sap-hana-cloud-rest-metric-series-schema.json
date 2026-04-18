@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MetricSeries",
+  "type": "object",
+  "description": "A time series of metric data points for a specific metric type on an SAP HANA Cloud service instance.",
+  "properties": {
+    "metricType": {
+      "type": "string",
+      "description": "The type of metric (e.g., cpu_usage, memory_used, disk_used, active_connections)."
+    },
+    "unit": {
+      "type": "string",
+      "description": "The unit of measurement (e.g., percent, bytes, count)."
+    },
+    "dataPoints": {
+      "type": "array",
+      "description": "The time-ordered list of metric data points."
+    }
+  }
+}
