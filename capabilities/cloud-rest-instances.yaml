@@ -1,0 +1,238 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SAP HANA Cloud REST API — Instances
+  description: 'SAP HANA Cloud REST API — Instances. 6 operations. Lead operation: List Sap Hana Cloud Instances in Inventory.
+    Self-contained Naftiko capability covering one Sap Hana business surface.'
+  tags:
+  - Sap Hana
+  - Instances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SAP_HANA_API_KEY: SAP_HANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-instances
+    baseUri: https://api.cf.{region}.hana.ondemand.com
+    description: SAP HANA Cloud REST API — Instances business capability. Self-contained, no shared references.
+    resources:
+    - name: inventory-v2-serviceInstances
+      path: /inventory/v2/serviceInstances
+      operations:
+      - name: listinventoryinstances
+        method: GET
+        description: List Sap Hana Cloud Instances in Inventory
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: provisioningState
+          in: query
+          type: string
+          description: Filter instances by their current provisioning state.
+    - name: v1-service_instances
+      path: /v1/service_instances
+      operations:
+      - name: listserviceinstances
+        method: GET
+        description: List All Sap Hana Cloud Service Instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createserviceinstance
+        method: POST
+        description: Create a New Sap Hana Cloud Service Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-service_instances-instanceId
+      path: /v1/service_instances/{instanceId}
+      operations:
+      - name: getserviceinstance
+        method: GET
+        description: Retrieve a Specific Sap Hana Cloud Service Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateserviceinstance
+        method: PATCH
+        description: Update an Sap Hana Cloud Service Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteserviceinstance
+        method: DELETE
+        description: Delete an Sap Hana Cloud Service Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SAP_HANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-rest-instances-rest
+    port: 8080
+    description: REST adapter for SAP HANA Cloud REST API — Instances. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/inventory/v2/serviceinstances
+      name: inventory-v2-serviceinstances
+      description: REST surface for inventory-v2-serviceInstances.
+      operations:
+      - method: GET
+        name: listinventoryinstances
+        description: List Sap Hana Cloud Instances in Inventory
+        call: cloud-rest-instances.listinventoryinstances
+        with:
+          provisioningState: rest.provisioningState
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/service-instances
+      name: v1-service-instances
+      description: REST surface for v1-service_instances.
+      operations:
+      - method: GET
+        name: listserviceinstances
+        description: List All Sap Hana Cloud Service Instances
+        call: cloud-rest-instances.listserviceinstances
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createserviceinstance
+        description: Create a New Sap Hana Cloud Service Instance
+        call: cloud-rest-instances.createserviceinstance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/service-instances/{instanceid}
+      name: v1-service-instances-instanceid
+      description: REST surface for v1-service_instances-instanceId.
+      operations:
+      - method: GET
+        name: getserviceinstance
+        description: Retrieve a Specific Sap Hana Cloud Service Instance
+        call: cloud-rest-instances.getserviceinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateserviceinstance
+        description: Update an Sap Hana Cloud Service Instance
+        call: cloud-rest-instances.updateserviceinstance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteserviceinstance
+        description: Delete an Sap Hana Cloud Service Instance
+        call: cloud-rest-instances.deleteserviceinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-instances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SAP HANA Cloud REST API — Instances. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-sap-hana-cloud-instances
+      description: List Sap Hana Cloud Instances in Inventory
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-instances.listinventoryinstances
+      with:
+        provisioningState: tools.provisioningState
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-sap-hana-cloud
+      description: List All Sap Hana Cloud Service Instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-instances.listserviceinstances
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-sap-hana-cloud
+      description: Create a New Sap Hana Cloud Service Instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-instances.createserviceinstance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-specific-sap-hana-cloud
+      description: Retrieve a Specific Sap Hana Cloud Service Instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-instances.getserviceinstance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-sap-hana-cloud-service
+      description: Update an Sap Hana Cloud Service Instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-instances.updateserviceinstance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-sap-hana-cloud-service
+      description: Delete an Sap Hana Cloud Service Instance
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-instances.deleteserviceinstance
+      outputParameters:
+      - type: object
+        mapping: $.

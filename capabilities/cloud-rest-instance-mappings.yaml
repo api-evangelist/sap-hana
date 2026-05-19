@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SAP HANA Cloud REST API — Instance Mappings
+  description: 'SAP HANA Cloud REST API — Instance Mappings. 3 operations. Lead operation: List Instance Mappings for a Service
+    Instance. Self-contained Naftiko capability covering one Sap Hana business surface.'
+  tags:
+  - Sap Hana
+  - Instance Mappings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SAP_HANA_API_KEY: SAP_HANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-instance-mappings
+    baseUri: https://api.cf.{region}.hana.ondemand.com
+    description: SAP HANA Cloud REST API — Instance Mappings business capability. Self-contained, no shared references.
+    resources:
+    - name: inventory-v2-serviceInstances-serviceInstanceId-instanceMappings
+      path: /inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings
+      operations:
+      - name: listinstancemappings
+        method: GET
+        description: List Instance Mappings for a Service Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createinstancemapping
+        method: POST
+        description: Create an Instance Mapping
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: inventory-v2-serviceInstances-serviceInstanceId-instanceMappings-mappingId
+      path: /inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings/{mappingId}
+      operations:
+      - name: deleteinstancemapping
+        method: DELETE
+        description: Delete an Instance Mapping
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: mappingId
+          in: path
+          type: string
+          description: The unique identifier of the instance mapping to delete.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SAP_HANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-rest-instance-mappings-rest
+    port: 8080
+    description: REST adapter for SAP HANA Cloud REST API — Instance Mappings. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/inventory/v2/serviceinstances/{serviceinstanceid}/instancemappings
+      name: inventory-v2-serviceinstances-serviceinstanceid-instancemappings
+      description: REST surface for inventory-v2-serviceInstances-serviceInstanceId-instanceMappings.
+      operations:
+      - method: GET
+        name: listinstancemappings
+        description: List Instance Mappings for a Service Instance
+        call: cloud-rest-instance-mappings.listinstancemappings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createinstancemapping
+        description: Create an Instance Mapping
+        call: cloud-rest-instance-mappings.createinstancemapping
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/inventory/v2/serviceinstances/{serviceinstanceid}/instancemappings/{mappingid}
+      name: inventory-v2-serviceinstances-serviceinstanceid-instancemappings-mappingid
+      description: REST surface for inventory-v2-serviceInstances-serviceInstanceId-instanceMappings-mappingId.
+      operations:
+      - method: DELETE
+        name: deleteinstancemapping
+        description: Delete an Instance Mapping
+        call: cloud-rest-instance-mappings.deleteinstancemapping
+        with:
+          mappingId: rest.mappingId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-instance-mappings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SAP HANA Cloud REST API — Instance Mappings. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-instance-mappings-service-instance
+      description: List Instance Mappings for a Service Instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-instance-mappings.listinstancemappings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-instance-mapping
+      description: Create an Instance Mapping
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-instance-mappings.createinstancemapping
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-instance-mapping
+      description: Delete an Instance Mapping
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-instance-mappings.deleteinstancemapping
+      with:
+        mappingId: tools.mappingId
+      outputParameters:
+      - type: object
+        mapping: $.

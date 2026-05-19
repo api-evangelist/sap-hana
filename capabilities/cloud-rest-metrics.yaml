@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SAP HANA Cloud REST API — Metrics
+  description: 'SAP HANA Cloud REST API — Metrics. 1 operations. Lead operation: Retrieve Metric Values for a Service Instance.
+    Self-contained Naftiko capability covering one Sap Hana business surface.'
+  tags:
+  - Sap Hana
+  - Metrics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SAP_HANA_API_KEY: SAP_HANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-metrics
+    baseUri: https://api.cf.{region}.hana.ondemand.com
+    description: SAP HANA Cloud REST API — Metrics business capability. Self-contained, no shared references.
+    resources:
+    - name: metrics-v1-serviceInstances-serviceInstanceId-values
+      path: /metrics/v1/serviceInstances/{serviceInstanceId}/values
+      operations:
+      - name: getmetricvalues
+        method: GET
+        description: Retrieve Metric Values for a Service Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metricType
+          in: query
+          type: string
+          description: Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance
+            data.
+        - name: fromTimestamp
+          in: query
+          type: string
+          description: Start timestamp for the metrics query window in ISO 8601 format.
+        - name: toTimestamp
+          in: query
+          type: string
+          description: End timestamp for the metrics query window in ISO 8601 format.
+        - name: granularity
+          in: query
+          type: string
+          description: The aggregation granularity for metric data points. Determines the time interval between data points
+            in the response.
+    authentication:
+      type: bearer
+      token: '{{env.SAP_HANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-rest-metrics-rest
+    port: 8080
+    description: REST adapter for SAP HANA Cloud REST API — Metrics. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/metrics/v1/serviceinstances/{serviceinstanceid}/values
+      name: metrics-v1-serviceinstances-serviceinstanceid-values
+      description: REST surface for metrics-v1-serviceInstances-serviceInstanceId-values.
+      operations:
+      - method: GET
+        name: getmetricvalues
+        description: Retrieve Metric Values for a Service Instance
+        call: cloud-rest-metrics.getmetricvalues
+        with:
+          metricType: rest.metricType
+          fromTimestamp: rest.fromTimestamp
+          toTimestamp: rest.toTimestamp
+          granularity: rest.granularity
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-metrics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SAP HANA Cloud REST API — Metrics. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: retrieve-metric-values-service-instance
+      description: Retrieve Metric Values for a Service Instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-metrics.getmetricvalues
+      with:
+        metricType: tools.metricType
+        fromTimestamp: tools.fromTimestamp
+        toTimestamp: tools.toTimestamp
+        granularity: tools.granularity
+      outputParameters:
+      - type: object
+        mapping: $.

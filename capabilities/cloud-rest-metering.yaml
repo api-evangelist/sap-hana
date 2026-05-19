@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SAP HANA Cloud REST API — Metering
+  description: 'SAP HANA Cloud REST API — Metering. 1 operations. Lead operation: Retrieve Metering Data for a Service Instance.
+    Self-contained Naftiko capability covering one Sap Hana business surface.'
+  tags:
+  - Sap Hana
+  - Metering
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SAP_HANA_API_KEY: SAP_HANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-metering
+    baseUri: https://api.cf.{region}.hana.ondemand.com
+    description: SAP HANA Cloud REST API — Metering business capability. Self-contained, no shared references.
+    resources:
+    - name: metering-v1-serviceInstances-serviceInstanceId-values
+      path: /metering/v1/serviceInstances/{serviceInstanceId}/values
+      operations:
+      - name: getmeteringvalues
+        method: GET
+        description: Retrieve Metering Data for a Service Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fromTimestamp
+          in: query
+          type: string
+          description: Start timestamp for the metering data query window in ISO 8601 format.
+        - name: toTimestamp
+          in: query
+          type: string
+          description: End timestamp for the metering data query window in ISO 8601 format.
+    authentication:
+      type: bearer
+      token: '{{env.SAP_HANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-rest-metering-rest
+    port: 8080
+    description: REST adapter for SAP HANA Cloud REST API — Metering. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/metering/v1/serviceinstances/{serviceinstanceid}/values
+      name: metering-v1-serviceinstances-serviceinstanceid-values
+      description: REST surface for metering-v1-serviceInstances-serviceInstanceId-values.
+      operations:
+      - method: GET
+        name: getmeteringvalues
+        description: Retrieve Metering Data for a Service Instance
+        call: cloud-rest-metering.getmeteringvalues
+        with:
+          fromTimestamp: rest.fromTimestamp
+          toTimestamp: rest.toTimestamp
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-metering-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SAP HANA Cloud REST API — Metering. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: retrieve-metering-data-service-instance
+      description: Retrieve Metering Data for a Service Instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-metering.getmeteringvalues
+      with:
+        fromTimestamp: tools.fromTimestamp
+        toTimestamp: tools.toTimestamp
+      outputParameters:
+      - type: object
+        mapping: $.
