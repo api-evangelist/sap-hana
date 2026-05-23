@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InstanceParameters",
+  "title": "InstanceParameters",
+  "type": "object",
+  "description": "Configuration parameters for an SAP HANA Cloud service instance defining resource allocation, features, and operational settings.",
+  "properties": {
+    "data": {
+      "type": "object",
+      "description": "The instance configuration data.",
+      "properties": {
+        "edition": {
+          "type": "string",
+          "description": "The SAP HANA Cloud edition. Determines available features and resource limits.",
+          "enum": [
+            "cloud",
+            "enterprise"
+          ]
+        },
+        "memory": {
+          "type": "integer",
+          "description": "The allocated memory for the SAP HANA database in gigabytes. Determines the in-memory data capacity.",
+          "minimum": 30
+        },
+        "vcpu": {
+          "type": "integer",
+          "description": "The number of virtual CPUs allocated to the SAP HANA database instance.",
+          "minimum": 2
+        },
+        "storage": {
+          "type": "integer",
+          "description": "The allocated persistent storage in gigabytes for data that exceeds in-memory capacity using native storage extensions."
+        },
+        "systempassword": {
+          "type": "string",
+          "format": "password",
+          "description": "The system database user password. Required during instance creation and can be updated via instance modification.",
+          "writeOnly": true
+        },
+        "whitelistIPs": {
+          "type": "array",
+          "description": "List of IP addresses or CIDR ranges allowed to connect to the database instance. An empty list blocks all external connections.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enabledservices": {
+          "type": "object",
+          "description": "Optional database services to enable on the instance.",
+          "properties": {
+            "scriptserver": {
+              "type": "boolean",
+              "description": "Enable the script server for running application function libraries (AFL) including PAL and BFL."
+            },
+            "docstore": {
+              "type": "boolean",
+              "description": "Enable the JSON document store for semi-structured data storage and querying."
+            },
+            "dpserver": {
+              "type": "boolean",
+              "description": "Enable the data provisioning server for smart data integration and real-time replication."
+            }
+          }
+        },
+        "serviceStopped": {
+          "type": "boolean",
+          "description": "Controls the running state of the instance. Set to true to stop the instance and false to start it. A stopped instance does not consume compute resources but retains all data."
+        },
+        "availabilityZone": {
+          "type": "string",
+          "description": "The availability zone within the selected region where the instance is deployed."
+        },
+        "slaLevel": {
+          "type": "string",
+          "description": "The service level agreement tier for the instance.",
+          "enum": [
+            "standard",
+            "premium"
+          ]
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

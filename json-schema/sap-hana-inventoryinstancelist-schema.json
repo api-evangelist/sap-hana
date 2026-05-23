@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InventoryInstanceList",
+  "title": "InventoryInstanceList",
+  "type": "object",
+  "description": "A paginated list of SAP HANA Cloud instances from the inventory service.",
+  "properties": {
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of instances matching the query criteria.",
+      "example": 10
+    },
+    "items": {
+      "type": "array",
+      "description": "The list of inventory instances for the current page.",
+      "items": {
+        "$ref": "#/components/schemas/InventoryInstance"
+      },
+      "example": []
+    }
+  }
+}

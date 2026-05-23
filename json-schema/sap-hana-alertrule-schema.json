@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AlertRule",
+  "title": "AlertRule",
+  "type": "object",
+  "description": "An alert rule defining the condition and threshold that triggers an alert for an SAP HANA Cloud service instance. Rules can be cloud-native or embedded statistics server (ESS) based.",
+  "properties": {
+    "ruleId": {
+      "type": "string",
+      "description": "The unique identifier of the alert rule.",
+      "example": "500123"
+    },
+    "ruleName": {
+      "type": "string",
+      "description": "The human-readable name of the alert rule (e.g., Memory Usage Alert, Disk Full Alert).",
+      "example": "example_value"
+    },
+    "ruleType": {
+      "type": "string",
+      "description": "The type of alert rule.",
+      "enum": [
+        "cloud-native",
+        "ess"
+      ],
+      "example": "cloud-native"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the alert rule is currently active.",
+      "example": true
+    },
+    "severity": {
+      "type": "string",
+      "description": "The severity level assigned to alerts triggered by this rule.",
+      "enum": [
+        "High",
+        "Medium",
+        "Low",
+        "Information"
+      ],
+      "example": "High"
+    },
+    "metric": {
+      "type": "string",
+      "description": "The metric being monitored by this rule.",
+      "example": "example_value"
+    },
+    "thresholdOperator": {
+      "type": "string",
+      "description": "The comparison operator used to evaluate the threshold.",
+      "enum": [
+        "GREATER_THAN",
+        "GREATER_THAN_OR_EQUAL",
+        "LESS_THAN",
+        "LESS_THAN_OR_EQUAL",
+        "EQUAL"
+      ],
+      "example": "GREATER_THAN"
+    },
+    "thresholdValue": {
+      "type": "number",
+      "format": "double",
+      "description": "The threshold value that triggers the alert when exceeded.",
+      "example": 42.5
+    },
+    "unit": {
+      "type": "string",
+      "description": "The unit of measurement for the threshold value.",
+      "example": "example_value"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of what this alert rule monitors.",
+      "example": "A sample description."
+    }
+  }
+}

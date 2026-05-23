@@ -1,0 +1,32 @@
+{
+  "operationId": "listAlertEvents",
+  "method": "GET",
+  "path": "/alerts/v1/serviceInstances/{serviceInstanceId}/events",
+  "summary": "List Alert Events for a Service Instance",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listalertevents200Example",
+      "example": {
+        "items": [
+          {
+            "alertId": "500123",
+            "alertRuleId": "500123",
+            "alertName": "example_value",
+            "alertState": "Active",
+            "severity": "High",
+            "description": "A sample description.",
+            "triggeredAt": "2026-01-15T10:30:00Z",
+            "resolvedAt": "2026-01-15T10:30:00Z",
+            "currentValue": 42.5,
+            "thresholdValue": 42.5,
+            "unit": "example_value",
+            "serviceInstanceId": "500123"
+          }
+        ]
+      }
+    }
+  ]
+}

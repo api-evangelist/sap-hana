@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceInstance",
+  "title": "ServiceInstance",
+  "type": "object",
+  "description": "An SAP HANA Cloud service instance representing a provisioned database with its configuration, status, and connection details.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier assigned to the service instance during provisioning.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The user-defined name of the SAP HANA Cloud service instance, used for identification in the cockpit and API responses.",
+      "example": "Example Title"
+    },
+    "service_plan_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The identifier of the service plan used to provision this instance, determining the available features and resource tiers.",
+      "example": "500123"
+    },
+    "platform_id": {
+      "type": "string",
+      "description": "The platform identifier indicating the runtime environment (e.g., cloud-foundry or kubernetes).",
+      "example": "500123"
+    },
+    "context": {
+      "type": "object",
+      "description": "Platform-specific context information including subaccount, organization, and space details.",
+      "properties": {
+        "subaccount_id": {
+          "type": "string",
+          "description": "The SAP BTP subaccount identifier."
+        },
+        "organization_guid": {
+          "type": "string",
+          "description": "The Cloud Foundry organization GUID."
+        },
+        "space_guid": {
+          "type": "string",
+          "description": "The Cloud Foundry space GUID."
+        },
+        "instance_name": {
+          "type": "string",
+          "description": "The display name of the instance in the platform context."
+        }
+      },
+      "example": "example_value"
+    },
+    "parameters": {
+      "$ref": "#/components/schemas/InstanceParameters"
+    },
+    "labels": {
+      "type": "object",
+      "description": "Key-value labels assigned to the instance for organization and filtering purposes.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the service instance was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the service instance was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "ready": {
+      "type": "boolean",
+      "description": "Indicates whether the service instance is fully provisioned and ready for use.",
+      "example": true
+    },
+    "usable": {
+      "type": "boolean",
+      "description": "Indicates whether the service instance is currently usable, accounting for both provisioning state and operational status.",
+      "example": true
+    },
+    "last_operation": {
+      "$ref": "#/components/schemas/LastOperation"
+    }
+  }
+}

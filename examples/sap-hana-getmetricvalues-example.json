@@ -1,0 +1,23 @@
+{
+  "operationId": "getMetricValues",
+  "method": "GET",
+  "path": "/metrics/v1/serviceInstances/{serviceInstanceId}/values",
+  "summary": "Retrieve Metric Values for a Service Instance",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getmetricvalues200Example",
+      "example": {
+        "metrics": [
+          {
+            "metricType": "example_value",
+            "unit": "example_value",
+            "dataPoints": {}
+          }
+        ]
+      }
+    }
+  ]
+}

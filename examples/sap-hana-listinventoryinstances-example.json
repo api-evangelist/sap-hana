@@ -1,0 +1,31 @@
+{
+  "operationId": "listInventoryInstances",
+  "method": "GET",
+  "path": "/inventory/v2/serviceInstances",
+  "summary": "List Sap Hana Cloud Instances in Inventory",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listinventoryinstances200Example",
+      "example": {
+        "totalCount": 10,
+        "items": [
+          {
+            "serviceInstanceId": "500123",
+            "servicePlanName": "example_value",
+            "instanceName": "example_value",
+            "provisioningState": "Provisioned",
+            "operationalState": "Started",
+            "memory": 10,
+            "vcpu": 10,
+            "storage": 10,
+            "createdAt": "2026-01-15T10:30:00Z",
+            "modifiedAt": "2026-01-15T10:30:00Z"
+          }
+        ]
+      }
+    }
+  ]
+}

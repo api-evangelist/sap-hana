@@ -1,0 +1,32 @@
+{
+  "operationId": "listServiceInstances",
+  "method": "GET",
+  "path": "/v1/service_instances",
+  "summary": "List All Sap Hana Cloud Service Instances",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listserviceinstances200Example",
+      "example": {
+        "num_items": 10,
+        "items": [
+          {
+            "id": "abc123",
+            "name": "Example Title",
+            "service_plan_id": "500123",
+            "platform_id": "500123",
+            "context": {},
+            "labels": "example_value",
+            "created_at": "2026-01-15T10:30:00Z",
+            "updated_at": "2026-01-15T10:30:00Z",
+            "ready": true,
+            "usable": true
+          }
+        ],
+        "token": "example_value"
+      }
+    }
+  ]
+}

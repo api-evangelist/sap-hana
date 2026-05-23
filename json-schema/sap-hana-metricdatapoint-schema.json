@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricDataPoint",
+  "title": "MetricDataPoint",
+  "type": "object",
+  "description": "A single metric data point at a specific timestamp.",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp for the data point.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "value": {
+      "type": "number",
+      "format": "double",
+      "description": "The metric value at the given timestamp.",
+      "example": 42.5
+    },
+    "min": {
+      "type": "number",
+      "format": "double",
+      "description": "The minimum value observed during the aggregation interval.",
+      "example": 42.5
+    },
+    "max": {
+      "type": "number",
+      "format": "double",
+      "description": "The maximum value observed during the aggregation interval.",
+      "example": 42.5
+    },
+    "avg": {
+      "type": "number",
+      "format": "double",
+      "description": "The average value observed during the aggregation interval.",
+      "example": 42.5
+    }
+  }
+}

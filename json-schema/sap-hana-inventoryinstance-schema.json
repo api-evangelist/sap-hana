@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InventoryInstance",
+  "title": "InventoryInstance",
+  "type": "object",
+  "description": "An SAP HANA Cloud instance as represented in the inventory service, providing a consolidated view of instance status and configuration.",
+  "properties": {
+    "serviceInstanceId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the service instance.",
+      "example": "500123"
+    },
+    "servicePlanName": {
+      "type": "string",
+      "description": "The name of the service plan (e.g., hana, hana-td, relational-data-lake).",
+      "example": "example_value"
+    },
+    "instanceName": {
+      "type": "string",
+      "description": "The display name of the instance.",
+      "example": "example_value"
+    },
+    "provisioningState": {
+      "type": "string",
+      "description": "The current provisioning state of the instance.",
+      "enum": [
+        "Provisioned",
+        "Provisioning",
+        "Deprovisioning",
+        "Error"
+      ],
+      "example": "Provisioned"
+    },
+    "operationalState": {
+      "type": "string",
+      "description": "The current operational state of the instance.",
+      "enum": [
+        "Started",
+        "Starting",
+        "Stopped",
+        "Stopping",
+        "Error"
+      ],
+      "example": "Started"
+    },
+    "memory": {
+      "type": "integer",
+      "description": "Allocated memory in gigabytes.",
+      "example": 10
+    },
+    "vcpu": {
+      "type": "integer",
+      "description": "Number of allocated virtual CPUs.",
+      "example": 10
+    },
+    "storage": {
+      "type": "integer",
+      "description": "Allocated persistent storage in gigabytes.",
+      "example": 10
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the instance was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the instance was last modified.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

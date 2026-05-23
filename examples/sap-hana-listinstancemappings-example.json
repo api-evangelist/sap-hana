@@ -1,0 +1,25 @@
+{
+  "operationId": "listInstanceMappings",
+  "method": "GET",
+  "path": "/inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings",
+  "summary": "List Instance Mappings for a Service Instance",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listinstancemappings200Example",
+      "example": {
+        "items": [
+          {
+            "mappingId": "500123",
+            "serviceInstanceId": "500123",
+            "targetSubaccountId": "500123",
+            "targetEnvironmentInstanceId": "500123",
+            "createdAt": "2026-01-15T10:30:00Z"
+          }
+        ]
+      }
+    }
+  ]
+}

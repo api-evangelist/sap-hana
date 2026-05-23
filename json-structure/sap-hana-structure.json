@@ -1,0 +1,276 @@
+{
+  "provider": "SAP HANA",
+  "providerId": "sap-hana",
+  "kind": "json-structure",
+  "description": "Structural overview of the SAP HANA API surface; extracted from openapi/.",
+  "schemaCount": 22,
+  "operationCount": 14,
+  "schemas": [
+    {
+      "name": "ServiceInstanceList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ServiceInstance",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "InstanceParameters",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LastOperation",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CreateServiceInstanceRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "service_plan_id",
+        "parameters"
+      ]
+    },
+    {
+      "name": "UpdateServiceInstanceRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "InventoryInstanceList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "InventoryInstance",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "AlertEventList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AlertEvent",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "AlertRuleList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AlertRule",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "UpdateAlertRulesRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "MetricValueList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "MetricSeries",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "MetricDataPoint",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "MeteringValueList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "MeteringValue",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "InstanceMappingList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "InstanceMapping",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CreateInstanceMappingRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "targetSubaccountId"
+      ]
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/v1/service_instances",
+      "operationId": "listServiceInstances",
+      "summary": "List All Sap Hana Cloud Service Instances",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/service_instances",
+      "operationId": "createServiceInstance",
+      "summary": "Create a New Sap Hana Cloud Service Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/service_instances/{instanceId}",
+      "operationId": "getServiceInstance",
+      "summary": "Retrieve a Specific Sap Hana Cloud Service Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/service_instances/{instanceId}",
+      "operationId": "deleteServiceInstance",
+      "summary": "Delete an Sap Hana Cloud Service Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/v1/service_instances/{instanceId}",
+      "operationId": "updateServiceInstance",
+      "summary": "Update an Sap Hana Cloud Service Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/inventory/v2/serviceInstances",
+      "operationId": "listInventoryInstances",
+      "summary": "List Sap Hana Cloud Instances in Inventory",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts/v1/serviceInstances/{serviceInstanceId}/events",
+      "operationId": "listAlertEvents",
+      "summary": "List Alert Events for a Service Instance",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alerts/v1/serviceInstances/{serviceInstanceId}/rules",
+      "operationId": "listAlertRules",
+      "summary": "List Alert Rules for a Service Instance",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/alerts/v1/serviceInstances/{serviceInstanceId}/rules",
+      "operationId": "updateAlertRules",
+      "summary": "Update Alert Rules for a Service Instance",
+      "tags": [
+        "Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/metrics/v1/serviceInstances/{serviceInstanceId}/values",
+      "operationId": "getMetricValues",
+      "summary": "Retrieve Metric Values for a Service Instance",
+      "tags": [
+        "Metrics"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/metering/v1/serviceInstances/{serviceInstanceId}/values",
+      "operationId": "getMeteringValues",
+      "summary": "Retrieve Metering Data for a Service Instance",
+      "tags": [
+        "Metering"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings",
+      "operationId": "listInstanceMappings",
+      "summary": "List Instance Mappings for a Service Instance",
+      "tags": [
+        "Instance Mappings"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings",
+      "operationId": "createInstanceMapping",
+      "summary": "Create an Instance Mapping",
+      "tags": [
+        "Instance Mappings"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings/{mappingId}",
+      "operationId": "deleteInstanceMapping",
+      "summary": "Delete an Instance Mapping",
+      "tags": [
+        "Instance Mappings"
+      ]
+    }
+  ]
+}

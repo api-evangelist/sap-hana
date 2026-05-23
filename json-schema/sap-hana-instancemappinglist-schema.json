@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InstanceMappingList",
+  "title": "InstanceMappingList",
+  "type": "object",
+  "description": "A list of instance mappings for an SAP HANA Cloud service instance.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "The list of instance mappings.",
+      "items": {
+        "$ref": "#/components/schemas/InstanceMapping"
+      },
+      "example": []
+    }
+  }
+}

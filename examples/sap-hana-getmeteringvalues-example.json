@@ -1,0 +1,25 @@
+{
+  "operationId": "getMeteringValues",
+  "method": "GET",
+  "path": "/metering/v1/serviceInstances/{serviceInstanceId}/values",
+  "summary": "Retrieve Metering Data for a Service Instance",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getmeteringvalues200Example",
+      "example": {
+        "values": [
+          {
+            "timestamp": "2026-01-15T10:30:00Z",
+            "computeUnitHours": 42.5,
+            "storageGB": 42.5,
+            "dataLakeCapacityGB": 42.5,
+            "backupStorageGB": 42.5
+          }
+        ]
+      }
+    }
+  ]
+}

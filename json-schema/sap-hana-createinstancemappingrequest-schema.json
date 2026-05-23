@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateInstanceMappingRequest",
+  "title": "CreateInstanceMappingRequest",
+  "type": "object",
+  "description": "Request body for creating a new instance mapping.",
+  "required": [
+    "targetSubaccountId"
+  ],
+  "properties": {
+    "targetSubaccountId": {
+      "type": "string",
+      "description": "The target subaccount identifier for the mapping.",
+      "example": "500123"
+    },
+    "targetEnvironmentInstanceId": {
+      "type": "string",
+      "description": "The target environment instance identifier.",
+      "example": "500123"
+    }
+  }
+}

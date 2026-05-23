@@ -1,0 +1,45 @@
+{
+  "operationId": "updateAlertRules",
+  "method": "PATCH",
+  "path": "/alerts/v1/serviceInstances/{serviceInstanceId}/rules",
+  "summary": "Update Alert Rules for a Service Instance",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "UpdatealertrulesRequestExample",
+      "example": {
+        "rules": [
+          {
+            "ruleId": "500123",
+            "enabled": true,
+            "thresholdValue": 42.5,
+            "severity": "High"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Updatealertrules200Example",
+      "example": {
+        "items": [
+          {
+            "ruleId": "500123",
+            "ruleName": "example_value",
+            "ruleType": "cloud-native",
+            "enabled": true,
+            "severity": "High",
+            "metric": "example_value",
+            "thresholdOperator": "GREATER_THAN",
+            "thresholdValue": 42.5,
+            "unit": "example_value",
+            "description": "A sample description."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AlertRuleList",
+  "title": "AlertRuleList",
+  "type": "object",
+  "description": "A list of alert rules configured for an SAP HANA Cloud service instance.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "The list of alert rules.",
+      "items": {
+        "$ref": "#/components/schemas/AlertRule"
+      },
+      "example": []
+    }
+  }
+}

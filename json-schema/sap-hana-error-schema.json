@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Error",
+  "title": "Error",
+  "type": "object",
+  "description": "Standard error response returned by the SAP HANA Cloud REST API when a request fails.",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "The error code identifying the type of error.",
+      "example": "example_value"
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of the error.",
+      "example": "A sample description."
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "The HTTP status code associated with the error.",
+      "example": 10
+    }
+  }
+}

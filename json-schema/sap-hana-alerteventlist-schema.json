@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AlertEventList",
+  "title": "AlertEventList",
+  "type": "object",
+  "description": "A list of alert events for an SAP HANA Cloud service instance.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "The list of alert events.",
+      "items": {
+        "$ref": "#/components/schemas/AlertEvent"
+      },
+      "example": []
+    }
+  }
+}

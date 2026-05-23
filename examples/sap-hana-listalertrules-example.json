@@ -1,0 +1,30 @@
+{
+  "operationId": "listAlertRules",
+  "method": "GET",
+  "path": "/alerts/v1/serviceInstances/{serviceInstanceId}/rules",
+  "summary": "List Alert Rules for a Service Instance",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listalertrules200Example",
+      "example": {
+        "items": [
+          {
+            "ruleId": "500123",
+            "ruleName": "example_value",
+            "ruleType": "cloud-native",
+            "enabled": true,
+            "severity": "High",
+            "metric": "example_value",
+            "thresholdOperator": "GREATER_THAN",
+            "thresholdValue": 42.5,
+            "unit": "example_value",
+            "description": "A sample description."
+          }
+        ]
+      }
+    }
+  ]
+}

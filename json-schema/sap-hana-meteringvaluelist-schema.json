@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MeteringValueList",
+  "title": "MeteringValueList",
+  "type": "object",
+  "description": "A collection of metering data points for billing and capacity tracking.",
+  "properties": {
+    "values": {
+      "type": "array",
+      "description": "The list of metering records.",
+      "items": {
+        "$ref": "#/components/schemas/MeteringValue"
+      },
+      "example": []
+    }
+  }
+}

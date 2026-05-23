@@ -1,0 +1,30 @@
+{
+  "operationId": "createInstanceMapping",
+  "method": "POST",
+  "path": "/inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings",
+  "summary": "Create an Instance Mapping",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateinstancemappingRequestExample",
+      "example": {
+        "targetSubaccountId": "500123",
+        "targetEnvironmentInstanceId": "500123"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createinstancemapping201Example",
+      "example": {
+        "mappingId": "500123",
+        "serviceInstanceId": "500123",
+        "targetSubaccountId": "500123",
+        "targetEnvironmentInstanceId": "500123",
+        "createdAt": "2026-01-15T10:30:00Z"
+      }
+    }
+  ]
+}

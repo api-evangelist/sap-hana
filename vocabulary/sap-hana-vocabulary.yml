@@ -1,0 +1,19 @@
+name: SAP HANA Domain Vocabulary
+provider: SAP HANA
+providerId: sap-hana
+description: Tag-derived vocabulary for the SAP HANA API surface; sourced from openapi/ tags.
+terms:
+- term: Instances
+  description: Operations for managing SAP HANA Cloud database instances including provisioning, configuration, lifecycle
+    management, and status retrieval.
+- term: Alerts
+  description: Operations for accessing and managing triggered alerts for SAP HANA Cloud instances, including alert state
+    queries, severity filtering, and alert rule configuration.
+- term: Metrics
+  description: Operations for retrieving database performance metrics and resource utilization data for SAP HANA Cloud instances.
+- term: Metering
+  description: Operations for accessing consumption metering data used for billing and capacity planning for SAP HANA Cloud
+    instances.
+- term: Instance Mappings
+  description: Operations for creating and managing instance mappings that associate SAP HANA Cloud instances across subaccounts
+    and environments.

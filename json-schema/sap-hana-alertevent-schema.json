@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AlertEvent",
+  "title": "AlertEvent",
+  "type": "object",
+  "description": "An alert event representing a triggered alert condition on an SAP HANA Cloud service instance. Alerts monitor database health, resources, and operational thresholds.",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "The unique identifier of the alert event.",
+      "example": "500123"
+    },
+    "alertRuleId": {
+      "type": "string",
+      "description": "The identifier of the alert rule that triggered this event.",
+      "example": "500123"
+    },
+    "alertName": {
+      "type": "string",
+      "description": "The human-readable name of the alert (e.g., Memory Usage, Disk Usage, Long-Running Statements).",
+      "example": "example_value"
+    },
+    "alertState": {
+      "type": "string",
+      "description": "The current state of the alert event.",
+      "enum": [
+        "Active",
+        "Resolved"
+      ],
+      "example": "Active"
+    },
+    "severity": {
+      "type": "string",
+      "description": "The severity level of the alert.",
+      "enum": [
+        "High",
+        "Medium",
+        "Low",
+        "Information"
+      ],
+      "example": "High"
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the alert condition.",
+      "example": "A sample description."
+    },
+    "triggeredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the alert was triggered.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "resolvedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the alert was resolved. Null if the alert is still active.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "currentValue": {
+      "type": "number",
+      "format": "double",
+      "description": "The current metric value that triggered or relates to the alert.",
+      "example": 42.5
+    },
+    "thresholdValue": {
+      "type": "number",
+      "format": "double",
+      "description": "The threshold value configured in the alert rule.",
+      "example": 42.5
+    },
+    "unit": {
+      "type": "string",
+      "description": "The unit of measurement for the metric values (e.g., %, GB, count).",
+      "example": "example_value"
+    },
+    "serviceInstanceId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The service instance identifier associated with this alert.",
+      "example": "500123"
+    }
+  }
+}

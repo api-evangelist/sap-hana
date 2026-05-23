@@ -1,0 +1,52 @@
+{
+  "operationId": "getServiceInstance",
+  "method": "GET",
+  "path": "/v1/service_instances/{instanceId}",
+  "summary": "Retrieve a Specific Sap Hana Cloud Service Instance",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getserviceinstance200Example",
+      "example": {
+        "id": "abc123",
+        "name": "Example Title",
+        "service_plan_id": "500123",
+        "platform_id": "500123",
+        "context": {
+          "subaccount_id": "500123",
+          "organization_guid": "500123",
+          "space_guid": "500123",
+          "instance_name": "example_value"
+        },
+        "parameters": {
+          "data": {
+            "edition": "cloud",
+            "memory": 10,
+            "vcpu": 10,
+            "storage": 10,
+            "systempassword": "example_value",
+            "whitelistIPs": {},
+            "enabledservices": {},
+            "serviceStopped": true,
+            "availabilityZone": "example_value",
+            "slaLevel": "standard"
+          }
+        },
+        "labels": "example_value",
+        "created_at": "2026-01-15T10:30:00Z",
+        "updated_at": "2026-01-15T10:30:00Z",
+        "ready": true,
+        "usable": true,
+        "last_operation": {
+          "type": "create",
+          "state": "succeeded",
+          "description": "A sample description.",
+          "created_at": "2026-01-15T10:30:00Z",
+          "updated_at": "2026-01-15T10:30:00Z"
+        }
+      }
+    }
+  ]
+}
