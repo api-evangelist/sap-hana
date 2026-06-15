@@ -1,0 +1,431 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP HANA Cloud REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Sap Hana Cloud Service Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances",
+            "params": [
+              {
+                "name": "fieldQuery",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context."
+              },
+              {
+                "name": "labelQuery",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression to narrow results by label values assigned to service instances."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token received from a previous request to retrieve the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all SAP HANA Cloud service instances provisioned in the current subaccount. Results can be filtered using query parameters to narrow down by service plan, label, or other criteria. The response includes instance metadata, configuration parameters, and current status."
+        },
+        {
+          "info": {
+            "name": "Create a New Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new SAP HANA Cloud database instance in the current subaccount. The request body must include the service plan identifier, instance name, and configuration parameters such as memory size, vCPU count, storage size, system password, and optional features like script server, document store, or data lake. The instance is created asynchronously and the response includes the instance identifier for tracking provisioning status."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Specific Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific SAP HANA Cloud service instance identified by its unique instance ID. The response includes the full configuration, current status, connection endpoints, and metadata."
+        },
+        {
+          "info": {
+            "name": "Update an Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing SAP HANA Cloud service instance. This operation supports starting and stopping instances by setting the serviceStopped parameter, scaling memory and vCPU resources, updating allowed IP addresses, modifying storage size, and changing other configuration parameters. The update is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Delete an Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+              }
+            ]
+          },
+          "docs": "Deletes an SAP HANA Cloud service instance and all associated data. This operation is irreversible and permanently removes the database instance, all stored data, backups, and configuration. The deletion is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "List Sap Hana Cloud Instances in Inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/inventory/v2/serviceInstances",
+            "params": [
+              {
+                "name": "provisioningState",
+                "value": "Provisioned",
+                "type": "query",
+                "description": "Filter instances by their current provisioning state."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token received from a previous request to retrieve the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieves an inventory listing of all SAP HANA Cloud instances across the subaccount, including both SAP HANA database and data lake instances. The inventory provides a consolidated view of all instances with their current operational status, resource allocation, and basic configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Alert Events for a Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/alerts/v1/serviceInstances/:serviceInstanceId/events",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              },
+              {
+                "name": "alertState",
+                "value": "Active",
+                "type": "query",
+                "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal."
+              },
+              {
+                "name": "severity",
+                "value": "High",
+                "type": "query",
+                "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention."
+              },
+              {
+                "name": "fromTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned."
+              },
+              {
+                "name": "toTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of triggered alert events for a specific SAP HANA Cloud service instance. Alerts monitor database health, resource utilization, availability, and operational thresholds. Results can be filtered by alert state and severity to focus on active or critical alerts."
+        },
+        {
+          "info": {
+            "name": "List Alert Rules for a Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              }
+            ]
+          },
+          "docs": "Retrieves all configured alert rules for a specific SAP HANA Cloud service instance. Alert rules define the conditions and thresholds that trigger alerts, including both cloud-native rules and embedded statistics server (ESS) rules."
+        },
+        {
+          "info": {
+            "name": "Update Alert Rules for a Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.cf.{region}.hana.ondemand.com/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of alert rules for a specific SAP HANA Cloud service instance. This allows administrators to modify alert thresholds, enable or disable specific rules, and customize alerting behavior for both cloud-native rules and ESS rules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Metric Values for a Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/metrics/v1/serviceInstances/:serviceInstanceId/values",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              },
+              {
+                "name": "metricType",
+                "value": "cpu",
+                "type": "query",
+                "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data."
+              },
+              {
+                "name": "fromTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Start timestamp for the metrics query window in ISO 8601 format."
+              },
+              {
+                "name": "toTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "End timestamp for the metrics query window in ISO 8601 format."
+              },
+              {
+                "name": "granularity",
+                "value": "MINUTE",
+                "type": "query",
+                "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response."
+              }
+            ]
+          },
+          "docs": "Retrieves database performance and resource utilization metrics for a specific SAP HANA Cloud service instance. Metrics include CPU usage, memory consumption, disk utilization, connection counts, statement execution statistics, and other operational indicators. Data can be queried for specific time ranges and metric types."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metering",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Metering Data for a Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/metering/v1/serviceInstances/:serviceInstanceId/values",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              },
+              {
+                "name": "fromTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Start timestamp for the metering data query window in ISO 8601 format."
+              },
+              {
+                "name": "toTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "End timestamp for the metering data query window in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves consumption metering data for a specific SAP HANA Cloud service instance. Metering data includes compute unit hours, storage consumption, data lake capacity utilization, and other billable metrics used for cost tracking and capacity planning."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Instance Mappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Instance Mappings for a Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of instance mappings associated with a specific SAP HANA Cloud service instance. Instance mappings define associations between instances across different subaccounts or environments."
+        },
+        {
+          "info": {
+            "name": "Create an Instance Mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cf.{region}.hana.ondemand.com/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new instance mapping that associates an SAP HANA Cloud service instance with another instance or environment. This enables cross-subaccount access and multi-environment configurations."
+        },
+        {
+          "info": {
+            "name": "Delete an Instance Mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cf.{region}.hana.ondemand.com/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              },
+              {
+                "name": "mappingId",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the instance mapping to delete."
+              }
+            ]
+          },
+          "docs": "Deletes an existing instance mapping, removing the association between the SAP HANA Cloud service instance and the mapped target."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
