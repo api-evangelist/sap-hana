@@ -125,49 +125,49 @@ apis:
         url: json-structure/sap-hana-cloud-rest-create-instance-mapping-request-structure.json
       - type: JSONStructure
         url: json-structure/sap-hana-cloud-rest-error-structure.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-service-instance-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-service-instance-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-instance-parameters-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-last-operation-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-create-service-instance-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-update-service-instance-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-inventory-instance-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-inventory-instance-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-alert-event-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-alert-event-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-alert-rule-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-alert-rule-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-update-alert-rules-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-metric-value-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-metric-series-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-metric-data-point-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-metering-value-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-metering-value-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-instance-mapping-list-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-instance-mapping-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-create-instance-mapping-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/sap-hana-cloud-rest-error-example.json
       - type: JSONLD
         url: json-ld/sap-hana-cloud-rest-context.jsonld
