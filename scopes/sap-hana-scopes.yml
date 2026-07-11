@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sap-hana-cloud-rest-api.yml
+docs: https://developers.sap.com/tutorials/hana-cloud-automation-rest..html
+note: SAP HANA Cloud REST APIs do not publish a named OAuth scope catalog; access
+  tokens are obtained via the OAuth 2.0 client_credentials grant using SAP BTP service
+  key credentials, with no scope parameter, and authorization is governed by BTP
+  roles and service bindings (https://developers.sap.com/tutorials/hana-cloud-automation-rest..html).
+schemes:
+- name: oauth2
+  source: openapi/sap-hana-cloud-rest-api.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token
+  description: OAuth 2.0 authentication using SAP Business Technology Platform credentials.
+    Obtain an access token using client credentials flow with the UAA service URL, client ID,
+    and client secret from your SAP HANA Cloud service key. Access tokens expire after approximately
+    1799 seconds (30 minutes) and must be refreshed.
+scopes: []
