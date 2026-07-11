@@ -350,6 +350,10 @@ apis:
         url: >-
           https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html
 common:
+  - type: VulnerabilityDisclosure
+    url: security/sap-hana-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/sap-hana-domain-security.yml
   - type: Authentication
     url: authentication/sap-hana-authentication.yml
   - type: OAuthScopes
