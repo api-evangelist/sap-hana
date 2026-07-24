@@ -1,0 +1,304 @@
+openapi: 3.1.0
+info:
+  title: SAP HANA Cloud REST Alerts Instance Mappings API
+  description: REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.
+  version: 1.0.0
+  contact:
+    name: SAP SE
+    url: https://www.sap.com
+    email: help@sap.com
+  license:
+    name: SAP Developer License
+    url: https://www.sap.com/about/trust-center/agreements.html
+  termsOfService: https://www.sap.com/about/trust-center/agreements.html
+  x-logo:
+    url: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+servers:
+- url: https://api.cf.{region}.hana.ondemand.com
+  description: SAP HANA Cloud API (Cloud Foundry environment)
+  variables:
+    region:
+      default: eu10
+      description: SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning.
+      enum:
+      - eu10
+      - eu11
+      - eu20
+      - eu30
+      - us10
+      - us20
+      - us21
+      - us30
+      - ap10
+      - ap11
+      - ap12
+      - ap20
+      - ap21
+      - jp10
+      - jp20
+      - br10
+      - ca10
+      - in30
+security:
+- oauth2: []
+tags:
+- name: Instance Mappings
+  description: Operations for creating and managing instance mappings that associate SAP HANA Cloud instances across subaccounts and environments.
+paths:
+  /inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings:
+    get:
+      operationId: listInstanceMappings
+      summary: List Instance Mappings for a Service Instance
+      description: Retrieves the list of instance mappings associated with a specific SAP HANA Cloud service instance. Instance mappings define associations between instances across different subaccounts or environments.
+      tags:
+      - Instance Mappings
+      parameters:
+      - $ref: '#/components/parameters/ServiceInstanceId'
+      responses:
+        '200':
+          description: Successfully retrieved instance mappings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceMappingList'
+              examples:
+                Listinstancemappings200Example:
+                  summary: Default listInstanceMappings 200 response
+                  x-microcks-default: true
+                  value:
+                    items:
+                    - mappingId: '500123'
+                      serviceInstanceId: '500123'
+                      targetSubaccountId: '500123'
+                      targetEnvironmentInstanceId: '500123'
+                      createdAt: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createInstanceMapping
+      summary: Create an Instance Mapping
+      description: Creates a new instance mapping that associates an SAP HANA Cloud service instance with another instance or environment. This enables cross-subaccount access and multi-environment configurations.
+      tags:
+      - Instance Mappings
+      parameters:
+      - $ref: '#/components/parameters/ServiceInstanceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInstanceMappingRequest'
+            examples:
+              CreateinstancemappingRequestExample:
+                summary: Default createInstanceMapping request
+                x-microcks-default: true
+                value:
+                  targetSubaccountId: '500123'
+                  targetEnvironmentInstanceId: '500123'
+      responses:
+        '201':
+          description: Instance mapping created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceMapping'
+              examples:
+                Createinstancemapping201Example:
+                  summary: Default createInstanceMapping 201 response
+                  x-microcks-default: true
+                  value:
+                    mappingId: '500123'
+                    serviceInstanceId: '500123'
+                    targetSubaccountId: '500123'
+                    targetEnvironmentInstanceId: '500123'
+                    createdAt: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/v2/serviceInstances/{serviceInstanceId}/instanceMappings/{mappingId}:
+    delete:
+      operationId: deleteInstanceMapping
+      summary: Delete an Instance Mapping
+      description: Deletes an existing instance mapping, removing the association between the SAP HANA Cloud service instance and the mapped target.
+      tags:
+      - Instance Mappings
+      parameters:
+      - $ref: '#/components/parameters/ServiceInstanceId'
+      - name: mappingId
+        in: path
+        required: true
+        description: The unique identifier of the instance mapping to delete.
+        schema:
+          type: string
+          format: uuid
+        example: '500123'
+      responses:
+        '200':
+          description: Instance mapping deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    InstanceMappingList:
+      type: object
+      description: A list of instance mappings for an SAP HANA Cloud service instance.
+      properties:
+        items:
+          type: array
+          description: The list of instance mappings.
+          items:
+            $ref: '#/components/schemas/InstanceMapping'
+          example: []
+    InstanceMapping:
+      type: object
+      description: An instance mapping that associates an SAP HANA Cloud service instance with a target in another subaccount or environment.
+      properties:
+        mappingId:
+          type: string
+          format: uuid
+          description: The unique identifier of the instance mapping.
+          example: '500123'
+        serviceInstanceId:
+          type: string
+          format: uuid
+          description: The source service instance identifier.
+          example: '500123'
+        targetSubaccountId:
+          type: string
+          description: The target subaccount identifier.
+          example: '500123'
+        targetEnvironmentInstanceId:
+          type: string
+          description: The target environment instance identifier.
+          example: '500123'
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the mapping was created.
+          example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
+      properties:
+        error:
+          type: string
+          description: The error code identifying the type of error.
+          example: example_value
+        description:
+          type: string
+          description: A human-readable description of the error.
+          example: A sample description.
+        statusCode:
+          type: integer
+          description: The HTTP status code associated with the error.
+          example: 10
+    CreateInstanceMappingRequest:
+      type: object
+      description: Request body for creating a new instance mapping.
+      required:
+      - targetSubaccountId
+      properties:
+        targetSubaccountId:
+          type: string
+          description: The target subaccount identifier for the mapping.
+          example: '500123'
+        targetEnvironmentInstanceId:
+          type: string
+          description: The target environment instance identifier.
+          example: '500123'
+  responses:
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ServiceInstanceId:
+      name: serviceInstanceId
+      in: path
+      required: true
+      description: The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication using SAP Business Technology Platform credentials. Obtain an access token using client credentials flow with the UAA service URL, client ID, and client secret from your SAP HANA Cloud service key. Access tokens expire after approximately 1799 seconds (30 minutes) and must be refreshed.
+      flows:
+        clientCredentials:
+          tokenUrl: https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token
+          scopes: {}

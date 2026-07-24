@@ -1,0 +1,936 @@
+openapi: 3.1.0
+info:
+  title: SAP HANA Cloud REST Alerts Instances API
+  description: REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.
+  version: 1.0.0
+  contact:
+    name: SAP SE
+    url: https://www.sap.com
+    email: help@sap.com
+  license:
+    name: SAP Developer License
+    url: https://www.sap.com/about/trust-center/agreements.html
+  termsOfService: https://www.sap.com/about/trust-center/agreements.html
+  x-logo:
+    url: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
+servers:
+- url: https://api.cf.{region}.hana.ondemand.com
+  description: SAP HANA Cloud API (Cloud Foundry environment)
+  variables:
+    region:
+      default: eu10
+      description: SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning.
+      enum:
+      - eu10
+      - eu11
+      - eu20
+      - eu30
+      - us10
+      - us20
+      - us21
+      - us30
+      - ap10
+      - ap11
+      - ap12
+      - ap20
+      - ap21
+      - jp10
+      - jp20
+      - br10
+      - ca10
+      - in30
+security:
+- oauth2: []
+tags:
+- name: Instances
+  description: Operations for managing SAP HANA Cloud database instances including provisioning, configuration, lifecycle management, and status retrieval.
+paths:
+  /v1/service_instances:
+    get:
+      operationId: listServiceInstances
+      summary: List All Sap Hana Cloud Service Instances
+      description: Retrieves a list of all SAP HANA Cloud service instances provisioned in the current subaccount. Results can be filtered using query parameters to narrow down by service plan, label, or other criteria. The response includes instance metadata, configuration parameters, and current status.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/FieldQuery'
+      - $ref: '#/components/parameters/LabelQuery'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Successfully retrieved the list of service instances.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstanceList'
+              examples:
+                Listserviceinstances200Example:
+                  summary: Default listServiceInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    num_items: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      service_plan_id: '500123'
+                      platform_id: '500123'
+                      context: {}
+                      labels: example_value
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+                      ready: true
+                      usable: true
+                    token: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createServiceInstance
+      summary: Create a New Sap Hana Cloud Service Instance
+      description: Provisions a new SAP HANA Cloud database instance in the current subaccount. The request body must include the service plan identifier, instance name, and configuration parameters such as memory size, vCPU count, storage size, system password, and optional features like script server, document store, or data lake. The instance is created asynchronously and the response includes the instance identifier for tracking provisioning status.
+      tags:
+      - Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateServiceInstanceRequest'
+            examples:
+              CreateserviceinstanceRequestExample:
+                summary: Default createServiceInstance request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  service_plan_id: '500123'
+                  parameters:
+                    data:
+                      edition: cloud
+                      memory: 10
+                      vcpu: 10
+                      storage: 10
+                      systempassword: example_value
+                      whitelistIPs: {}
+                      enabledservices: {}
+                      serviceStopped: true
+                      availabilityZone: example_value
+                      slaLevel: standard
+                  labels: example_value
+      responses:
+        '201':
+          description: Service instance creation initiated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Createserviceinstance201Example:
+                  summary: Default createServiceInstance 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+        '202':
+          description: Service instance creation accepted and processing asynchronously.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Createserviceinstance202Example:
+                  summary: Default createServiceInstance 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/service_instances/{instanceId}:
+    get:
+      operationId: getServiceInstance
+      summary: Retrieve a Specific Sap Hana Cloud Service Instance
+      description: Retrieves the details of a specific SAP HANA Cloud service instance identified by its unique instance ID. The response includes the full configuration, current status, connection endpoints, and metadata.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/InstanceId'
+      responses:
+        '200':
+          description: Successfully retrieved the service instance details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Getserviceinstance200Example:
+                  summary: Default getServiceInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateServiceInstance
+      summary: Update an Sap Hana Cloud Service Instance
+      description: Updates the configuration of an existing SAP HANA Cloud service instance. This operation supports starting and stopping instances by setting the serviceStopped parameter, scaling memory and vCPU resources, updating allowed IP addresses, modifying storage size, and changing other configuration parameters. The update is processed asynchronously.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/InstanceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateServiceInstanceRequest'
+            examples:
+              UpdateserviceinstanceRequestExample:
+                summary: Default updateServiceInstance request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  parameters:
+                    data:
+                      edition: cloud
+                      memory: 10
+                      vcpu: 10
+                      storage: 10
+                      systempassword: example_value
+                      whitelistIPs: {}
+                      enabledservices: {}
+                      serviceStopped: true
+                      availabilityZone: example_value
+                      slaLevel: standard
+                  labels: example_value
+                  service_plan_id: '500123'
+      responses:
+        '200':
+          description: Service instance update completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Updateserviceinstance200Example:
+                  summary: Default updateServiceInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+        '202':
+          description: Service instance update accepted and processing asynchronously.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInstance'
+              examples:
+                Updateserviceinstance202Example:
+                  summary: Default updateServiceInstance 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    service_plan_id: '500123'
+                    platform_id: '500123'
+                    context:
+                      subaccount_id: '500123'
+                      organization_guid: '500123'
+                      space_guid: '500123'
+                      instance_name: example_value
+                    parameters:
+                      data:
+                        edition: cloud
+                        memory: 10
+                        vcpu: 10
+                        storage: 10
+                        systempassword: example_value
+                        whitelistIPs: {}
+                        enabledservices: {}
+                        serviceStopped: true
+                        availabilityZone: example_value
+                        slaLevel: standard
+                    labels: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+                    ready: true
+                    usable: true
+                    last_operation:
+                      type: create
+                      state: succeeded
+                      description: A sample description.
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteServiceInstance
+      summary: Delete an Sap Hana Cloud Service Instance
+      description: Deletes an SAP HANA Cloud service instance and all associated data. This operation is irreversible and permanently removes the database instance, all stored data, backups, and configuration. The deletion is processed asynchronously.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/InstanceId'
+      responses:
+        '200':
+          description: Service instance deletion completed successfully.
+        '202':
+          description: Service instance deletion accepted and processing asynchronously.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /inventory/v2/serviceInstances:
+    get:
+      operationId: listInventoryInstances
+      summary: List Sap Hana Cloud Instances in Inventory
+      description: Retrieves an inventory listing of all SAP HANA Cloud instances across the subaccount, including both SAP HANA database and data lake instances. The inventory provides a consolidated view of all instances with their current operational status, resource allocation, and basic configuration.
+      tags:
+      - Instances
+      parameters:
+      - name: provisioningState
+        in: query
+        description: Filter instances by their current provisioning state.
+        schema:
+          type: string
+          enum:
+          - Provisioned
+          - Provisioning
+          - Deprovisioning
+          - Error
+        example: Provisioned
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Successfully retrieved the inventory of service instances.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryInstanceList'
+              examples:
+                Listinventoryinstances200Example:
+                  summary: Default listInventoryInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    totalCount: 10
+                    items:
+                    - serviceInstanceId: '500123'
+                      servicePlanName: example_value
+                      instanceName: example_value
+                      provisioningState: Provisioned
+                      operationalState: Started
+                      memory: 10
+                      vcpu: 10
+                      storage: 10
+                      createdAt: '2026-01-15T10:30:00Z'
+                      modifiedAt: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CreateServiceInstanceRequest:
+      type: object
+      description: Request body for creating a new SAP HANA Cloud service instance.
+      required:
+      - name
+      - service_plan_id
+      - parameters
+      properties:
+        name:
+          type: string
+          description: The name for the new service instance. Must be unique within the subaccount.
+          example: Example Title
+        service_plan_id:
+          type: string
+          format: uuid
+          description: The service plan identifier determining the instance type and available features.
+          example: '500123'
+        parameters:
+          $ref: '#/components/schemas/InstanceParameters'
+        labels:
+          type: object
+          description: Labels to assign to the instance for organization and filtering.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example: example_value
+    InventoryInstanceList:
+      type: object
+      description: A paginated list of SAP HANA Cloud instances from the inventory service.
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of instances matching the query criteria.
+          example: 10
+        items:
+          type: array
+          description: The list of inventory instances for the current page.
+          items:
+            $ref: '#/components/schemas/InventoryInstance'
+          example: []
+    InstanceParameters:
+      type: object
+      description: Configuration parameters for an SAP HANA Cloud service instance defining resource allocation, features, and operational settings.
+      properties:
+        data:
+          type: object
+          description: The instance configuration data.
+          properties:
+            edition:
+              type: string
+              description: The SAP HANA Cloud edition. Determines available features and resource limits.
+              enum:
+              - cloud
+              - enterprise
+            memory:
+              type: integer
+              description: The allocated memory for the SAP HANA database in gigabytes. Determines the in-memory data capacity.
+              minimum: 30
+            vcpu:
+              type: integer
+              description: The number of virtual CPUs allocated to the SAP HANA database instance.
+              minimum: 2
+            storage:
+              type: integer
+              description: The allocated persistent storage in gigabytes for data that exceeds in-memory capacity using native storage extensions.
+            systempassword:
+              type: string
+              format: password
+              description: The system database user password. Required during instance creation and can be updated via instance modification.
+              writeOnly: true
+            whitelistIPs:
+              type: array
+              description: List of IP addresses or CIDR ranges allowed to connect to the database instance. An empty list blocks all external connections.
+              items:
+                type: string
+            enabledservices:
+              type: object
+              description: Optional database services to enable on the instance.
+              properties:
+                scriptserver:
+                  type: boolean
+                  description: Enable the script server for running application function libraries (AFL) including PAL and BFL.
+                docstore:
+                  type: boolean
+                  description: Enable the JSON document store for semi-structured data storage and querying.
+                dpserver:
+                  type: boolean
+                  description: Enable the data provisioning server for smart data integration and real-time replication.
+            serviceStopped:
+              type: boolean
+              description: Controls the running state of the instance. Set to true to stop the instance and false to start it. A stopped instance does not consume compute resources but retains all data.
+            availabilityZone:
+              type: string
+              description: The availability zone within the selected region where the instance is deployed.
+            slaLevel:
+              type: string
+              description: The service level agreement tier for the instance.
+              enum:
+              - standard
+              - premium
+          example: example_value
+    Error:
+      type: object
+      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
+      properties:
+        error:
+          type: string
+          description: The error code identifying the type of error.
+          example: example_value
+        description:
+          type: string
+          description: A human-readable description of the error.
+          example: A sample description.
+        statusCode:
+          type: integer
+          description: The HTTP status code associated with the error.
+          example: 10
+    InventoryInstance:
+      type: object
+      description: An SAP HANA Cloud instance as represented in the inventory service, providing a consolidated view of instance status and configuration.
+      properties:
+        serviceInstanceId:
+          type: string
+          format: uuid
+          description: The unique identifier of the service instance.
+          example: '500123'
+        servicePlanName:
+          type: string
+          description: The name of the service plan (e.g., hana, hana-td, relational-data-lake).
+          example: example_value
+        instanceName:
+          type: string
+          description: The display name of the instance.
+          example: example_value
+        provisioningState:
+          type: string
+          description: The current provisioning state of the instance.
+          enum:
+          - Provisioned
+          - Provisioning
+          - Deprovisioning
+          - Error
+          example: Provisioned
+        operationalState:
+          type: string
+          description: The current operational state of the instance.
+          enum:
+          - Started
+          - Starting
+          - Stopped
+          - Stopping
+          - Error
+          example: Started
+        memory:
+          type: integer
+          description: Allocated memory in gigabytes.
+          example: 10
+        vcpu:
+          type: integer
+          description: Number of allocated virtual CPUs.
+          example: 10
+        storage:
+          type: integer
+          description: Allocated persistent storage in gigabytes.
+          example: 10
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the instance was created.
+          example: '2026-01-15T10:30:00Z'
+        modifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the instance was last modified.
+          example: '2026-01-15T10:30:00Z'
+    UpdateServiceInstanceRequest:
+      type: object
+      description: Request body for updating an existing SAP HANA Cloud service instance. Only include the parameters that need to be changed.
+      properties:
+        name:
+          type: string
+          description: The updated name for the service instance.
+          example: Example Title
+        parameters:
+          $ref: '#/components/schemas/InstanceParameters'
+        labels:
+          type: object
+          description: Updated labels for the service instance.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example: example_value
+        service_plan_id:
+          type: string
+          format: uuid
+          description: The new service plan identifier if changing the instance plan.
+          example: '500123'
+    ServiceInstance:
+      type: object
+      description: An SAP HANA Cloud service instance representing a provisioned database with its configuration, status, and connection details.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier assigned to the service instance during provisioning.
+          example: abc123
+        name:
+          type: string
+          description: The user-defined name of the SAP HANA Cloud service instance, used for identification in the cockpit and API responses.
+          example: Example Title
+        service_plan_id:
+          type: string
+          format: uuid
+          description: The identifier of the service plan used to provision this instance, determining the available features and resource tiers.
+          example: '500123'
+        platform_id:
+          type: string
+          description: The platform identifier indicating the runtime environment (e.g., cloud-foundry or kubernetes).
+          example: '500123'
+        context:
+          type: object
+          description: Platform-specific context information including subaccount, organization, and space details.
+          properties:
+            subaccount_id:
+              type: string
+              description: The SAP BTP subaccount identifier.
+            organization_guid:
+              type: string
+              description: The Cloud Foundry organization GUID.
+            space_guid:
+              type: string
+              description: The Cloud Foundry space GUID.
+            instance_name:
+              type: string
+              description: The display name of the instance in the platform context.
+          example: example_value
+        parameters:
+          $ref: '#/components/schemas/InstanceParameters'
+        labels:
+          type: object
+          description: Key-value labels assigned to the instance for organization and filtering purposes.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example: example_value
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the service instance was created.
+          example: '2026-01-15T10:30:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the service instance was last updated.
+          example: '2026-01-15T10:30:00Z'
+        ready:
+          type: boolean
+          description: Indicates whether the service instance is fully provisioned and ready for use.
+          example: true
+        usable:
+          type: boolean
+          description: Indicates whether the service instance is currently usable, accounting for both provisioning state and operational status.
+          example: true
+        last_operation:
+          $ref: '#/components/schemas/LastOperation'
+    ServiceInstanceList:
+      type: object
+      description: A paginated list of SAP HANA Cloud service instances in the subaccount.
+      properties:
+        num_items:
+          type: integer
+          description: Total number of service instances matching the query criteria.
+          example: 10
+        items:
+          type: array
+          description: The list of service instances for the current page.
+          items:
+            $ref: '#/components/schemas/ServiceInstance'
+          example: []
+        token:
+          type: string
+          description: Pagination token to retrieve the next page of results.
+          example: example_value
+    LastOperation:
+      type: object
+      description: Details about the last operation performed on the service instance.
+      properties:
+        type:
+          type: string
+          description: The type of operation that was performed.
+          enum:
+          - create
+          - update
+          - delete
+          example: create
+        state:
+          type: string
+          description: The current state of the operation.
+          enum:
+          - succeeded
+          - in progress
+          - failed
+          example: succeeded
+        description:
+          type: string
+          description: A human-readable description of the operation status.
+          example: A sample description.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation was initiated.
+          example: '2026-01-15T10:30:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation status was last updated.
+          example: '2026-01-15T10:30:00Z'
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    InstanceId:
+      name: instanceId
+      in: path
+      required: true
+      description: The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning.
+      schema:
+        type: string
+        format: uuid
+    PageToken:
+      name: pageToken
+      in: query
+      description: Pagination token received from a previous request to retrieve the next page of results.
+      schema:
+        type: string
+    FieldQuery:
+      name: fieldQuery
+      in: query
+      description: Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.
+      schema:
+        type: string
+    LabelQuery:
+      name: labelQuery
+      in: query
+      description: Filter expression to narrow results by label values assigned to service instances.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication using SAP Business Technology Platform credentials. Obtain an access token using client credentials flow with the UAA service URL, client ID, and client secret from your SAP HANA Cloud service key. Access tokens expire after approximately 1799 seconds (30 minutes) and must be refreshed.
+      flows:
+        clientCredentials:
+          tokenUrl: https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token
+          scopes: {}
