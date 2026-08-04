@@ -1,0 +1,587 @@
+{
+  "info": {
+    "_postman_id": "96fd8bf5-54a3-430b-9e1d-fb41fa434888",
+    "name": "SAP HANA Cloud REST Alerts Metrics API",
+    "description": "REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.\n\nContact Support:\n Name: SAP SE\n Email: help@sap.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:51:23.000Z",
+    "updatedAt": "2026-07-28T02:51:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-96fd8bf5-54a3-430b-9e1d-fb41fa434888"
+  },
+  "item": [
+    {
+      "name": "metrics",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "serviceInstances",
+              "item": [
+                {
+                  "name": "{serviceInstanceId}",
+                  "item": [
+                    {
+                      "name": "values",
+                      "item": [
+                        {
+                          "name": "Retrieve Metric Values for a Service Instance",
+                          "id": "443e1bf0-86c3-45de-9c17-43a9e26cc0c2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metrics/v1/serviceInstances/:serviceInstanceId/values?metricType=memory&fromTimestamp=<dateTime>&toTimestamp=<dateTime>&granularity=HOUR",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metrics",
+                                "v1",
+                                "serviceInstances",
+                                ":serviceInstanceId",
+                                "values"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data.",
+                                  "key": "metricType",
+                                  "value": "memory"
+                                },
+                                {
+                                  "description": "Start timestamp for the metrics query window in ISO 8601 format.",
+                                  "key": "fromTimestamp",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "End timestamp for the metrics query window in ISO 8601 format.",
+                                  "key": "toTimestamp",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response.",
+                                  "key": "granularity",
+                                  "value": "HOUR"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "16d4102a-d7f8-4993-a2bf-d55d498e6737",
+                                  "key": "serviceInstanceId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves database performance and resource utilization metrics for a specific SAP HANA Cloud service instance. Metrics include CPU usage, memory consumption, disk utilization, connection counts, statement execution statistics, and other operational indicators. Data can be queried for specific time ranges and metric types."
+                          },
+                          "response": [
+                            {
+                              "id": "8587efc6-aed2-4805-b30c-eba4e7091659",
+                              "name": "Successfully retrieved metric values.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metrics/v1/serviceInstances/:serviceInstanceId/values?metricType=memory&fromTimestamp=<dateTime>&toTimestamp=<dateTime>&granularity=HOUR",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metrics",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data.",
+                                      "key": "metricType",
+                                      "value": "memory"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response.",
+                                      "key": "granularity",
+                                      "value": "HOUR"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"metrics\": [\n    {\n      \"metricType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"dataPoints\": [\n        {\n          \"timestamp\": \"<dateTime>\",\n          \"value\": \"<double>\",\n          \"min\": \"<double>\",\n          \"max\": \"<double>\",\n          \"avg\": \"<double>\"\n        },\n        {\n          \"timestamp\": \"<dateTime>\",\n          \"value\": \"<double>\",\n          \"min\": \"<double>\",\n          \"max\": \"<double>\",\n          \"avg\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"metricType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"dataPoints\": [\n        {\n          \"timestamp\": \"<dateTime>\",\n          \"value\": \"<double>\",\n          \"min\": \"<double>\",\n          \"max\": \"<double>\",\n          \"avg\": \"<double>\"\n        },\n        {\n          \"timestamp\": \"<dateTime>\",\n          \"value\": \"<double>\",\n          \"min\": \"<double>\",\n          \"max\": \"<double>\",\n          \"avg\": \"<double>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:51:23.000Z",
+                              "updatedAt": "2026-07-28T02:51:23.000Z",
+                              "uid": "35240-8587efc6-aed2-4805-b30c-eba4e7091659"
+                            },
+                            {
+                              "id": "796dc122-6449-40da-9342-a71599971e4c",
+                              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metrics/v1/serviceInstances/:serviceInstanceId/values?metricType=memory&fromTimestamp=<dateTime>&toTimestamp=<dateTime>&granularity=HOUR",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metrics",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data.",
+                                      "key": "metricType",
+                                      "value": "memory"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response.",
+                                      "key": "granularity",
+                                      "value": "HOUR"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:23.000Z",
+                              "updatedAt": "2026-07-28T02:51:23.000Z",
+                              "uid": "35240-796dc122-6449-40da-9342-a71599971e4c"
+                            },
+                            {
+                              "id": "501cd917-f098-4a6e-a7d1-dd10ee6c4073",
+                              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metrics/v1/serviceInstances/:serviceInstanceId/values?metricType=memory&fromTimestamp=<dateTime>&toTimestamp=<dateTime>&granularity=HOUR",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metrics",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data.",
+                                      "key": "metricType",
+                                      "value": "memory"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response.",
+                                      "key": "granularity",
+                                      "value": "HOUR"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:23.000Z",
+                              "updatedAt": "2026-07-28T02:51:23.000Z",
+                              "uid": "35240-501cd917-f098-4a6e-a7d1-dd10ee6c4073"
+                            },
+                            {
+                              "id": "947cd2a0-8266-4b51-ab09-c616d9caf6ec",
+                              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metrics/v1/serviceInstances/:serviceInstanceId/values?metricType=memory&fromTimestamp=<dateTime>&toTimestamp=<dateTime>&granularity=HOUR",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metrics",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data.",
+                                      "key": "metricType",
+                                      "value": "memory"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response.",
+                                      "key": "granularity",
+                                      "value": "HOUR"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:23.000Z",
+                              "updatedAt": "2026-07-28T02:51:23.000Z",
+                              "uid": "35240-947cd2a0-8266-4b51-ab09-c616d9caf6ec"
+                            },
+                            {
+                              "id": "af2b03f9-2bf2-4c31-a5c3-d641f533eb98",
+                              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metrics/v1/serviceInstances/:serviceInstanceId/values?metricType=memory&fromTimestamp=<dateTime>&toTimestamp=<dateTime>&granularity=HOUR",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metrics",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data.",
+                                      "key": "metricType",
+                                      "value": "memory"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response.",
+                                      "key": "granularity",
+                                      "value": "HOUR"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:23.000Z",
+                              "updatedAt": "2026-07-28T02:51:23.000Z",
+                              "uid": "35240-af2b03f9-2bf2-4c31-a5c3-d641f533eb98"
+                            },
+                            {
+                              "id": "5e6ea78e-419f-401a-afaf-47b3ef9a15d1",
+                              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metrics/v1/serviceInstances/:serviceInstanceId/values?metricType=memory&fromTimestamp=<dateTime>&toTimestamp=<dateTime>&granularity=HOUR",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metrics",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter metrics by type. Specify one or more metric types to retrieve specific categories of performance data.",
+                                      "key": "metricType",
+                                      "value": "memory"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metrics query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "The aggregation granularity for metric data points. Determines the time interval between data points in the response.",
+                                      "key": "granularity",
+                                      "value": "HOUR"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:23.000Z",
+                              "updatedAt": "2026-07-28T02:51:23.000Z",
+                              "uid": "35240-5e6ea78e-419f-401a-afaf-47b3ef9a15d1"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:51:23.000Z",
+                          "updatedAt": "2026-07-28T02:51:23.000Z",
+                          "uid": "35240-443e1bf0-86c3-45de-9c17-43a9e26cc0c2"
+                        }
+                      ],
+                      "id": "498fbd19-77e5-49e8-b2d5-365bbad85748",
+                      "createdAt": "2026-07-28T02:51:23.000Z",
+                      "updatedAt": "2026-07-28T02:51:23.000Z",
+                      "uid": "35240-498fbd19-77e5-49e8-b2d5-365bbad85748"
+                    }
+                  ],
+                  "id": "d31cb053-cc89-49da-9139-48e1f1b8ddd8",
+                  "createdAt": "2026-07-28T02:51:23.000Z",
+                  "updatedAt": "2026-07-28T02:51:23.000Z",
+                  "uid": "35240-d31cb053-cc89-49da-9139-48e1f1b8ddd8"
+                }
+              ],
+              "id": "2f72644e-6bc7-48c9-a615-f847a8af37a7",
+              "createdAt": "2026-07-28T02:51:23.000Z",
+              "updatedAt": "2026-07-28T02:51:23.000Z",
+              "uid": "35240-2f72644e-6bc7-48c9-a615-f847a8af37a7"
+            }
+          ],
+          "id": "32032d9d-b2ae-44d2-9aac-2ff614a1ffc8",
+          "createdAt": "2026-07-28T02:51:23.000Z",
+          "updatedAt": "2026-07-28T02:51:23.000Z",
+          "uid": "35240-32032d9d-b2ae-44d2-9aac-2ff614a1ffc8"
+        }
+      ],
+      "id": "fdaf03f3-e60c-41dd-a773-d91d46394d4d",
+      "createdAt": "2026-07-28T02:51:23.000Z",
+      "updatedAt": "2026-07-28T02:51:23.000Z",
+      "uid": "35240-fdaf03f3-e60c-41dd-a773-d91d46394d4d"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "eu10"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.cf.{{region}}.hana.ondemand.com"
+    }
+  ]
+}

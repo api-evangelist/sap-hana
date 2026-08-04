@@ -1,0 +1,1522 @@
+{
+  "info": {
+    "_postman_id": "d8bf6476-2c92-47f5-82fb-29a6d98e6b1e",
+    "name": "SAP HANA Cloud REST Alerts API",
+    "description": "REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.\n\nContact Support:\n Name: SAP SE\n Email: help@sap.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:51:00.000Z",
+    "updatedAt": "2026-07-28T02:51:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d8bf6476-2c92-47f5-82fb-29a6d98e6b1e"
+  },
+  "item": [
+    {
+      "name": "alerts",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "serviceInstances",
+              "item": [
+                {
+                  "name": "{serviceInstanceId}",
+                  "item": [
+                    {
+                      "name": "events",
+                      "item": [
+                        {
+                          "name": "List Alert Events for a Service Instance",
+                          "id": "57da20ef-3e98-4e92-807f-e03639c13b07",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/events?alertState=Active&severity=Medium&fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "alerts",
+                                "v1",
+                                "serviceInstances",
+                                ":serviceInstanceId",
+                                "events"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal.",
+                                  "key": "alertState",
+                                  "value": "Active"
+                                },
+                                {
+                                  "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention.",
+                                  "key": "severity",
+                                  "value": "Medium"
+                                },
+                                {
+                                  "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned.",
+                                  "key": "fromTimestamp",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned.",
+                                  "key": "toTimestamp",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6500c924-3857-4028-97fd-462d89372a99",
+                                  "key": "serviceInstanceId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a list of triggered alert events for a specific SAP HANA Cloud service instance. Alerts monitor database health, resource utilization, availability, and operational thresholds. Results can be filtered by alert state and severity to focus on active or critical alerts."
+                          },
+                          "response": [
+                            {
+                              "id": "602da721-b950-40cc-a9bd-f52ed481aa86",
+                              "name": "Successfully retrieved the list of alert events.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/events?alertState=Active&severity=Medium&fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal.",
+                                      "key": "alertState",
+                                      "value": "Active"
+                                    },
+                                    {
+                                      "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention.",
+                                      "key": "severity",
+                                      "value": "Medium"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"alertId\": \"<string>\",\n      \"alertRuleId\": \"<string>\",\n      \"alertName\": \"<string>\",\n      \"alertState\": \"Resolved\",\n      \"severity\": \"High\",\n      \"description\": \"<string>\",\n      \"triggeredAt\": \"<dateTime>\",\n      \"resolvedAt\": \"<dateTime>\",\n      \"currentValue\": \"<double>\",\n      \"thresholdValue\": \"<double>\",\n      \"unit\": \"<string>\",\n      \"serviceInstanceId\": \"<uuid>\"\n    },\n    {\n      \"alertId\": \"<string>\",\n      \"alertRuleId\": \"<string>\",\n      \"alertName\": \"<string>\",\n      \"alertState\": \"Resolved\",\n      \"severity\": \"High\",\n      \"description\": \"<string>\",\n      \"triggeredAt\": \"<dateTime>\",\n      \"resolvedAt\": \"<dateTime>\",\n      \"currentValue\": \"<double>\",\n      \"thresholdValue\": \"<double>\",\n      \"unit\": \"<string>\",\n      \"serviceInstanceId\": \"<uuid>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-602da721-b950-40cc-a9bd-f52ed481aa86"
+                            },
+                            {
+                              "id": "8f034e9f-458f-4da3-95ec-06602196e192",
+                              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/events?alertState=Active&severity=Medium&fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal.",
+                                      "key": "alertState",
+                                      "value": "Active"
+                                    },
+                                    {
+                                      "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention.",
+                                      "key": "severity",
+                                      "value": "Medium"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-8f034e9f-458f-4da3-95ec-06602196e192"
+                            },
+                            {
+                              "id": "b0f10559-3c43-48a8-9172-dae46c66fce0",
+                              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/events?alertState=Active&severity=Medium&fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal.",
+                                      "key": "alertState",
+                                      "value": "Active"
+                                    },
+                                    {
+                                      "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention.",
+                                      "key": "severity",
+                                      "value": "Medium"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-b0f10559-3c43-48a8-9172-dae46c66fce0"
+                            },
+                            {
+                              "id": "efef0852-81d3-4cad-9e73-75707f6079da",
+                              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/events?alertState=Active&severity=Medium&fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal.",
+                                      "key": "alertState",
+                                      "value": "Active"
+                                    },
+                                    {
+                                      "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention.",
+                                      "key": "severity",
+                                      "value": "Medium"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-efef0852-81d3-4cad-9e73-75707f6079da"
+                            },
+                            {
+                              "id": "d3c163d1-1b18-46dc-b10c-51c89335d18f",
+                              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/events?alertState=Active&severity=Medium&fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal.",
+                                      "key": "alertState",
+                                      "value": "Active"
+                                    },
+                                    {
+                                      "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention.",
+                                      "key": "severity",
+                                      "value": "Medium"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-d3c163d1-1b18-46dc-b10c-51c89335d18f"
+                            },
+                            {
+                              "id": "e6fb3aae-9d38-4969-a650-fb6e05184956",
+                              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/events?alertState=Active&severity=Medium&fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "events"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal.",
+                                      "key": "alertState",
+                                      "value": "Active"
+                                    },
+                                    {
+                                      "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention.",
+                                      "key": "severity",
+                                      "value": "Medium"
+                                    },
+                                    {
+                                      "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-e6fb3aae-9d38-4969-a650-fb6e05184956"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:51:01.000Z",
+                          "updatedAt": "2026-07-28T02:51:01.000Z",
+                          "uid": "35240-57da20ef-3e98-4e92-807f-e03639c13b07"
+                        }
+                      ],
+                      "id": "492d2813-98df-4ef7-8546-ac20a77b1614",
+                      "createdAt": "2026-07-28T02:51:01.000Z",
+                      "updatedAt": "2026-07-28T02:51:01.000Z",
+                      "uid": "35240-492d2813-98df-4ef7-8546-ac20a77b1614"
+                    },
+                    {
+                      "name": "rules",
+                      "item": [
+                        {
+                          "name": "List Alert Rules for a Service Instance",
+                          "id": "88d497a0-090e-4fc7-91f7-3f74869cb8b3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "alerts",
+                                "v1",
+                                "serviceInstances",
+                                ":serviceInstanceId",
+                                "rules"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b2c7fa77-8e05-4cae-bd54-b3ff289d30eb",
+                                  "key": "serviceInstanceId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves all configured alert rules for a specific SAP HANA Cloud service instance. Alert rules define the conditions and thresholds that trigger alerts, including both cloud-native rules and embedded statistics server (ESS) rules."
+                          },
+                          "response": [
+                            {
+                              "id": "47226e02-1d12-46e2-9990-8ca65d258dec",
+                              "name": "Successfully retrieved the list of alert rules.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"ruleName\": \"<string>\",\n      \"ruleType\": \"cloud-native\",\n      \"enabled\": \"<boolean>\",\n      \"severity\": \"High\",\n      \"metric\": \"<string>\",\n      \"thresholdOperator\": \"GREATER_THAN_OR_EQUAL\",\n      \"thresholdValue\": \"<double>\",\n      \"unit\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"ruleName\": \"<string>\",\n      \"ruleType\": \"ess\",\n      \"enabled\": \"<boolean>\",\n      \"severity\": \"Low\",\n      \"metric\": \"<string>\",\n      \"thresholdOperator\": \"LESS_THAN\",\n      \"thresholdValue\": \"<double>\",\n      \"unit\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-47226e02-1d12-46e2-9990-8ca65d258dec"
+                            },
+                            {
+                              "id": "941567e3-ec84-4107-bf72-fd2be4fc3ff6",
+                              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-941567e3-ec84-4107-bf72-fd2be4fc3ff6"
+                            },
+                            {
+                              "id": "4416bbef-6a62-473a-b332-a8a2c079c67f",
+                              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-4416bbef-6a62-473a-b332-a8a2c079c67f"
+                            },
+                            {
+                              "id": "e5c59c76-7eed-499f-a48c-93328f32ad20",
+                              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-e5c59c76-7eed-499f-a48c-93328f32ad20"
+                            },
+                            {
+                              "id": "59fd31ea-e5d6-41de-b96c-539bfe7830af",
+                              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-59fd31ea-e5d6-41de-b96c-539bfe7830af"
+                            },
+                            {
+                              "id": "7b85deac-80aa-4b8a-ad26-510222a9f51a",
+                              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-7b85deac-80aa-4b8a-ad26-510222a9f51a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:51:01.000Z",
+                          "updatedAt": "2026-07-28T02:51:01.000Z",
+                          "uid": "35240-88d497a0-090e-4fc7-91f7-3f74869cb8b3"
+                        },
+                        {
+                          "name": "Update Alert Rules for a Service Instance",
+                          "id": "ba26413a-ef11-4a0b-92e7-363ba7dc2eb5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "alerts",
+                                "v1",
+                                "serviceInstances",
+                                ":serviceInstanceId",
+                                "rules"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "62e04c68-878d-48cb-a56e-afb0e7bbcbb1",
+                                  "key": "serviceInstanceId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                }
+                              ]
+                            },
+                            "description": "Updates the configuration of alert rules for a specific SAP HANA Cloud service instance. This allows administrators to modify alert thresholds, enable or disable specific rules, and customize alerting behavior for both cloud-native rules and ESS rules."
+                          },
+                          "response": [
+                            {
+                              "id": "da97b4a2-d51b-4b34-9069-e2cc99976d3d",
+                              "name": "Successfully updated the alert rules.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"ruleName\": \"<string>\",\n      \"ruleType\": \"cloud-native\",\n      \"enabled\": \"<boolean>\",\n      \"severity\": \"High\",\n      \"metric\": \"<string>\",\n      \"thresholdOperator\": \"GREATER_THAN_OR_EQUAL\",\n      \"thresholdValue\": \"<double>\",\n      \"unit\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"ruleName\": \"<string>\",\n      \"ruleType\": \"ess\",\n      \"enabled\": \"<boolean>\",\n      \"severity\": \"Low\",\n      \"metric\": \"<string>\",\n      \"thresholdOperator\": \"LESS_THAN\",\n      \"thresholdValue\": \"<double>\",\n      \"unit\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-da97b4a2-d51b-4b34-9069-e2cc99976d3d"
+                            },
+                            {
+                              "id": "e788d56f-ed35-4976-a95d-a23a9f47ad27",
+                              "name": "The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-e788d56f-ed35-4976-a95d-a23a9f47ad27"
+                            },
+                            {
+                              "id": "ba31c56b-07d6-49fd-a81b-6087b1fa68ac",
+                              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-ba31c56b-07d6-49fd-a81b-6087b1fa68ac"
+                            },
+                            {
+                              "id": "3156d4ca-8e4d-4098-bd20-c54fc3655a5a",
+                              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-3156d4ca-8e4d-4098-bd20-c54fc3655a5a"
+                            },
+                            {
+                              "id": "0bd6a13e-65b9-403d-9439-e8b13edb2e68",
+                              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-0bd6a13e-65b9-403d-9439-e8b13edb2e68"
+                            },
+                            {
+                              "id": "706b28ba-f370-4a1f-a804-866b7b931b1e",
+                              "name": "The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-706b28ba-f370-4a1f-a804-866b7b931b1e"
+                            },
+                            {
+                              "id": "22aa7a98-e4f3-4503-84a5-6ae1f27702ae",
+                              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-22aa7a98-e4f3-4503-84a5-6ae1f27702ae"
+                            },
+                            {
+                              "id": "1ab2de67-293e-428d-a910-00cefff7fc56",
+                              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Low\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"Information\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/alerts/v1/serviceInstances/:serviceInstanceId/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "alerts",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:01.000Z",
+                              "updatedAt": "2026-07-28T02:51:01.000Z",
+                              "uid": "35240-1ab2de67-293e-428d-a910-00cefff7fc56"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:51:01.000Z",
+                          "updatedAt": "2026-07-28T02:51:01.000Z",
+                          "uid": "35240-ba26413a-ef11-4a0b-92e7-363ba7dc2eb5"
+                        }
+                      ],
+                      "id": "824dc368-90c5-469b-b762-19cfa7faa6cc",
+                      "createdAt": "2026-07-28T02:51:01.000Z",
+                      "updatedAt": "2026-07-28T02:51:01.000Z",
+                      "uid": "35240-824dc368-90c5-469b-b762-19cfa7faa6cc"
+                    }
+                  ],
+                  "id": "bc9ea5a6-590b-4b82-8a15-58003a8644ca",
+                  "createdAt": "2026-07-28T02:51:01.000Z",
+                  "updatedAt": "2026-07-28T02:51:01.000Z",
+                  "uid": "35240-bc9ea5a6-590b-4b82-8a15-58003a8644ca"
+                }
+              ],
+              "id": "bac2feb4-ae00-4467-847d-4f9e11fb4e8f",
+              "createdAt": "2026-07-28T02:51:01.000Z",
+              "updatedAt": "2026-07-28T02:51:01.000Z",
+              "uid": "35240-bac2feb4-ae00-4467-847d-4f9e11fb4e8f"
+            }
+          ],
+          "id": "4f800f5f-19d5-4f40-8854-0a2e5ff09eb4",
+          "createdAt": "2026-07-28T02:51:01.000Z",
+          "updatedAt": "2026-07-28T02:51:01.000Z",
+          "uid": "35240-4f800f5f-19d5-4f40-8854-0a2e5ff09eb4"
+        }
+      ],
+      "id": "a12e7572-a97e-4cab-ad15-a1d4e2c2fe74",
+      "createdAt": "2026-07-28T02:51:01.000Z",
+      "updatedAt": "2026-07-28T02:51:01.000Z",
+      "uid": "35240-a12e7572-a97e-4cab-ad15-a1d4e2c2fe74"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "eu10"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.cf.{{region}}.hana.ondemand.com"
+    }
+  ]
+}

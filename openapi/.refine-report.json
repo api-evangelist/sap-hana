@@ -1,0 +1,22 @@
+{
+  "provider": "sap-hana",
+  "sources": [
+    "sap-hana-alerts-api-openapi.yml",
+    "sap-hana-instance-mappings-api-openapi.yml",
+    "sap-hana-instances-api-openapi.yml",
+    "sap-hana-metering-api-openapi.yml",
+    "sap-hana-metrics-api-openapi.yml"
+  ],
+  "outputs": [
+    "sap-hana-alerts-api-openapi.yml",
+    "sap-hana-instance-mappings-api-openapi.yml",
+    "sap-hana-instances-api-openapi.yml",
+    "sap-hana-metering-api-openapi.yml",
+    "sap-hana-metrics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

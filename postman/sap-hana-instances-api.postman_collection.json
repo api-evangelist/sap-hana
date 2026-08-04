@@ -1,0 +1,2821 @@
+{
+  "info": {
+    "_postman_id": "47413880-c9f8-42f4-8e93-c09272aceb2d",
+    "name": "SAP HANA Cloud REST Alerts Instances API",
+    "description": "REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.\n\nContact Support:\n Name: SAP SE\n Email: help@sap.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:51:03.000Z",
+    "updatedAt": "2026-07-28T02:51:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-47413880-c9f8-42f4-8e93-c09272aceb2d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "service_instances",
+          "item": [
+            {
+              "name": "{instanceId}",
+              "item": [
+                {
+                  "name": "Retrieve a Specific Sap Hana Cloud Service Instance",
+                  "id": "8eeee0e6-b79b-42ed-bfa6-2d1e588d6e4b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ae40f25c-8926-410b-a04c-3f97a48b45a4",
+                          "key": "instanceId",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific SAP HANA Cloud service instance identified by its unique instance ID. The response includes the full configuration, current status, connection endpoints, and metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "c0eb251a-ab95-486d-ac7d-48aed4012bb0",
+                      "name": "Successfully retrieved the service instance details.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"platform_id\": \"<string>\",\n  \"context\": {\n    \"subaccount_id\": \"<string>\",\n    \"organization_guid\": \"<string>\",\n    \"space_guid\": \"<string>\",\n    \"instance_name\": \"<string>\"\n  },\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"mollit_e6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"ready\": \"<boolean>\",\n  \"usable\": \"<boolean>\",\n  \"last_operation\": {\n    \"type\": \"create\",\n    \"state\": \"succeeded\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-c0eb251a-ab95-486d-ac7d-48aed4012bb0"
+                    },
+                    {
+                      "id": "457c0645-2fb9-4797-a8fc-b73e9c121488",
+                      "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-457c0645-2fb9-4797-a8fc-b73e9c121488"
+                    },
+                    {
+                      "id": "18de8c72-c9ef-4408-a835-28875d8695af",
+                      "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-18de8c72-c9ef-4408-a835-28875d8695af"
+                    },
+                    {
+                      "id": "5f227048-8077-4447-8205-45b591c09c38",
+                      "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-5f227048-8077-4447-8205-45b591c09c38"
+                    },
+                    {
+                      "id": "02fddd62-39b1-4a66-9af9-80f254c9f469",
+                      "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-02fddd62-39b1-4a66-9af9-80f254c9f469"
+                    },
+                    {
+                      "id": "f74c27ff-c4a8-490e-b559-76c89c21eef8",
+                      "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-f74c27ff-c4a8-490e-b559-76c89c21eef8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-8eeee0e6-b79b-42ed-bfa6-2d1e588d6e4b"
+                },
+                {
+                  "name": "Update an Sap Hana Cloud Service Instance",
+                  "id": "80765d42-bc55-496d-b969-a3bf78661905",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "efdf14c6-25a3-48b3-af18-2f20a8e5ab4a",
+                          "key": "instanceId",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+                        }
+                      ]
+                    },
+                    "description": "Updates the configuration of an existing SAP HANA Cloud service instance. This operation supports starting and stopping instances by setting the serviceStopped parameter, scaling memory and vCPU resources, updating allowed IP addresses, modifying storage size, and changing other configuration parameters. The update is processed asynchronously."
+                  },
+                  "response": [
+                    {
+                      "id": "d98ed48d-07f5-4a39-89ec-864b7cdb5e28",
+                      "name": "Service instance update completed successfully.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"platform_id\": \"<string>\",\n  \"context\": {\n    \"subaccount_id\": \"<string>\",\n    \"organization_guid\": \"<string>\",\n    \"space_guid\": \"<string>\",\n    \"instance_name\": \"<string>\"\n  },\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"mollit_e6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"ready\": \"<boolean>\",\n  \"usable\": \"<boolean>\",\n  \"last_operation\": {\n    \"type\": \"create\",\n    \"state\": \"succeeded\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-d98ed48d-07f5-4a39-89ec-864b7cdb5e28"
+                    },
+                    {
+                      "id": "ba3097e7-ddd8-4490-84ad-32a4899a7583",
+                      "name": "Service instance update accepted and processing asynchronously.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"platform_id\": \"<string>\",\n  \"context\": {\n    \"subaccount_id\": \"<string>\",\n    \"organization_guid\": \"<string>\",\n    \"space_guid\": \"<string>\",\n    \"instance_name\": \"<string>\"\n  },\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"mollit_e6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"ready\": \"<boolean>\",\n  \"usable\": \"<boolean>\",\n  \"last_operation\": {\n    \"type\": \"create\",\n    \"state\": \"succeeded\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-ba3097e7-ddd8-4490-84ad-32a4899a7583"
+                    },
+                    {
+                      "id": "7caecf5e-2751-4dfd-8225-b085496adce9",
+                      "name": "The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-7caecf5e-2751-4dfd-8225-b085496adce9"
+                    },
+                    {
+                      "id": "5e7e4280-562f-4415-b88a-5c035253c052",
+                      "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-5e7e4280-562f-4415-b88a-5c035253c052"
+                    },
+                    {
+                      "id": "a632891a-a8f3-4f9d-96cf-7077cab4ffd6",
+                      "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-a632891a-a8f3-4f9d-96cf-7077cab4ffd6"
+                    },
+                    {
+                      "id": "70dde77a-5eb6-476a-890a-d2cc1f85e92e",
+                      "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-70dde77a-5eb6-476a-890a-d2cc1f85e92e"
+                    },
+                    {
+                      "id": "bdbf175c-0ab0-41a3-b25e-800c47513113",
+                      "name": "The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-bdbf175c-0ab0-41a3-b25e-800c47513113"
+                    },
+                    {
+                      "id": "4386ef6e-c745-45ec-8101-138e254e8427",
+                      "name": "The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-4386ef6e-c745-45ec-8101-138e254e8427"
+                    },
+                    {
+                      "id": "67388039-c729-445c-aa00-a5542d525411",
+                      "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-67388039-c729-445c-aa00-a5542d525411"
+                    },
+                    {
+                      "id": "44f6986f-7b8d-4002-b0e9-e54013a27099",
+                      "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"in_66\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"aliqua_e_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"non_402\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"service_plan_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-44f6986f-7b8d-4002-b0e9-e54013a27099"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-80765d42-bc55-496d-b969-a3bf78661905"
+                },
+                {
+                  "name": "Delete an Sap Hana Cloud Service Instance",
+                  "id": "963a0d67-8fc0-47c6-9da7-33f68d7ef281",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "88c3275a-6de3-4f31-9392-210c12156c8a",
+                          "key": "instanceId",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+                        }
+                      ]
+                    },
+                    "description": "Deletes an SAP HANA Cloud service instance and all associated data. This operation is irreversible and permanently removes the database instance, all stored data, backups, and configuration. The deletion is processed asynchronously."
+                  },
+                  "response": [
+                    {
+                      "id": "bc035334-a41c-436d-82bf-1868a4a2b6fd",
+                      "name": "Service instance deletion completed successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-bc035334-a41c-436d-82bf-1868a4a2b6fd"
+                    },
+                    {
+                      "id": "9ebf9de8-2bda-455b-ac9e-38cd648ae206",
+                      "name": "Service instance deletion accepted and processing asynchronously.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-9ebf9de8-2bda-455b-ac9e-38cd648ae206"
+                    },
+                    {
+                      "id": "79c3aa06-2b9c-4c4f-94d2-2562422f2c72",
+                      "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-79c3aa06-2b9c-4c4f-94d2-2562422f2c72"
+                    },
+                    {
+                      "id": "d4df84a5-0a45-4588-9e84-d579f25b6802",
+                      "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-d4df84a5-0a45-4588-9e84-d579f25b6802"
+                    },
+                    {
+                      "id": "392f39d2-4e00-4669-a804-57c8d2175bea",
+                      "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-392f39d2-4e00-4669-a804-57c8d2175bea"
+                    },
+                    {
+                      "id": "203cc394-5505-4779-8e21-4786ad4cde20",
+                      "name": "The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-203cc394-5505-4779-8e21-4786ad4cde20"
+                    },
+                    {
+                      "id": "57d00ab4-5f7b-44d4-a69c-8e5f1c17d89f",
+                      "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-57d00ab4-5f7b-44d4-a69c-8e5f1c17d89f"
+                    },
+                    {
+                      "id": "aea70622-0e10-4947-96d2-d0ce6e534a61",
+                      "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/service_instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "service_instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-aea70622-0e10-4947-96d2-d0ce6e534a61"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-963a0d67-8fc0-47c6-9da7-33f68d7ef281"
+                }
+              ],
+              "id": "90b1202c-1254-4e8d-a893-1e9d5f92fa9f",
+              "createdAt": "2026-07-28T02:51:03.000Z",
+              "updatedAt": "2026-07-28T02:51:03.000Z",
+              "uid": "35240-90b1202c-1254-4e8d-a893-1e9d5f92fa9f"
+            },
+            {
+              "name": "List All Sap Hana Cloud Service Instances",
+              "id": "34b97bac-2622-4c8e-aa24-777b1018af3a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/service_instances?fieldQuery=<string>&labelQuery=<string>&pageSize=50&pageToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "service_instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.",
+                      "key": "fieldQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expression to narrow results by label values assigned to service instances.",
+                      "key": "labelQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The maximum number of items to return per page.",
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves a list of all SAP HANA Cloud service instances provisioned in the current subaccount. Results can be filtered using query parameters to narrow down by service plan, label, or other criteria. The response includes instance metadata, configuration parameters, and current status."
+              },
+              "response": [
+                {
+                  "id": "6d2520d7-4c86-4c6b-9760-7b02c63f22e4",
+                  "name": "Successfully retrieved the list of service instances.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances?fieldQuery=<string>&labelQuery=<string>&pageSize=50&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.",
+                          "key": "fieldQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression to narrow results by label values assigned to service instances.",
+                          "key": "labelQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The maximum number of items to return per page.",
+                          "key": "pageSize",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"num_items\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"service_plan_id\": \"<uuid>\",\n      \"platform_id\": \"<string>\",\n      \"context\": {\n        \"subaccount_id\": \"<string>\",\n        \"organization_guid\": \"<string>\",\n        \"space_guid\": \"<string>\",\n        \"instance_name\": \"<string>\"\n      },\n      \"parameters\": {\n        \"data\": {\n          \"edition\": \"cloud\",\n          \"memory\": \"<integer>\",\n          \"vcpu\": \"<integer>\",\n          \"storage\": \"<integer>\",\n          \"systempassword\": \"<string>\",\n          \"whitelistIPs\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"enabledservices\": {\n            \"scriptserver\": \"<boolean>\",\n            \"docstore\": \"<boolean>\",\n            \"dpserver\": \"<boolean>\"\n          },\n          \"serviceStopped\": \"<boolean>\",\n          \"availabilityZone\": \"<string>\",\n          \"slaLevel\": \"standard\"\n        }\n      },\n      \"labels\": {\n        \"exercitation_fb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"reprehenderitc2\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"est_25\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"ready\": \"<boolean>\",\n      \"usable\": \"<boolean>\",\n      \"last_operation\": {\n        \"type\": \"update\",\n        \"state\": \"succeeded\",\n        \"description\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"service_plan_id\": \"<uuid>\",\n      \"platform_id\": \"<string>\",\n      \"context\": {\n        \"subaccount_id\": \"<string>\",\n        \"organization_guid\": \"<string>\",\n        \"space_guid\": \"<string>\",\n        \"instance_name\": \"<string>\"\n      },\n      \"parameters\": {\n        \"data\": {\n          \"edition\": \"enterprise\",\n          \"memory\": \"<integer>\",\n          \"vcpu\": \"<integer>\",\n          \"storage\": \"<integer>\",\n          \"systempassword\": \"<string>\",\n          \"whitelistIPs\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"enabledservices\": {\n            \"scriptserver\": \"<boolean>\",\n            \"docstore\": \"<boolean>\",\n            \"dpserver\": \"<boolean>\"\n          },\n          \"serviceStopped\": \"<boolean>\",\n          \"availabilityZone\": \"<string>\",\n          \"slaLevel\": \"standard\"\n        }\n      },\n      \"labels\": {\n        \"eiusmod8eb\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"ready\": \"<boolean>\",\n      \"usable\": \"<boolean>\",\n      \"last_operation\": {\n        \"type\": \"update\",\n        \"state\": \"succeeded\",\n        \"description\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"token\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-6d2520d7-4c86-4c6b-9760-7b02c63f22e4"
+                },
+                {
+                  "id": "087ec468-ae80-4638-a771-2ab90e782c9a",
+                  "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances?fieldQuery=<string>&labelQuery=<string>&pageSize=50&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.",
+                          "key": "fieldQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression to narrow results by label values assigned to service instances.",
+                          "key": "labelQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The maximum number of items to return per page.",
+                          "key": "pageSize",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-087ec468-ae80-4638-a771-2ab90e782c9a"
+                },
+                {
+                  "id": "b2d3ad80-f40e-44f2-9878-ef609e443b90",
+                  "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances?fieldQuery=<string>&labelQuery=<string>&pageSize=50&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.",
+                          "key": "fieldQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression to narrow results by label values assigned to service instances.",
+                          "key": "labelQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The maximum number of items to return per page.",
+                          "key": "pageSize",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-b2d3ad80-f40e-44f2-9878-ef609e443b90"
+                },
+                {
+                  "id": "6ce93515-f036-4a01-a143-234997afe014",
+                  "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances?fieldQuery=<string>&labelQuery=<string>&pageSize=50&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.",
+                          "key": "fieldQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression to narrow results by label values assigned to service instances.",
+                          "key": "labelQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The maximum number of items to return per page.",
+                          "key": "pageSize",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-6ce93515-f036-4a01-a143-234997afe014"
+                },
+                {
+                  "id": "3140be11-92f0-4f11-ace0-ad37e5a344f1",
+                  "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances?fieldQuery=<string>&labelQuery=<string>&pageSize=50&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.",
+                          "key": "fieldQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression to narrow results by label values assigned to service instances.",
+                          "key": "labelQuery",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The maximum number of items to return per page.",
+                          "key": "pageSize",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-3140be11-92f0-4f11-ace0-ad37e5a344f1"
+                }
+              ],
+              "createdAt": "2026-07-28T02:51:03.000Z",
+              "updatedAt": "2026-07-28T02:51:03.000Z",
+              "uid": "35240-34b97bac-2622-4c8e-aa24-777b1018af3a"
+            },
+            {
+              "name": "Create a New Sap Hana Cloud Service Instance",
+              "id": "ddc01e33-6e47-4dbe-be05-c16c87f5d575",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/service_instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "service_instances"
+                  ]
+                },
+                "description": "Provisions a new SAP HANA Cloud database instance in the current subaccount. The request body must include the service plan identifier, instance name, and configuration parameters such as memory size, vCPU count, storage size, system password, and optional features like script server, document store, or data lake. The instance is created asynchronously and the response includes the instance identifier for tracking provisioning status."
+              },
+              "response": [
+                {
+                  "id": "01e6e954-8471-44bf-a1bb-d7544dfdf264",
+                  "name": "Service instance creation initiated successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"platform_id\": \"<string>\",\n  \"context\": {\n    \"subaccount_id\": \"<string>\",\n    \"organization_guid\": \"<string>\",\n    \"space_guid\": \"<string>\",\n    \"instance_name\": \"<string>\"\n  },\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"mollit_e6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"ready\": \"<boolean>\",\n  \"usable\": \"<boolean>\",\n  \"last_operation\": {\n    \"type\": \"create\",\n    \"state\": \"succeeded\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-01e6e954-8471-44bf-a1bb-d7544dfdf264"
+                },
+                {
+                  "id": "f44396d8-829f-4a83-b240-d6c3413e808c",
+                  "name": "Service instance creation accepted and processing asynchronously.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"platform_id\": \"<string>\",\n  \"context\": {\n    \"subaccount_id\": \"<string>\",\n    \"organization_guid\": \"<string>\",\n    \"space_guid\": \"<string>\",\n    \"instance_name\": \"<string>\"\n  },\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"enterprise\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"mollit_e6\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"ready\": \"<boolean>\",\n  \"usable\": \"<boolean>\",\n  \"last_operation\": {\n    \"type\": \"create\",\n    \"state\": \"succeeded\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-f44396d8-829f-4a83-b240-d6c3413e808c"
+                },
+                {
+                  "id": "abe1272f-46de-415d-abfe-ee7985ebb5a9",
+                  "name": "The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-abe1272f-46de-415d-abfe-ee7985ebb5a9"
+                },
+                {
+                  "id": "2ea654df-e959-4bdb-9d7a-ad775e481baf",
+                  "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-2ea654df-e959-4bdb-9d7a-ad775e481baf"
+                },
+                {
+                  "id": "282d8a55-2a5c-4d39-8330-906d130a6907",
+                  "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-282d8a55-2a5c-4d39-8330-906d130a6907"
+                },
+                {
+                  "id": "4b3a95e1-0ab5-4317-9cbb-ef5903d6cc49",
+                  "name": "The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-4b3a95e1-0ab5-4317-9cbb-ef5903d6cc49"
+                },
+                {
+                  "id": "fde3383d-922b-4e2d-8fe7-e7a50180a10b",
+                  "name": "The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-fde3383d-922b-4e2d-8fe7-e7a50180a10b"
+                },
+                {
+                  "id": "e33db579-f9ba-4d10-8752-38c585cabc1c",
+                  "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-e33db579-f9ba-4d10-8752-38c585cabc1c"
+                },
+                {
+                  "id": "6def7aad-c955-4f3d-a0a5-6132d30e7b1b",
+                  "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"service_plan_id\": \"<uuid>\",\n  \"parameters\": {\n    \"data\": {\n      \"edition\": \"cloud\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"systempassword\": \"<string>\",\n      \"whitelistIPs\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabledservices\": {\n        \"scriptserver\": \"<boolean>\",\n        \"docstore\": \"<boolean>\",\n        \"dpserver\": \"<boolean>\"\n      },\n      \"serviceStopped\": \"<boolean>\",\n      \"availabilityZone\": \"<string>\",\n      \"slaLevel\": \"standard\"\n    }\n  },\n  \"labels\": {\n    \"officiaad\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/service_instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "service_instances"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-6def7aad-c955-4f3d-a0a5-6132d30e7b1b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:51:03.000Z",
+              "updatedAt": "2026-07-28T02:51:03.000Z",
+              "uid": "35240-ddc01e33-6e47-4dbe-be05-c16c87f5d575"
+            }
+          ],
+          "id": "70326fd4-e186-4682-a6a0-eb7f81c8673b",
+          "createdAt": "2026-07-28T02:51:03.000Z",
+          "updatedAt": "2026-07-28T02:51:03.000Z",
+          "uid": "35240-70326fd4-e186-4682-a6a0-eb7f81c8673b"
+        }
+      ],
+      "id": "0dec99ed-a59e-4683-a007-b95afdadfcaf",
+      "createdAt": "2026-07-28T02:51:03.000Z",
+      "updatedAt": "2026-07-28T02:51:03.000Z",
+      "uid": "35240-0dec99ed-a59e-4683-a007-b95afdadfcaf"
+    },
+    {
+      "name": "inventory",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "serviceInstances",
+              "item": [
+                {
+                  "name": "List Sap Hana Cloud Instances in Inventory",
+                  "id": "bbeb8c13-ac01-4f49-901e-422807fc64cb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/inventory/v2/serviceInstances?provisioningState=Provisioning&pageSize=50&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "inventory",
+                        "v2",
+                        "serviceInstances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter instances by their current provisioning state.",
+                          "key": "provisioningState",
+                          "value": "Provisioning"
+                        },
+                        {
+                          "description": "The maximum number of items to return per page.",
+                          "key": "pageSize",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves an inventory listing of all SAP HANA Cloud instances across the subaccount, including both SAP HANA database and data lake instances. The inventory provides a consolidated view of all instances with their current operational status, resource allocation, and basic configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "3b335789-df03-424b-8737-a61cbd848887",
+                      "name": "Successfully retrieved the inventory of service instances.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/inventory/v2/serviceInstances?provisioningState=Provisioning&pageSize=50&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "inventory",
+                            "v2",
+                            "serviceInstances"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter instances by their current provisioning state.",
+                              "key": "provisioningState",
+                              "value": "Provisioning"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"totalCount\": \"<integer>\",\n  \"items\": [\n    {\n      \"serviceInstanceId\": \"<uuid>\",\n      \"servicePlanName\": \"<string>\",\n      \"instanceName\": \"<string>\",\n      \"provisioningState\": \"Deprovisioning\",\n      \"operationalState\": \"Error\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"modifiedAt\": \"<dateTime>\"\n    },\n    {\n      \"serviceInstanceId\": \"<uuid>\",\n      \"servicePlanName\": \"<string>\",\n      \"instanceName\": \"<string>\",\n      \"provisioningState\": \"Provisioning\",\n      \"operationalState\": \"Stopping\",\n      \"memory\": \"<integer>\",\n      \"vcpu\": \"<integer>\",\n      \"storage\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"modifiedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-3b335789-df03-424b-8737-a61cbd848887"
+                    },
+                    {
+                      "id": "558e4735-79e3-4ebd-b64a-a628a9e9d64f",
+                      "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/inventory/v2/serviceInstances?provisioningState=Provisioning&pageSize=50&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "inventory",
+                            "v2",
+                            "serviceInstances"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter instances by their current provisioning state.",
+                              "key": "provisioningState",
+                              "value": "Provisioning"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-558e4735-79e3-4ebd-b64a-a628a9e9d64f"
+                    },
+                    {
+                      "id": "e76f43e0-c1fa-43ec-8fdd-c1f54be56336",
+                      "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/inventory/v2/serviceInstances?provisioningState=Provisioning&pageSize=50&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "inventory",
+                            "v2",
+                            "serviceInstances"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter instances by their current provisioning state.",
+                              "key": "provisioningState",
+                              "value": "Provisioning"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-e76f43e0-c1fa-43ec-8fdd-c1f54be56336"
+                    },
+                    {
+                      "id": "7078f673-e368-46e0-a2f1-2e37807b41d7",
+                      "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/inventory/v2/serviceInstances?provisioningState=Provisioning&pageSize=50&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "inventory",
+                            "v2",
+                            "serviceInstances"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter instances by their current provisioning state.",
+                              "key": "provisioningState",
+                              "value": "Provisioning"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-7078f673-e368-46e0-a2f1-2e37807b41d7"
+                    },
+                    {
+                      "id": "827c15ff-c45c-4fd3-8f20-78cb0c36948e",
+                      "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/inventory/v2/serviceInstances?provisioningState=Provisioning&pageSize=50&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "inventory",
+                            "v2",
+                            "serviceInstances"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter instances by their current provisioning state.",
+                              "key": "provisioningState",
+                              "value": "Provisioning"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Pagination token received from a previous request to retrieve the next page of results.",
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:51:03.000Z",
+                      "updatedAt": "2026-07-28T02:51:03.000Z",
+                      "uid": "35240-827c15ff-c45c-4fd3-8f20-78cb0c36948e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:51:03.000Z",
+                  "updatedAt": "2026-07-28T02:51:03.000Z",
+                  "uid": "35240-bbeb8c13-ac01-4f49-901e-422807fc64cb"
+                }
+              ],
+              "id": "42b913d7-f859-44b3-9b7d-28d31958da57",
+              "createdAt": "2026-07-28T02:51:03.000Z",
+              "updatedAt": "2026-07-28T02:51:03.000Z",
+              "uid": "35240-42b913d7-f859-44b3-9b7d-28d31958da57"
+            }
+          ],
+          "id": "35af3ac7-dd4d-4e97-a986-7fd59d64f56d",
+          "createdAt": "2026-07-28T02:51:03.000Z",
+          "updatedAt": "2026-07-28T02:51:03.000Z",
+          "uid": "35240-35af3ac7-dd4d-4e97-a986-7fd59d64f56d"
+        }
+      ],
+      "id": "6a1ee3e5-363d-4ca0-9cf8-a4009f1aa3ba",
+      "createdAt": "2026-07-28T02:51:03.000Z",
+      "updatedAt": "2026-07-28T02:51:03.000Z",
+      "uid": "35240-6a1ee3e5-363d-4ca0-9cf8-a4009f1aa3ba"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "eu10"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.cf.{{region}}.hana.ondemand.com"
+    }
+  ]
+}

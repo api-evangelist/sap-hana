@@ -1,0 +1,1390 @@
+{
+  "info": {
+    "_postman_id": "ca10e1f8-28fd-4103-a1e0-8a23f6314735",
+    "name": "SAP HANA Cloud REST Alerts Instance Mappings API",
+    "description": "REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.\n\nContact Support:\n Name: SAP SE\n Email: help@sap.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:51:01.000Z",
+    "updatedAt": "2026-07-28T02:51:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ca10e1f8-28fd-4103-a1e0-8a23f6314735"
+  },
+  "item": [
+    {
+      "name": "inventory",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "serviceInstances",
+              "item": [
+                {
+                  "name": "{serviceInstanceId}",
+                  "item": [
+                    {
+                      "name": "instanceMappings",
+                      "item": [
+                        {
+                          "name": "{mappingId}",
+                          "item": [
+                            {
+                              "name": "Delete an Instance Mapping",
+                              "id": "41c26210-2536-40e1-a6d3-6e4e145d3bea",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings",
+                                    ":mappingId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "a0bbf787-e657-43ab-b9f8-e0298dae100e",
+                                      "key": "serviceInstanceId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                    },
+                                    {
+                                      "id": "8ce50d49-584e-488d-b49c-d364b998b720",
+                                      "key": "mappingId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the instance mapping to delete."
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes an existing instance mapping, removing the association between the SAP HANA Cloud service instance and the mapped target."
+                              },
+                              "response": [
+                                {
+                                  "id": "8ea0a433-7aa8-45d8-8033-8c153cbfa6ed",
+                                  "name": "Instance mapping deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "inventory",
+                                        "v2",
+                                        "serviceInstances",
+                                        ":serviceInstanceId",
+                                        "instanceMappings",
+                                        ":mappingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "serviceInstanceId"
+                                        },
+                                        {
+                                          "key": "mappingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:51:02.000Z",
+                                  "updatedAt": "2026-07-28T02:51:02.000Z",
+                                  "uid": "35240-8ea0a433-7aa8-45d8-8033-8c153cbfa6ed"
+                                },
+                                {
+                                  "id": "df98a703-b0cf-4d48-8032-f42d1c4e033e",
+                                  "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "inventory",
+                                        "v2",
+                                        "serviceInstances",
+                                        ":serviceInstanceId",
+                                        "instanceMappings",
+                                        ":mappingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "serviceInstanceId"
+                                        },
+                                        {
+                                          "key": "mappingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:51:02.000Z",
+                                  "updatedAt": "2026-07-28T02:51:02.000Z",
+                                  "uid": "35240-df98a703-b0cf-4d48-8032-f42d1c4e033e"
+                                },
+                                {
+                                  "id": "56332eb7-201d-42a6-ad4a-cba7913224df",
+                                  "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "inventory",
+                                        "v2",
+                                        "serviceInstances",
+                                        ":serviceInstanceId",
+                                        "instanceMappings",
+                                        ":mappingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "serviceInstanceId"
+                                        },
+                                        {
+                                          "key": "mappingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:51:02.000Z",
+                                  "updatedAt": "2026-07-28T02:51:02.000Z",
+                                  "uid": "35240-56332eb7-201d-42a6-ad4a-cba7913224df"
+                                },
+                                {
+                                  "id": "b0ca1480-568d-4a64-8848-9f98f54c9611",
+                                  "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "inventory",
+                                        "v2",
+                                        "serviceInstances",
+                                        ":serviceInstanceId",
+                                        "instanceMappings",
+                                        ":mappingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "serviceInstanceId"
+                                        },
+                                        {
+                                          "key": "mappingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:51:02.000Z",
+                                  "updatedAt": "2026-07-28T02:51:02.000Z",
+                                  "uid": "35240-b0ca1480-568d-4a64-8848-9f98f54c9611"
+                                },
+                                {
+                                  "id": "3d3cced9-82b4-4e97-9734-a4d9592ec744",
+                                  "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "inventory",
+                                        "v2",
+                                        "serviceInstances",
+                                        ":serviceInstanceId",
+                                        "instanceMappings",
+                                        ":mappingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "serviceInstanceId"
+                                        },
+                                        {
+                                          "key": "mappingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:51:02.000Z",
+                                  "updatedAt": "2026-07-28T02:51:02.000Z",
+                                  "uid": "35240-3d3cced9-82b4-4e97-9734-a4d9592ec744"
+                                },
+                                {
+                                  "id": "3151692d-c3b9-4556-ab13-ea71a6887ee2",
+                                  "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings/:mappingId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "inventory",
+                                        "v2",
+                                        "serviceInstances",
+                                        ":serviceInstanceId",
+                                        "instanceMappings",
+                                        ":mappingId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "serviceInstanceId"
+                                        },
+                                        {
+                                          "key": "mappingId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:51:02.000Z",
+                                  "updatedAt": "2026-07-28T02:51:02.000Z",
+                                  "uid": "35240-3151692d-c3b9-4556-ab13-ea71a6887ee2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-41c26210-2536-40e1-a6d3-6e4e145d3bea"
+                            }
+                          ],
+                          "id": "e65a7c14-fc2c-4f6e-8805-936893ed5140",
+                          "createdAt": "2026-07-28T02:51:02.000Z",
+                          "updatedAt": "2026-07-28T02:51:02.000Z",
+                          "uid": "35240-e65a7c14-fc2c-4f6e-8805-936893ed5140"
+                        },
+                        {
+                          "name": "List Instance Mappings for a Service Instance",
+                          "id": "1b2efd28-33de-40d4-824c-9ee8f77722dd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "inventory",
+                                "v2",
+                                "serviceInstances",
+                                ":serviceInstanceId",
+                                "instanceMappings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "20ae714a-75dd-46ae-9a5e-f3309cafe64c",
+                                  "key": "serviceInstanceId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the list of instance mappings associated with a specific SAP HANA Cloud service instance. Instance mappings define associations between instances across different subaccounts or environments."
+                          },
+                          "response": [
+                            {
+                              "id": "91bd38d5-70b2-4acd-8d42-dd357d178727",
+                              "name": "Successfully retrieved instance mappings.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"mappingId\": \"<uuid>\",\n      \"serviceInstanceId\": \"<uuid>\",\n      \"targetSubaccountId\": \"<string>\",\n      \"targetEnvironmentInstanceId\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"mappingId\": \"<uuid>\",\n      \"serviceInstanceId\": \"<uuid>\",\n      \"targetSubaccountId\": \"<string>\",\n      \"targetEnvironmentInstanceId\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-91bd38d5-70b2-4acd-8d42-dd357d178727"
+                            },
+                            {
+                              "id": "3ec11050-5ab2-4866-ad2d-c74ee4fe8a93",
+                              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-3ec11050-5ab2-4866-ad2d-c74ee4fe8a93"
+                            },
+                            {
+                              "id": "2319050e-e448-4c9e-9775-ccf6571d5a32",
+                              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-2319050e-e448-4c9e-9775-ccf6571d5a32"
+                            },
+                            {
+                              "id": "b0bf3a5e-91e3-4f78-85ae-ec4ccbbb0206",
+                              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-b0bf3a5e-91e3-4f78-85ae-ec4ccbbb0206"
+                            },
+                            {
+                              "id": "514ff16a-a182-482f-b392-e26a2e44b4fa",
+                              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-514ff16a-a182-482f-b392-e26a2e44b4fa"
+                            },
+                            {
+                              "id": "158043c2-d273-467a-ab58-cf872569134f",
+                              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-158043c2-d273-467a-ab58-cf872569134f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:51:02.000Z",
+                          "updatedAt": "2026-07-28T02:51:02.000Z",
+                          "uid": "35240-1b2efd28-33de-40d4-824c-9ee8f77722dd"
+                        },
+                        {
+                          "name": "Create an Instance Mapping",
+                          "id": "81f62dad-f77f-4def-99a6-809c195b4aca",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "inventory",
+                                "v2",
+                                "serviceInstances",
+                                ":serviceInstanceId",
+                                "instanceMappings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fb9f0f64-ff1a-4cf2-92c5-2b695dd843fc",
+                                  "key": "serviceInstanceId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                }
+                              ]
+                            },
+                            "description": "Creates a new instance mapping that associates an SAP HANA Cloud service instance with another instance or environment. This enables cross-subaccount access and multi-environment configurations."
+                          },
+                          "response": [
+                            {
+                              "id": "ab2f6276-fe8c-4644-a10d-a3edd4b7440e",
+                              "name": "Instance mapping created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"mappingId\": \"<uuid>\",\n  \"serviceInstanceId\": \"<uuid>\",\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-ab2f6276-fe8c-4644-a10d-a3edd4b7440e"
+                            },
+                            {
+                              "id": "cf97ad11-0ae4-4464-9e5d-c5e135365c98",
+                              "name": "The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-cf97ad11-0ae4-4464-9e5d-c5e135365c98"
+                            },
+                            {
+                              "id": "d39bd257-c7c3-43b8-9d9d-60354089635b",
+                              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-d39bd257-c7c3-43b8-9d9d-60354089635b"
+                            },
+                            {
+                              "id": "94904a36-47dc-425f-9879-05ca644cccda",
+                              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-94904a36-47dc-425f-9879-05ca644cccda"
+                            },
+                            {
+                              "id": "cf2d0c15-37e0-43f4-bf77-4f7d9c443c2b",
+                              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-cf2d0c15-37e0-43f4-bf77-4f7d9c443c2b"
+                            },
+                            {
+                              "id": "98eda96c-7cc6-4d2b-a570-5aec1d7f7268",
+                              "name": "The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Conflict",
+                              "code": 409,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-98eda96c-7cc6-4d2b-a570-5aec1d7f7268"
+                            },
+                            {
+                              "id": "30e186ba-2f11-496d-97e9-2d24bfebe04a",
+                              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-30e186ba-2f11-496d-97e9-2d24bfebe04a"
+                            },
+                            {
+                              "id": "b760ee4c-4eb7-46a6-9605-4dcaeff1fe76",
+                              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"targetSubaccountId\": \"<string>\",\n  \"targetEnvironmentInstanceId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/inventory/v2/serviceInstances/:serviceInstanceId/instanceMappings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "inventory",
+                                    "v2",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "instanceMappings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:02.000Z",
+                              "updatedAt": "2026-07-28T02:51:02.000Z",
+                              "uid": "35240-b760ee4c-4eb7-46a6-9605-4dcaeff1fe76"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:51:02.000Z",
+                          "updatedAt": "2026-07-28T02:51:02.000Z",
+                          "uid": "35240-81f62dad-f77f-4def-99a6-809c195b4aca"
+                        }
+                      ],
+                      "id": "6aa4ee36-4498-4bf7-a184-1deb2ae194ce",
+                      "createdAt": "2026-07-28T02:51:02.000Z",
+                      "updatedAt": "2026-07-28T02:51:02.000Z",
+                      "uid": "35240-6aa4ee36-4498-4bf7-a184-1deb2ae194ce"
+                    }
+                  ],
+                  "id": "c51d00ea-5ec1-448a-9f62-b94111d2266f",
+                  "createdAt": "2026-07-28T02:51:02.000Z",
+                  "updatedAt": "2026-07-28T02:51:02.000Z",
+                  "uid": "35240-c51d00ea-5ec1-448a-9f62-b94111d2266f"
+                }
+              ],
+              "id": "d655bf76-9aa7-4101-901d-3e4e77619ac3",
+              "createdAt": "2026-07-28T02:51:02.000Z",
+              "updatedAt": "2026-07-28T02:51:02.000Z",
+              "uid": "35240-d655bf76-9aa7-4101-901d-3e4e77619ac3"
+            }
+          ],
+          "id": "d7555de7-fc41-4dbc-8791-d5711fe1b8db",
+          "createdAt": "2026-07-28T02:51:02.000Z",
+          "updatedAt": "2026-07-28T02:51:02.000Z",
+          "uid": "35240-d7555de7-fc41-4dbc-8791-d5711fe1b8db"
+        }
+      ],
+      "id": "7dc8142a-4507-4b09-9aba-f4ce7014e75c",
+      "createdAt": "2026-07-28T02:51:02.000Z",
+      "updatedAt": "2026-07-28T02:51:02.000Z",
+      "uid": "35240-7dc8142a-4507-4b09-9aba-f4ce7014e75c"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "eu10"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.cf.{{region}}.hana.ondemand.com"
+    }
+  ]
+}

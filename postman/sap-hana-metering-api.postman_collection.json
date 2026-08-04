@@ -1,0 +1,517 @@
+{
+  "info": {
+    "_postman_id": "4fd0171f-c300-455c-87bc-d7d90b3c099d",
+    "name": "SAP HANA Cloud REST Alerts Metering API",
+    "description": "REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.\n\nContact Support:\n Name: SAP SE\n Email: help@sap.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:51:22.000Z",
+    "updatedAt": "2026-07-28T02:51:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4fd0171f-c300-455c-87bc-d7d90b3c099d"
+  },
+  "item": [
+    {
+      "name": "metering",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "serviceInstances",
+              "item": [
+                {
+                  "name": "{serviceInstanceId}",
+                  "item": [
+                    {
+                      "name": "values",
+                      "item": [
+                        {
+                          "name": "Retrieve Metering Data for a Service Instance",
+                          "id": "b4405bdc-6e4f-4f5a-94b9-163bdfb88939",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metering/v1/serviceInstances/:serviceInstanceId/values?fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metering",
+                                "v1",
+                                "serviceInstances",
+                                ":serviceInstanceId",
+                                "values"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start timestamp for the metering data query window in ISO 8601 format.",
+                                  "key": "fromTimestamp",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "End timestamp for the metering data query window in ISO 8601 format.",
+                                  "key": "toTimestamp",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "48a3fe18-4001-4e49-9b1d-24680b474a0e",
+                                  "key": "serviceInstanceId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves consumption metering data for a specific SAP HANA Cloud service instance. Metering data includes compute unit hours, storage consumption, data lake capacity utilization, and other billable metrics used for cost tracking and capacity planning."
+                          },
+                          "response": [
+                            {
+                              "id": "398cdf90-5ca0-45be-81f4-5ae2eaebbb26",
+                              "name": "Successfully retrieved metering data.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metering/v1/serviceInstances/:serviceInstanceId/values?fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metering",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Start timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"values\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"computeUnitHours\": \"<double>\",\n      \"storageGB\": \"<double>\",\n      \"dataLakeCapacityGB\": \"<double>\",\n      \"backupStorageGB\": \"<double>\"\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"computeUnitHours\": \"<double>\",\n      \"storageGB\": \"<double>\",\n      \"dataLakeCapacityGB\": \"<double>\",\n      \"backupStorageGB\": \"<double>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:51:22.000Z",
+                              "updatedAt": "2026-07-28T02:51:22.000Z",
+                              "uid": "35240-398cdf90-5ca0-45be-81f4-5ae2eaebbb26"
+                            },
+                            {
+                              "id": "12f7c3fb-5169-4252-aa83-1641caab78fe",
+                              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metering/v1/serviceInstances/:serviceInstanceId/values?fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metering",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Start timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:22.000Z",
+                              "updatedAt": "2026-07-28T02:51:22.000Z",
+                              "uid": "35240-12f7c3fb-5169-4252-aa83-1641caab78fe"
+                            },
+                            {
+                              "id": "c437520b-6fd5-4dc9-b731-dde61397ec1e",
+                              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metering/v1/serviceInstances/:serviceInstanceId/values?fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metering",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Start timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:22.000Z",
+                              "updatedAt": "2026-07-28T02:51:22.000Z",
+                              "uid": "35240-c437520b-6fd5-4dc9-b731-dde61397ec1e"
+                            },
+                            {
+                              "id": "a5cecacb-ab5a-4cb4-a9a9-23b3aa149a48",
+                              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metering/v1/serviceInstances/:serviceInstanceId/values?fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metering",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Start timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:22.000Z",
+                              "updatedAt": "2026-07-28T02:51:22.000Z",
+                              "uid": "35240-a5cecacb-ab5a-4cb4-a9a9-23b3aa149a48"
+                            },
+                            {
+                              "id": "75984fc0-adb3-46d5-8268-27e2f0506fa8",
+                              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metering/v1/serviceInstances/:serviceInstanceId/values?fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metering",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Start timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:22.000Z",
+                              "updatedAt": "2026-07-28T02:51:22.000Z",
+                              "uid": "35240-75984fc0-adb3-46d5-8268-27e2f0506fa8"
+                            },
+                            {
+                              "id": "f26201ea-cdd8-405a-9f60-ff3430b7058d",
+                              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/metering/v1/serviceInstances/:serviceInstanceId/values?fromTimestamp=<dateTime>&toTimestamp=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "metering",
+                                    "v1",
+                                    "serviceInstances",
+                                    ":serviceInstanceId",
+                                    "values"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Start timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "fromTimestamp",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "End timestamp for the metering data query window in ISO 8601 format.",
+                                      "key": "toTimestamp",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceInstanceId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:51:22.000Z",
+                              "updatedAt": "2026-07-28T02:51:22.000Z",
+                              "uid": "35240-f26201ea-cdd8-405a-9f60-ff3430b7058d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:51:22.000Z",
+                          "updatedAt": "2026-07-28T02:51:22.000Z",
+                          "uid": "35240-b4405bdc-6e4f-4f5a-94b9-163bdfb88939"
+                        }
+                      ],
+                      "id": "fd73b035-59cf-4a2c-b161-b3d8294e81f0",
+                      "createdAt": "2026-07-28T02:51:22.000Z",
+                      "updatedAt": "2026-07-28T02:51:22.000Z",
+                      "uid": "35240-fd73b035-59cf-4a2c-b161-b3d8294e81f0"
+                    }
+                  ],
+                  "id": "8bd262fa-8b25-4908-ac67-e093dcedfb30",
+                  "createdAt": "2026-07-28T02:51:22.000Z",
+                  "updatedAt": "2026-07-28T02:51:22.000Z",
+                  "uid": "35240-8bd262fa-8b25-4908-ac67-e093dcedfb30"
+                }
+              ],
+              "id": "ce3024ab-5217-4811-80b4-b08698a9c173",
+              "createdAt": "2026-07-28T02:51:22.000Z",
+              "updatedAt": "2026-07-28T02:51:22.000Z",
+              "uid": "35240-ce3024ab-5217-4811-80b4-b08698a9c173"
+            }
+          ],
+          "id": "81979d6e-0248-431a-9be2-b7306a900883",
+          "createdAt": "2026-07-28T02:51:22.000Z",
+          "updatedAt": "2026-07-28T02:51:22.000Z",
+          "uid": "35240-81979d6e-0248-431a-9be2-b7306a900883"
+        }
+      ],
+      "id": "3ac32959-178f-4905-89ce-91a64ce0292d",
+      "createdAt": "2026-07-28T02:51:22.000Z",
+      "updatedAt": "2026-07-28T02:51:22.000Z",
+      "uid": "35240-3ac32959-178f-4905-89ce-91a64ce0292d"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "eu10"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.cf.{{region}}.hana.ondemand.com"
+    }
+  ]
+}
