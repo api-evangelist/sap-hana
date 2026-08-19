@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP HANA Cloud REST Alerts Instances API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Sap Hana Cloud Service Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances",
+            "params": [
+              {
+                "name": "fieldQuery",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context."
+              },
+              {
+                "name": "labelQuery",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression to narrow results by label values assigned to service instances."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token received from a previous request to retrieve the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all SAP HANA Cloud service instances provisioned in the current subaccount. Results can be filtered using query parameters to narrow down by service plan, label, or other criteria. The response includes instance metadata, configuration parameters, and current status."
+        },
+        {
+          "info": {
+            "name": "Create a New Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new SAP HANA Cloud database instance in the current subaccount. The request body must include the service plan identifier, instance name, and configuration parameters such as memory size, vCPU count, storage size, system password, and optional features like script server, document store, or data lake. The instance is created asynchronously and the response includes the instance identifier for tracking provisioning status."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Specific Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific SAP HANA Cloud service instance identified by its unique instance ID. The response includes the full configuration, current status, connection endpoints, and metadata."
+        },
+        {
+          "info": {
+            "name": "Update an Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing SAP HANA Cloud service instance. This operation supports starting and stopping instances by setting the serviceStopped parameter, scaling memory and vCPU resources, updating allowed IP addresses, modifying storage size, and changing other configuration parameters. The update is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Delete an Sap Hana Cloud Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cf.{region}.hana.ondemand.com/v1/service_instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning."
+              }
+            ]
+          },
+          "docs": "Deletes an SAP HANA Cloud service instance and all associated data. This operation is irreversible and permanently removes the database instance, all stored data, backups, and configuration. The deletion is processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "List Sap Hana Cloud Instances in Inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/inventory/v2/serviceInstances",
+            "params": [
+              {
+                "name": "provisioningState",
+                "value": "Provisioned",
+                "type": "query",
+                "description": "Filter instances by their current provisioning state."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token received from a previous request to retrieve the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieves an inventory listing of all SAP HANA Cloud instances across the subaccount, including both SAP HANA database and data lake instances. The inventory provides a consolidated view of all instances with their current operational status, resource allocation, and basic configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

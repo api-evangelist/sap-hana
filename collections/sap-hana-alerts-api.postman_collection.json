@@ -1,0 +1,1637 @@
+{
+  "item": [
+    {
+      "id": "b63dcf00-8869-4faa-91c8-7551f64ceefb",
+      "name": "Alerts",
+      "description": {
+        "content": "Operations for accessing and managing triggered alerts for SAP HANA Cloud instances, including alert state queries, severity filtering, and alert rule configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f441335b-232f-470f-9032-7d2d3a1c35ce",
+          "name": "List Alert Events for a Service Instance",
+          "request": {
+            "name": "List Alert Events for a Service Instance",
+            "description": {
+              "content": "Retrieves a list of triggered alert events for a specific SAP HANA Cloud service instance. Alerts monitor database health, resource utilization, availability, and operational thresholds. Results can be filtered by alert state and severity to focus on active or critical alerts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts",
+                "v1",
+                "serviceInstances",
+                ":serviceInstanceId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "alertState",
+                  "value": "<string>",
+                  "description": "Filter alerts by their current state. Use Active to retrieve currently triggered alerts, or Resolved for previously triggered alerts that have returned to normal."
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter alerts by severity level. High severity alerts indicate critical conditions requiring immediate attention."
+                },
+                {
+                  "disabled": false,
+                  "key": "fromTimestamp",
+                  "value": "<dateTime>",
+                  "description": "Start timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or after this timestamp are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "toTimestamp",
+                  "value": "<dateTime>",
+                  "description": "End timestamp for the alert event query window in ISO 8601 format. Only alerts triggered on or before this timestamp are returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "serviceInstanceId",
+                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                },
+                {
+                  "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9e3fd11-17af-41b4-995c-a51e346068b9",
+              "name": "Successfully retrieved the list of alert events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertState",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "High"
+                    },
+                    {
+                      "key": "fromTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "toTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"alertId\": \"500123\",\n      \"alertRuleId\": \"500123\",\n      \"alertName\": \"example_value\",\n      \"alertState\": \"Active\",\n      \"severity\": \"High\",\n      \"description\": \"A sample description.\",\n      \"triggeredAt\": \"2026-01-15T10:30:00Z\",\n      \"resolvedAt\": \"2026-01-15T10:30:00Z\",\n      \"currentValue\": 42.5,\n      \"thresholdValue\": 42.5,\n      \"unit\": \"example_value\",\n      \"serviceInstanceId\": \"500123\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8475ace-7eea-4b8d-87f9-48bfb9182c22",
+              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertState",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "High"
+                    },
+                    {
+                      "key": "fromTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "toTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0bcb1cd-01c2-4e09-b944-a4286a74ce03",
+              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertState",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "High"
+                    },
+                    {
+                      "key": "fromTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "toTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2232cdc0-21ef-4d78-9784-bc9153dc225e",
+              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertState",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "High"
+                    },
+                    {
+                      "key": "fromTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "toTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d65e9657-b071-46ee-87f7-8973e6b33e74",
+              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertState",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "High"
+                    },
+                    {
+                      "key": "fromTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "toTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ad8862c-203b-482c-b595-c4f176ebb945",
+              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertState",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "High"
+                    },
+                    {
+                      "key": "fromTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "toTimestamp",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82b9765a-3451-4c92-81bd-bb36f5edc090",
+          "name": "List Alert Rules for a Service Instance",
+          "request": {
+            "name": "List Alert Rules for a Service Instance",
+            "description": {
+              "content": "Retrieves all configured alert rules for a specific SAP HANA Cloud service instance. Alert rules define the conditions and thresholds that trigger alerts, including both cloud-native rules and embedded statistics server (ESS) rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts",
+                "v1",
+                "serviceInstances",
+                ":serviceInstanceId",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "serviceInstanceId",
+                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                },
+                {
+                  "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c4e23b6-6042-4002-9585-6e4ed4218335",
+              "name": "Successfully retrieved the list of alert rules.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"ruleId\": \"500123\",\n      \"ruleName\": \"example_value\",\n      \"ruleType\": \"cloud-native\",\n      \"enabled\": true,\n      \"severity\": \"High\",\n      \"metric\": \"example_value\",\n      \"thresholdOperator\": \"GREATER_THAN\",\n      \"thresholdValue\": 42.5,\n      \"unit\": \"example_value\",\n      \"description\": \"A sample description.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4860f024-1f29-499e-8ab4-d05371bdaed0",
+              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b7dcef1-e9ce-44f5-b505-528314522346",
+              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d6ee48f-2bfc-46ec-98be-fa14db34ad52",
+              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1b1636a-daed-48c1-84c4-85c20478aa84",
+              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef33fb79-8db6-4156-99f1-a9867394d1ba",
+              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa464190-53c6-42e5-9877-284a70e67458",
+          "name": "Update Alert Rules for a Service Instance",
+          "request": {
+            "name": "Update Alert Rules for a Service Instance",
+            "description": {
+              "content": "Updates the configuration of alert rules for a specific SAP HANA Cloud service instance. This allows administrators to modify alert thresholds, enable or disable specific rules, and customize alerting behavior for both cloud-native rules and ESS rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts",
+                "v1",
+                "serviceInstances",
+                ":serviceInstanceId",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "serviceInstanceId",
+                  "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                },
+                {
+                  "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"<string>\"\n    },\n    {\n      \"ruleId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"thresholdValue\": \"<double>\",\n      \"severity\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "03d24a47-ce3f-4923-950b-73f6191c5fcb",
+              "name": "Successfully updated the alert rules.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"ruleId\": \"500123\",\n      \"ruleName\": \"example_value\",\n      \"ruleType\": \"cloud-native\",\n      \"enabled\": true,\n      \"severity\": \"High\",\n      \"metric\": \"example_value\",\n      \"thresholdOperator\": \"GREATER_THAN\",\n      \"thresholdValue\": 42.5,\n      \"unit\": \"example_value\",\n      \"description\": \"A sample description.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3befd00-3e8a-4644-8fe4-36693c45772d",
+              "name": "The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a93fbce-6a5f-41f3-a327-04b9206335ae",
+              "name": "Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1c4b87f-dd67-4c56-bcc0-5169c8803948",
+              "name": "The authenticated user does not have sufficient permissions to perform this operation on the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a063e38c-2740-4c30-a247-71392cd77e5b",
+              "name": "The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7f4d21d-9623-4037-8872-1150cecc419a",
+              "name": "The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98bd462d-38e3-431d-8fda-f7c03926da54",
+              "name": "The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e8aee13-6290-4a3d-8fcb-38a0db3f3496",
+              "name": "An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    "v1",
+                    "serviceInstances",
+                    ":serviceInstanceId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "serviceInstanceId",
+                      "description": "(Required) The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+                    },
+                    {
+                      "description": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rules\": [\n    {\n      \"ruleId\": \"500123\",\n      \"enabled\": true,\n      \"thresholdValue\": 42.5,\n      \"severity\": \"High\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"statusCode\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "SAP BTP region identifier. Common values include eu10 (Europe - Frankfurt), us10 (US East - VA), ap10 (Australia - Sydney), jp10 (Japan - Tokyo), and others based on your SAP BTP subaccount provisioning. (This can only be one of eu10,eu11,eu20,eu30,us10,us20,us21,us30,ap10,ap11,ap12,ap20,ap21,jp10,jp20,br10,ca10,in30)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "eu10",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.cf.{{region}}.hana.ondemand.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4c664951-a25d-4850-a89a-058043a8456a",
+    "name": "SAP HANA Cloud REST Alerts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.\n\nContact Support:\n Name: SAP SE\n Email: help@sap.com",
+      "type": "text/plain"
+    }
+  }
+}

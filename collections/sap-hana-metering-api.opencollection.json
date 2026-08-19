@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP HANA Cloud REST Alerts Metering API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://{subdomain}.authentication.{region}.hana.ondemand.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metering",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Metering Data for a Service Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cf.{region}.hana.ondemand.com/metering/v1/serviceInstances/:serviceInstanceId/values",
+            "params": [
+              {
+                "name": "serviceInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SAP HANA Cloud service instance for which to retrieve alerts, metrics, or metering data."
+              },
+              {
+                "name": "fromTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Start timestamp for the metering data query window in ISO 8601 format."
+              },
+              {
+                "name": "toTimestamp",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "End timestamp for the metering data query window in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves consumption metering data for a specific SAP HANA Cloud service instance. Metering data includes compute unit hours, storage consumption, data lake capacity utilization, and other billable metrics used for cost tracking and capacity planning."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
