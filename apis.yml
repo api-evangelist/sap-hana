@@ -2,6 +2,18 @@ name: SAP HANA
 description: >-
   APIs for SAP HANA, an in-memory, column-oriented, relational database management system developed and marketed by SAP
   SE.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: approval
@@ -995,6 +1007,9 @@ apis:
   - type: JSONLD
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/sap-hana-capability-edges.yml
+    name: SAP HANA Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/sap-hana/overview
   - type: AgenticAccess

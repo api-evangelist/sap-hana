@@ -1,0 +1,26 @@
+slug: sap-hana
+provider: SAP HANA
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Instances
+  spec_file: sap-hana-instances-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: '"Create a New Sap Hana Cloud Service Instance", "Delete an Sap Hana Cloud Service Instance";
+    "provision, configure, start, stop, and delete SAP HANA Cloud database instances"'
+  reason: Provisioning and lifecycle of cloud database compute/storage instances is IT infrastructure
+    (cloud) management.
