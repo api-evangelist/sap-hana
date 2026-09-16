@@ -1,7 +1,6 @@
 name: SAP HANA
-description: >-
-  APIs for SAP HANA, an in-memory, column-oriented, relational database management system developed and marketed by SAP
-  SE.
+description: APIs for SAP HANA, an in-memory, column-oriented, relational database management system developed
+  and marketed by SAP SE.
 deliveryModel:
   model: saas
   open_source: false
@@ -29,13 +28,13 @@ accessModel:
   method: derived
 image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
 tags:
-  - Analytics
-  - Cloud
-  - Database
-  - Enterprise
-  - In-Memory
+- Analytics
+- Cloud
+- Database
+- Enterprise
+- In-Memory
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-09-16'
 url: https://www.sap.com/products/technology-platform/hana.html
 specificationVersion: '0.23'
 type: Index
@@ -90,11 +89,10 @@ apis:
   - Replication
   properties:
   - type: Documentation
-    url: >-
-      https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION/7952ef28a6914997abc01745fef1b607/
+    url: https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION/7952ef28a6914997abc01745fef1b607/
 - name: SAP HANA Cloud Alerts and Metrics REST API
-  description: >-
-    REST API for accessing triggered alerts, database metrics, and metering data for SAP HANA Cloud instances.
+  description: REST API for accessing triggered alerts, database metrics, and metering data for SAP HANA
+    Cloud instances.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
   humanURL: https://developers.sap.com/tutorials/hana-cloud-alerts-rest-api.html
   baseURL: https://api.cf.{region}.hana.ondemand.com
@@ -105,14 +103,12 @@ apis:
   - Monitoring
   properties:
   - type: Documentation
-    url: >-
-      https://help.sap.com/docs/r/64f7d2b06c6b40a9b3097860c5930641/Cloud/en-US/9f02513389e64490a0652955fedce2ad.html
+    url: https://help.sap.com/docs/r/64f7d2b06c6b40a9b3097860c5930641/Cloud/en-US/9f02513389e64490a0652955fedce2ad.html
   - type: Tutorials
     url: https://developers.sap.com/tutorials/hana-cloud-alerts-rest-api.html
 - name: SAP HANA Spatial Services API
-  description: >-
-    REST API providing geocoding, routing, and mapping services through a unified interface supporting
-    multiple back-end service providers.
+  description: REST API providing geocoding, routing, and mapping services through a unified interface
+    supporting multiple back-end service providers.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
   humanURL: https://help.sap.com/docs/sap-hana-spatial-services
   baseURL: https://api.cf.{region}.hana.ondemand.com
@@ -128,9 +124,8 @@ apis:
   - type: Tutorials
     url: https://developers.sap.com/tutorials/hana-spatial-services-apis..html
 - name: SAP HANA Cloud Data Lake Files REST API
-  description: >-
-    REST API for managing, uploading, reading, deleting, and listing files in SAP HANA Cloud Data Lake
-    file containers.
+  description: REST API for managing, uploading, reading, deleting, and listing files in SAP HANA Cloud
+    Data Lake file containers.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
   humanURL: https://help.sap.com/docs/hana-cloud-data-lake
   baseURL: https://{host}:{port}
@@ -144,12 +139,10 @@ apis:
   - type: Tutorials
     url: https://developers.sap.com/tutorials/data-lake-file-containers-restapi..html
 - name: SAP HANA Deployment Infrastructure (HDI) API
-  description: >-
-    API for managing HDI containers used to deploy database artifacts in isolated schemas with dependency
-    management and lifecycle support.
+  description: API for managing HDI containers used to deploy database artifacts in isolated schemas with
+    dependency management and lifecycle support.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
-  humanURL: >-
-    https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-deployment-infrastructure-hdi-reference/sap-hana-cloud-sap-hana-database-deployment-infrastructure-reference
+  humanURL: https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-deployment-infrastructure-hdi-reference/sap-hana-cloud-sap-hana-database-deployment-infrastructure-reference
   baseURL: https://{host}:{port}
   tags:
   - Containers
@@ -158,15 +151,12 @@ apis:
   - HDI
   properties:
   - type: Documentation
-    url: >-
-      https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-deployment-infrastructure-hdi-reference/sap-hana-cloud-sap-hana-database-deployment-infrastructure-reference
+    url: https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-deployment-infrastructure-hdi-reference/sap-hana-cloud-sap-hana-database-deployment-infrastructure-reference
 - name: SAP HANA Predictive Analysis Library (PAL) API
-  description: >-
-    In-database machine learning and statistical algorithms library providing clustering, classification,
+  description: In-database machine learning and statistical algorithms library providing clustering, classification,
     regression, and time series analysis capabilities.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
-  humanURL: >-
-    https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal
+  humanURL: https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal
   baseURL: https://{host}:{port}
   tags:
   - Artificial Intelligence
@@ -180,15 +170,12 @@ apis:
   - Statistics
   properties:
   - type: Documentation
-    url: >-
-      https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal
+    url: https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal
 - name: SAP HANA JSON Document Store API
-  description: >-
-    API for storing, querying, and managing semi-structured JSON documents within SAP HANA using a hybrid
-    relational and document-oriented approach.
+  description: API for storing, querying, and managing semi-structured JSON documents within SAP HANA
+    using a hybrid relational and document-oriented approach.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
-  humanURL: >-
-    https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/5e783b7f5a9749bcbfffe167524aeccc.html
+  humanURL: https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/5e783b7f5a9749bcbfffe167524aeccc.html
   baseURL: https://{host}:{port}
   tags:
   - Document Store
@@ -197,15 +184,12 @@ apis:
   - NoSQL
   properties:
   - type: Documentation
-    url: >-
-      https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/5e783b7f5a9749bcbfffe167524aeccc.html
+    url: https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/5e783b7f5a9749bcbfffe167524aeccc.html
 - name: SAP HANA Graph Engine API
-  description: >-
-    Graph processing engine for network analysis with built-in algorithms for path finding, pattern matching,
-    and knowledge graph capabilities using OpenCypher and SPARQL.
+  description: Graph processing engine for network analysis with built-in algorithms for path finding,
+    pattern matching, and knowledge graph capabilities using OpenCypher and SPARQL.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
-  humanURL: >-
-    https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-knowledge-graph-guide/sap-hana-cloud-sap-hana-database-knowledge-graph-engine-guide
+  humanURL: https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-knowledge-graph-guide/sap-hana-cloud-sap-hana-database-knowledge-graph-engine-guide
   baseURL: https://{host}:{port}
   tags:
   - Graph
@@ -214,14 +198,11 @@ apis:
   - Network Analysis
   properties:
   - type: Documentation
-    url: >-
-      https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-knowledge-graph-guide/sap-hana-cloud-sap-hana-database-knowledge-graph-engine-guide
+    url: https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-knowledge-graph-guide/sap-hana-cloud-sap-hana-database-knowledge-graph-engine-guide
 - name: SAP HANA REST Info API
-  description: >-
-    REST API for retrieving system information and metadata about SAP HANA Platform instances.
+  description: REST API for retrieving system information and metadata about SAP HANA Platform instances.
   image: https://www.sap.com/content/dam/application/shared/logos/sap-logo-svg.svg
-  humanURL: >-
-    https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html
+  humanURL: https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html
   baseURL: https://{host}:{port}
   tags:
   - Metadata
@@ -229,13 +210,11 @@ apis:
   - System Information
   properties:
   - type: Documentation
-    url: >-
-      https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html
+    url: https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html
 - aid: sap-hana:sap-hana-alerts-api
   name: SAP HANA Alerts API
-  description: >-
-    Operations for accessing and managing triggered alerts for SAP HANA Cloud instances, including alert
-    state queries, severity filtering, and alert rule configuration.
+  description: Operations for accessing and managing triggered alerts for SAP HANA Cloud instances, including
+    alert state queries, severity filtering, and alert rule configuration.
   humanURL: https://help.sap.com/docs/HANA_CLOUD
   baseURL: https://api.cf.{region}.hana.ondemand.com
   tags:
@@ -246,8 +225,7 @@ apis:
   - type: Documentation
     url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/
   - type: Authentication
-    url: >-
-      https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
+    url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
   - type: Tutorials
     url: https://developers.sap.com/tutorials/hana-cloud-automation-rest..html
   - type: JSONSchema
@@ -388,9 +366,8 @@ apis:
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 - aid: sap-hana:sap-hana-instance-mappings-api
   name: SAP HANA Instance Mappings API
-  description: >-
-    Operations for creating and managing instance mappings that associate SAP HANA Cloud instances across
-    subaccounts and environments.
+  description: Operations for creating and managing instance mappings that associate SAP HANA Cloud instances
+    across subaccounts and environments.
   humanURL: https://help.sap.com/docs/HANA_CLOUD
   baseURL: https://api.cf.{region}.hana.ondemand.com
   tags:
@@ -401,8 +378,7 @@ apis:
   - type: Documentation
     url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/
   - type: Authentication
-    url: >-
-      https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
+    url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
   - type: Tutorials
     url: https://developers.sap.com/tutorials/hana-cloud-automation-rest..html
   - type: JSONSchema
@@ -543,9 +519,8 @@ apis:
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 - aid: sap-hana:sap-hana-instances-api
   name: SAP HANA Instances API
-  description: >-
-    Operations for managing SAP HANA Cloud database instances including provisioning, configuration, lifecycle
-    management, and status retrieval.
+  description: Operations for managing SAP HANA Cloud database instances including provisioning, configuration,
+    lifecycle management, and status retrieval.
   humanURL: https://help.sap.com/docs/HANA_CLOUD
   baseURL: https://api.cf.{region}.hana.ondemand.com
   tags:
@@ -556,8 +531,7 @@ apis:
   - type: Documentation
     url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/
   - type: Authentication
-    url: >-
-      https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
+    url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
   - type: Tutorials
     url: https://developers.sap.com/tutorials/hana-cloud-automation-rest..html
   - type: JSONSchema
@@ -698,9 +672,8 @@ apis:
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 - aid: sap-hana:sap-hana-metering-api
   name: SAP HANA Metering API
-  description: >-
-    Operations for accessing consumption metering data used for billing and capacity planning for SAP
-    HANA Cloud instances.
+  description: Operations for accessing consumption metering data used for billing and capacity planning
+    for SAP HANA Cloud instances.
   humanURL: https://help.sap.com/docs/HANA_CLOUD
   baseURL: https://api.cf.{region}.hana.ondemand.com
   tags:
@@ -711,8 +684,7 @@ apis:
   - type: Documentation
     url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/
   - type: Authentication
-    url: >-
-      https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
+    url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
   - type: Tutorials
     url: https://developers.sap.com/tutorials/hana-cloud-automation-rest..html
   - type: JSONSchema
@@ -853,9 +825,8 @@ apis:
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 - aid: sap-hana:sap-hana-metrics-api
   name: SAP HANA Metrics API
-  description: >-
-    Operations for retrieving database performance metrics and resource utilization data for SAP HANA
-    Cloud instances.
+  description: Operations for retrieving database performance metrics and resource utilization data for
+    SAP HANA Cloud instances.
   humanURL: https://help.sap.com/docs/HANA_CLOUD
   baseURL: https://api.cf.{region}.hana.ondemand.com
   tags:
@@ -866,8 +837,7 @@ apis:
   - type: Documentation
     url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/
   - type: Authentication
-    url: >-
-      https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
+    url: https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html
   - type: Tutorials
     url: https://developers.sap.com/tutorials/hana-cloud-automation-rest..html
   - type: JSONSchema
@@ -1007,80 +977,88 @@ apis:
   - type: JSONLD
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 common:
-  - type: CapabilityMap
-    url: capabilities/sap-hana-capability-edges.yml
-    name: SAP HANA Business Capability Map
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/sap-hana/overview
-  - type: AgenticAccess
-    url: agentic-access/sap-hana-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/sap-hana-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/sap-hana-domain-security.yml
-  - type: Authentication
-    url: authentication/sap-hana-authentication.yml
-  - type: OAuthScopes
-    url: scopes/sap-hana-scopes.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/showcase/sap-hana
-  - type: DeveloperPortal
-    url: https://api.sap.com/
-  - type: Support
-    url: https://support.sap.com/
-  - type: Pricing
-    url: https://www.sap.com/products/technology-platform/hana/pricing.html
-  - type: StatusPage
-    url: https://www.sap.com/about/trust-center/cloud-service-status.html
-  - type: TermsOfService
-    url: https://www.sap.com/about/trust-center/agreements.html
-  - type: GettingStarted
-    url: https://www.sap.com/products/data-cloud/hana/get-started.html
-  - type: Tutorials
-    url: https://developers.sap.com/tutorial-navigator.html
-  - type: GitHubRepository
-    url: https://github.com/SAP-samples
-  - type: PrivacyPolicy
-    url: https://www.sap.com/about/legal/privacy.html
-  - type: JSONLD
-    url: json-ld/sap-hana-context.jsonld
-  - type: SpectralRules
-    url: rules/sap-hana-spectral-rules.yml
-  - type: Features
-    data:
-      - name: In-Memory Computing
-        description: Process massive datasets in real-time using columnar in-memory storage for analytics and transactions.
-      - name: Multi-Model Processing
-        description: Support for relational, graph, spatial, JSON document, and time series data in a single database.
-      - name: Cloud Native
-        description: Fully managed cloud database service with elastic scaling, automated backups, and multi-region deployment.
-      - name: Predictive Analytics
-        description: Built-in machine learning algorithms through the Predictive Analysis Library for in-database analytics.
-      - name: Data Lake Integration
-        description: Seamlessly extend storage with SAP HANA Cloud Data Lake for cost-effective warm and cold data management.
-      - name: Smart Data Integration
-        description: Real-time and batch data replication from heterogeneous sources with built-in data quality.
-  - type: UseCases
-    data:
-      - name: Real-Time Analytics
-        description: Run complex analytical queries on live transactional data without ETL delays.
-      - name: Application Development
-        description: Build high-performance applications directly on the database using XS Engine and HDI containers.
-      - name: IoT Data Processing
-        description: Ingest and analyze high-volume sensor and device data with time series and spatial capabilities.
-      - name: Enterprise Data Warehousing
-        description: Consolidate enterprise data for reporting and business intelligence with columnar compression.
-  - type: Integrations
-    data:
-      - name: SAP BTP
-        description: Native integration with SAP Business Technology Platform for enterprise application development.
-      - name: SAP S/4HANA
-        description: Serve as the underlying database for SAP S/4HANA ERP suite.
-      - name: SAP Analytics Cloud
-        description: Direct live connections for real-time business intelligence dashboards and planning.
-      - name: Microsoft Azure
-        description: Deploy SAP HANA Cloud instances on Azure infrastructure with cross-cloud governance.
+- type: Website
+  url: https://sap.com
+- type: CapabilityMap
+  url: capabilities/sap-hana-capability-edges.yml
+  name: SAP HANA Business Capability Map
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/sap-hana/overview
+- type: AgenticAccess
+  url: agentic-access/sap-hana-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/sap-hana-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/sap-hana-domain-security.yml
+- type: Authentication
+  url: authentication/sap-hana-authentication.yml
+- type: OAuthScopes
+  url: scopes/sap-hana-scopes.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/showcase/sap-hana
+- type: DeveloperPortal
+  url: https://api.sap.com/
+- type: Support
+  url: https://support.sap.com/
+- type: Pricing
+  url: https://www.sap.com/products/technology-platform/hana/pricing.html
+- type: StatusPage
+  url: https://www.sap.com/about/trust-center/cloud-service-status.html
+- type: TermsOfService
+  url: https://www.sap.com/about/trust-center/agreements.html
+- type: GettingStarted
+  url: https://www.sap.com/products/data-cloud/hana/get-started.html
+- type: Tutorials
+  url: https://developers.sap.com/tutorial-navigator.html
+- type: GitHubRepository
+  url: https://github.com/SAP-samples
+- type: PrivacyPolicy
+  url: https://www.sap.com/about/legal/privacy.html
+- type: JSONLD
+  url: json-ld/sap-hana-context.jsonld
+- type: SpectralRules
+  url: rules/sap-hana-spectral-rules.yml
+- type: Features
+  data:
+  - name: In-Memory Computing
+    description: Process massive datasets in real-time using columnar in-memory storage for analytics
+      and transactions.
+  - name: Multi-Model Processing
+    description: Support for relational, graph, spatial, JSON document, and time series data in a single
+      database.
+  - name: Cloud Native
+    description: Fully managed cloud database service with elastic scaling, automated backups, and multi-region
+      deployment.
+  - name: Predictive Analytics
+    description: Built-in machine learning algorithms through the Predictive Analysis Library for in-database
+      analytics.
+  - name: Data Lake Integration
+    description: Seamlessly extend storage with SAP HANA Cloud Data Lake for cost-effective warm and cold
+      data management.
+  - name: Smart Data Integration
+    description: Real-time and batch data replication from heterogeneous sources with built-in data quality.
+- type: UseCases
+  data:
+  - name: Real-Time Analytics
+    description: Run complex analytical queries on live transactional data without ETL delays.
+  - name: Application Development
+    description: Build high-performance applications directly on the database using XS Engine and HDI
+      containers.
+  - name: IoT Data Processing
+    description: Ingest and analyze high-volume sensor and device data with time series and spatial capabilities.
+  - name: Enterprise Data Warehousing
+    description: Consolidate enterprise data for reporting and business intelligence with columnar compression.
+- type: Integrations
+  data:
+  - name: SAP BTP
+    description: Native integration with SAP Business Technology Platform for enterprise application development.
+  - name: SAP S/4HANA
+    description: Serve as the underlying database for SAP S/4HANA ERP suite.
+  - name: SAP Analytics Cloud
+    description: Direct live connections for real-time business intelligence dashboards and planning.
+  - name: Microsoft Azure
+    description: Deploy SAP HANA Cloud instances on Azure infrastructure with cross-cloud governance.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
