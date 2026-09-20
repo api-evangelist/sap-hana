@@ -1,51 +1,18 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: SAP HANA
-providerId: sap-hana
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
-tags:
-- Analytics
-- Database
-- Enterprise
-- In-Memory
-- SAP
-description: SAP HANA does not publish self-service plans or pricing reachable in this reconciliation
-  pass; commercial terms are handled by direct sales engagement. This artifact is intentionally trimmed
-  to a single Contact Sales plan.
-notes: SAP HANA Cloud pricing is gated behind the SAP Discovery Center / SAP Store and SAP corporate sales;
-  the public sap.com pricing page returns HTTP 403 to anonymous fetches and Discovery Center requires
-  authenticated session. Pricing is contract-based via SAP Store / sales engagement.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.sap.com/products/data-cloud/hana/pricing.html
 sources:
-- https://www.sap.com/products/technology-platform/hana.html
-- https://discovery-center.cloud.sap/serviceCatalog/sap-hana-cloud
-plans:
-- id: sap-hana-contact-sales
-  name: Contact Sales
-  type: enterprise
-  description: Contact SAP HANA sales for commercial terms. No self-service plan or public unit pricing
-    is available.
-  entries:
-  - label: Negotiated Commercial Terms
-    name: negotiated_terms
-    type: subscription
-    metric: varies
-    limit: -1
-    timeFrame: year
-    geo: global
-    unit: 1
-    price: contact sales
-    userMultiplied: false
-  elements:
-  - name: Custom-negotiated capacity
-  - name: Enterprise support
-  - name: Contractual SLA
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
+- https://www.sap.com/products/data-cloud/hana/pricing.html
+- https://www.sap.com/products/technology-platform/hana/pricing.html
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+published: false
+note: No numeric price is published on the pricing page; Page is a navigational shell for SAP HANA Cloud
+  pricing with no numeric prices shown; only links such as 'Request a demo' and 'Try now'.
+plan_count: 0
+plans: []

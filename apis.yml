@@ -977,6 +977,8 @@ apis:
   - type: JSONLD
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 common:
+- type: Plans
+  url: plans/sap-hana-plans-pricing.yml
 - type: Website
   url: https://sap.com
 - type: CapabilityMap
