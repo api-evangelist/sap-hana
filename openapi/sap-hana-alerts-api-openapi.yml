@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: SAP HANA Cloud REST Alerts API
-  description: REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data. The API uses the SAP Service Manager framework to provision, configure, start, stop, and delete SAP HANA Cloud database instances within SAP Business Technology Platform subaccounts. Additionally, the alerts and metrics endpoints provide access to triggered alerts, database performance metrics, and consumption metering data for SAP HANA Cloud, SAP HANA database and SAP HANA Cloud, data lake instances.
+  description: REST API for managing SAP HANA Cloud instances, monitoring alerts, accessing metrics, and retrieving metering data.
   version: 1.0.0
   contact:
     name: SAP SE
@@ -238,16 +238,65 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AlertRuleList:
+    AlertRule:
       type: object
-      description: A list of alert rules configured for an SAP HANA Cloud service instance.
+      description: An alert rule defining the condition and threshold that triggers an alert for an SAP HANA Cloud service instance. Rules can be cloud-native or embedded statistics server (ESS) based.
       properties:
-        items:
-          type: array
-          description: The list of alert rules.
-          items:
-            $ref: '#/components/schemas/AlertRule'
-          example: []
+        ruleId:
+          type: string
+          description: The unique identifier of the alert rule.
+          example: '500123'
+        ruleName:
+          type: string
+          description: The human-readable name of the alert rule (e.g., Memory Usage Alert, Disk Full Alert).
+          example: example_value
+        ruleType:
+          type: string
+          description: The type of alert rule.
+          enum:
+          - cloud-native
+          - ess
+          example: cloud-native
+        enabled:
+          type: boolean
+          description: Whether the alert rule is currently active.
+          example: true
+        severity:
+          type: string
+          description: The severity level assigned to alerts triggered by this rule.
+          enum:
+          - High
+          - Medium
+          - Low
+          - Information
+          example: High
+        metric:
+          type: string
+          description: The metric being monitored by this rule.
+          example: example_value
+        thresholdOperator:
+          type: string
+          description: The comparison operator used to evaluate the threshold.
+          enum:
+          - GREATER_THAN
+          - GREATER_THAN_OR_EQUAL
+          - LESS_THAN
+          - LESS_THAN_OR_EQUAL
+          - EQUAL
+          example: GREATER_THAN
+        thresholdValue:
+          type: number
+          format: double
+          description: The threshold value that triggers the alert when exceeded.
+          example: 42.5
+        unit:
+          type: string
+          description: The unit of measurement for the threshold value.
+          example: example_value
+        description:
+          type: string
+          description: A description of what this alert rule monitors.
+          example: A sample description.
     AlertEvent:
       type: object
       description: An alert event representing a triggered alert condition on an SAP HANA Cloud service instance. Alerts monitor database health, resources, and operational thresholds.
@@ -313,91 +362,6 @@ components:
           format: uuid
           description: The service instance identifier associated with this alert.
           example: '500123'
-    Error:
-      type: object
-      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
-      properties:
-        error:
-          type: string
-          description: The error code identifying the type of error.
-          example: example_value
-        description:
-          type: string
-          description: A human-readable description of the error.
-          example: A sample description.
-        statusCode:
-          type: integer
-          description: The HTTP status code associated with the error.
-          example: 10
-    AlertRule:
-      type: object
-      description: An alert rule defining the condition and threshold that triggers an alert for an SAP HANA Cloud service instance. Rules can be cloud-native or embedded statistics server (ESS) based.
-      properties:
-        ruleId:
-          type: string
-          description: The unique identifier of the alert rule.
-          example: '500123'
-        ruleName:
-          type: string
-          description: The human-readable name of the alert rule (e.g., Memory Usage Alert, Disk Full Alert).
-          example: example_value
-        ruleType:
-          type: string
-          description: The type of alert rule.
-          enum:
-          - cloud-native
-          - ess
-          example: cloud-native
-        enabled:
-          type: boolean
-          description: Whether the alert rule is currently active.
-          example: true
-        severity:
-          type: string
-          description: The severity level assigned to alerts triggered by this rule.
-          enum:
-          - High
-          - Medium
-          - Low
-          - Information
-          example: High
-        metric:
-          type: string
-          description: The metric being monitored by this rule.
-          example: example_value
-        thresholdOperator:
-          type: string
-          description: The comparison operator used to evaluate the threshold.
-          enum:
-          - GREATER_THAN
-          - GREATER_THAN_OR_EQUAL
-          - LESS_THAN
-          - LESS_THAN_OR_EQUAL
-          - EQUAL
-          example: GREATER_THAN
-        thresholdValue:
-          type: number
-          format: double
-          description: The threshold value that triggers the alert when exceeded.
-          example: 42.5
-        unit:
-          type: string
-          description: The unit of measurement for the threshold value.
-          example: example_value
-        description:
-          type: string
-          description: A description of what this alert rule monitors.
-          example: A sample description.
-    AlertEventList:
-      type: object
-      description: A list of alert events for an SAP HANA Cloud service instance.
-      properties:
-        items:
-          type: array
-          description: The list of alert events.
-          items:
-            $ref: '#/components/schemas/AlertEvent'
-          example: []
     UpdateAlertRulesRequest:
       type: object
       description: Request body for updating alert rules.
@@ -427,15 +391,45 @@ components:
                 - Low
                 - Information
           example: []
+    Error:
+      type: object
+      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
+      properties:
+        error:
+          type: string
+          description: The error code identifying the type of error.
+          example: example_value
+        description:
+          type: string
+          description: A human-readable description of the error.
+          example: A sample description.
+        statusCode:
+          type: integer
+          description: The HTTP status code associated with the error.
+          example: 10
+    AlertRuleList:
+      type: object
+      description: A list of alert rules configured for an SAP HANA Cloud service instance.
+      properties:
+        items:
+          type: array
+          description: The list of alert rules.
+          items:
+            $ref: '#/components/schemas/AlertRule'
+          example: []
+    AlertEventList:
+      type: object
+      description: A list of alert events for an SAP HANA Cloud service instance.
+      properties:
+        items:
+          type: array
+          description: The list of alert events.
+          items:
+            $ref: '#/components/schemas/AlertEvent'
+          example: []
   responses:
-    Forbidden:
-      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
       content:
         application/json:
           schema:
@@ -446,8 +440,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
       content:
         application/json:
           schema:
@@ -458,14 +452,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+    UnprocessableEntity:
+      description: The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.
       content:
         application/json:
           schema:
