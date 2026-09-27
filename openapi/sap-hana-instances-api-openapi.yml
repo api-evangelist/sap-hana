@@ -520,231 +520,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Conflict:
-      description: The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
-      properties:
-        error:
-          type: string
-          description: The error code identifying the type of error.
-          example: example_value
-        description:
-          type: string
-          description: A human-readable description of the error.
-          example: A sample description.
-        statusCode:
-          type: integer
-          description: The HTTP status code associated with the error.
-          example: 10
-    UpdateServiceInstanceRequest:
-      type: object
-      description: Request body for updating an existing SAP HANA Cloud service instance. Only include the parameters that need to be changed.
-      properties:
-        name:
-          type: string
-          description: The updated name for the service instance.
-          example: Example Title
-        parameters:
-          $ref: '#/components/schemas/InstanceParameters'
-        labels:
-          type: object
-          description: Updated labels for the service instance.
-          additionalProperties:
-            type: array
-            items:
-              type: string
-          example: example_value
-        service_plan_id:
-          type: string
-          format: uuid
-          description: The new service plan identifier if changing the instance plan.
-          example: '500123'
-    InventoryInstanceList:
-      type: object
-      description: A paginated list of SAP HANA Cloud instances from the inventory service.
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of instances matching the query criteria.
-          example: 10
-        items:
-          type: array
-          description: The list of inventory instances for the current page.
-          items:
-            $ref: '#/components/schemas/InventoryInstance'
-          example: []
-    LastOperation:
-      type: object
-      description: Details about the last operation performed on the service instance.
-      properties:
-        type:
-          type: string
-          description: The type of operation that was performed.
-          enum:
-          - create
-          - update
-          - delete
-          example: create
-        state:
-          type: string
-          description: The current state of the operation.
-          enum:
-          - succeeded
-          - in progress
-          - failed
-          example: succeeded
-        description:
-          type: string
-          description: A human-readable description of the operation status.
-          example: A sample description.
-        created_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the operation was initiated.
-          example: '2026-01-15T10:30:00Z'
-        updated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the operation status was last updated.
-          example: '2026-01-15T10:30:00Z'
-    InstanceParameters:
-      type: object
-      description: Configuration parameters for an SAP HANA Cloud service instance defining resource allocation, features, and operational settings.
-      properties:
-        data:
-          type: object
-          description: The instance configuration data.
-          properties:
-            edition:
-              type: string
-              description: The SAP HANA Cloud edition. Determines available features and resource limits.
-              enum:
-              - cloud
-              - enterprise
-            memory:
-              type: integer
-              description: The allocated memory for the SAP HANA database in gigabytes. Determines the in-memory data capacity.
-              minimum: 30
-            vcpu:
-              type: integer
-              description: The number of virtual CPUs allocated to the SAP HANA database instance.
-              minimum: 2
-            storage:
-              type: integer
-              description: The allocated persistent storage in gigabytes for data that exceeds in-memory capacity using native storage extensions.
-            systempassword:
-              type: string
-              format: password
-              description: The system database user password. Required during instance creation and can be updated via instance modification.
-              writeOnly: true
-            whitelistIPs:
-              type: array
-              description: List of IP addresses or CIDR ranges allowed to connect to the database instance. An empty list blocks all external connections.
-              items:
-                type: string
-            enabledservices:
-              type: object
-              description: Optional database services to enable on the instance.
-              properties:
-                scriptserver:
-                  type: boolean
-                  description: Enable the script server for running application function libraries (AFL) including PAL and BFL.
-                docstore:
-                  type: boolean
-                  description: Enable the JSON document store for semi-structured data storage and querying.
-                dpserver:
-                  type: boolean
-                  description: Enable the data provisioning server for smart data integration and real-time replication.
-            serviceStopped:
-              type: boolean
-              description: Controls the running state of the instance. Set to true to stop the instance and false to start it. A stopped instance does not consume compute resources but retains all data.
-            availabilityZone:
-              type: string
-              description: The availability zone within the selected region where the instance is deployed.
-            slaLevel:
-              type: string
-              description: The service level agreement tier for the instance.
-              enum:
-              - standard
-              - premium
-          example: example_value
-    CreateServiceInstanceRequest:
-      type: object
-      description: Request body for creating a new SAP HANA Cloud service instance.
-      required:
-      - name
-      - service_plan_id
-      - parameters
-      properties:
-        name:
-          type: string
-          description: The name for the new service instance. Must be unique within the subaccount.
-          example: Example Title
-        service_plan_id:
-          type: string
-          format: uuid
-          description: The service plan identifier determining the instance type and available features.
-          example: '500123'
-        parameters:
-          $ref: '#/components/schemas/InstanceParameters'
-        labels:
-          type: object
-          description: Labels to assign to the instance for organization and filtering.
-          additionalProperties:
-            type: array
-            items:
-              type: string
-          example: example_value
     InventoryInstance:
       type: object
       description: An SAP HANA Cloud instance as represented in the inventory service, providing a consolidated view of instance status and configuration.
@@ -803,6 +579,120 @@ components:
           format: date-time
           description: ISO 8601 timestamp when the instance was last modified.
           example: '2026-01-15T10:30:00Z'
+    UpdateServiceInstanceRequest:
+      type: object
+      description: Request body for updating an existing SAP HANA Cloud service instance. Only include the parameters that need to be changed.
+      properties:
+        name:
+          type: string
+          description: The updated name for the service instance.
+          example: Example Title
+        parameters:
+          $ref: '#/components/schemas/InstanceParameters'
+        labels:
+          type: object
+          description: Updated labels for the service instance.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example: example_value
+        service_plan_id:
+          type: string
+          format: uuid
+          description: The new service plan identifier if changing the instance plan.
+          example: '500123'
+    LastOperation:
+      type: object
+      description: Details about the last operation performed on the service instance.
+      properties:
+        type:
+          type: string
+          description: The type of operation that was performed.
+          enum:
+          - create
+          - update
+          - delete
+          example: create
+        state:
+          type: string
+          description: The current state of the operation.
+          enum:
+          - succeeded
+          - in progress
+          - failed
+          example: succeeded
+        description:
+          type: string
+          description: A human-readable description of the operation status.
+          example: A sample description.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation was initiated.
+          example: '2026-01-15T10:30:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation status was last updated.
+          example: '2026-01-15T10:30:00Z'
+    InventoryInstanceList:
+      type: object
+      description: A paginated list of SAP HANA Cloud instances from the inventory service.
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of instances matching the query criteria.
+          example: 10
+        items:
+          type: array
+          description: The list of inventory instances for the current page.
+          items:
+            $ref: '#/components/schemas/InventoryInstance'
+          example: []
+    Error:
+      type: object
+      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
+      properties:
+        error:
+          type: string
+          description: The error code identifying the type of error.
+          example: example_value
+        description:
+          type: string
+          description: A human-readable description of the error.
+          example: A sample description.
+        statusCode:
+          type: integer
+          description: The HTTP status code associated with the error.
+          example: 10
+    CreateServiceInstanceRequest:
+      type: object
+      description: Request body for creating a new SAP HANA Cloud service instance.
+      required:
+      - name
+      - service_plan_id
+      - parameters
+      properties:
+        name:
+          type: string
+          description: The name for the new service instance. Must be unique within the subaccount.
+          example: Example Title
+        service_plan_id:
+          type: string
+          format: uuid
+          description: The service plan identifier determining the instance type and available features.
+          example: '500123'
+        parameters:
+          $ref: '#/components/schemas/InstanceParameters'
+        labels:
+          type: object
+          description: Labels to assign to the instance for organization and filtering.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example: example_value
     ServiceInstance:
       type: object
       description: An SAP HANA Cloud service instance representing a provisioned database with its configuration, status, and connection details.
@@ -890,31 +780,127 @@ components:
           type: string
           description: Pagination token to retrieve the next page of results.
           example: example_value
+    InstanceParameters:
+      type: object
+      description: Configuration parameters for an SAP HANA Cloud service instance defining resource allocation, features, and operational settings.
+      properties:
+        data:
+          type: object
+          description: The instance configuration data.
+          properties:
+            edition:
+              type: string
+              description: The SAP HANA Cloud edition. Determines available features and resource limits.
+              enum:
+              - cloud
+              - enterprise
+            memory:
+              type: integer
+              description: The allocated memory for the SAP HANA database in gigabytes. Determines the in-memory data capacity.
+              minimum: 30
+            vcpu:
+              type: integer
+              description: The number of virtual CPUs allocated to the SAP HANA database instance.
+              minimum: 2
+            storage:
+              type: integer
+              description: The allocated persistent storage in gigabytes for data that exceeds in-memory capacity using native storage extensions.
+            systempassword:
+              type: string
+              format: password
+              description: The system database user password. Required during instance creation and can be updated via instance modification.
+              writeOnly: true
+            whitelistIPs:
+              type: array
+              description: List of IP addresses or CIDR ranges allowed to connect to the database instance. An empty list blocks all external connections.
+              items:
+                type: string
+            enabledservices:
+              type: object
+              description: Optional database services to enable on the instance.
+              properties:
+                scriptserver:
+                  type: boolean
+                  description: Enable the script server for running application function libraries (AFL) including PAL and BFL.
+                docstore:
+                  type: boolean
+                  description: Enable the JSON document store for semi-structured data storage and querying.
+                dpserver:
+                  type: boolean
+                  description: Enable the data provisioning server for smart data integration and real-time replication.
+            serviceStopped:
+              type: boolean
+              description: Controls the running state of the instance. Set to true to stop the instance and false to start it. A stopped instance does not consume compute resources but retains all data.
+            availabilityZone:
+              type: string
+              description: The availability zone within the selected region where the instance is deployed.
+            slaLevel:
+              type: string
+              description: The service level agreement tier for the instance.
+              enum:
+              - standard
+              - premium
+          example: example_value
+  responses:
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: The request body was valid JSON but contained semantic errors such as invalid parameter combinations or out-of-range values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    PageToken:
-      name: pageToken
-      in: query
-      description: Pagination token received from a previous request to retrieve the next page of results.
-      schema:
-        type: string
-    InstanceId:
-      name: instanceId
-      in: path
-      required: true
-      description: The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning.
-      schema:
-        type: string
-        format: uuid
-    FieldQuery:
-      name: fieldQuery
-      in: query
-      description: Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.
-      schema:
-        type: string
     LabelQuery:
       name: labelQuery
       in: query
       description: Filter expression to narrow results by label values assigned to service instances.
+      schema:
+        type: string
+    PageToken:
+      name: pageToken
+      in: query
+      description: Pagination token received from a previous request to retrieve the next page of results.
       schema:
         type: string
     PageSize:
@@ -926,6 +912,20 @@ components:
         minimum: 1
         maximum: 200
         default: 50
+    FieldQuery:
+      name: fieldQuery
+      in: query
+      description: Filter expression to narrow results by field values. Supports operators such as eq, ne, in, notin, and contains for filtering on fields like name, service_plan_id, and context.
+      schema:
+        type: string
+    InstanceId:
+      name: instanceId
+      in: path
+      required: true
+      description: The unique identifier of the SAP HANA Cloud service instance, typically a UUID assigned during provisioning.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     oauth2:
       type: oauth2

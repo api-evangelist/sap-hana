@@ -174,50 +174,37 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalServerError:
-      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Conflict:
-      description: The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
+      properties:
+        error:
+          type: string
+          description: The error code identifying the type of error.
+          example: example_value
+        description:
+          type: string
+          description: A human-readable description of the error.
+          example: A sample description.
+        statusCode:
+          type: integer
+          description: The HTTP status code associated with the error.
+          example: 10
+    CreateInstanceMappingRequest:
+      type: object
+      description: Request body for creating a new instance mapping.
+      required:
+      - targetSubaccountId
+      properties:
+        targetSubaccountId:
+          type: string
+          description: The target subaccount identifier for the mapping.
+          example: '500123'
+        targetEnvironmentInstanceId:
+          type: string
+          description: The target environment instance identifier.
+          example: '500123'
     InstanceMapping:
       type: object
       description: An instance mapping that associates an SAP HANA Cloud service instance with a target in another subaccount or environment.
@@ -245,22 +232,6 @@ components:
           format: date-time
           description: ISO 8601 timestamp when the mapping was created.
           example: '2026-01-15T10:30:00Z'
-    Error:
-      type: object
-      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
-      properties:
-        error:
-          type: string
-          description: The error code identifying the type of error.
-          example: example_value
-        description:
-          type: string
-          description: A human-readable description of the error.
-          example: A sample description.
-        statusCode:
-          type: integer
-          description: The HTTP status code associated with the error.
-          example: 10
     InstanceMappingList:
       type: object
       description: A list of instance mappings for an SAP HANA Cloud service instance.
@@ -271,20 +242,49 @@ components:
           items:
             $ref: '#/components/schemas/InstanceMapping'
           example: []
-    CreateInstanceMappingRequest:
-      type: object
-      description: Request body for creating a new instance mapping.
-      required:
-      - targetSubaccountId
-      properties:
-        targetSubaccountId:
-          type: string
-          description: The target subaccount identifier for the mapping.
-          example: '500123'
-        targetEnvironmentInstanceId:
-          type: string
-          description: The target environment instance identifier.
-          example: '500123'
+  responses:
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error description for details on what needs to be corrected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: The request conflicts with the current state of the resource. This may occur when attempting to modify an instance that is currently undergoing another operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     ServiceInstanceId:
       name: serviceInstanceId

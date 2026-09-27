@@ -160,7 +160,7 @@ apis:
   baseURL: https://{host}:{port}
   tags:
   - Artificial Intelligence
-  - Machine-Learning
+  - Machine Learning
   - Predictive Analytics
   - Statistics
   tags_raw:
@@ -168,6 +168,7 @@ apis:
   - Machine Learning
   - Predictive Analytics
   - Statistics
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal
