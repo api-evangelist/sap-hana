@@ -100,6 +100,37 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -156,37 +187,6 @@ components:
           format: double
           description: The backup storage consumption in gigabytes during the metering period.
           example: 42.5
-  responses:
-    InternalServerError:
-      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     ServiceInstanceId:
       name: serviceInstanceId

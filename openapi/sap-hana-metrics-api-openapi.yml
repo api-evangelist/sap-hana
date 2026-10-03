@@ -124,7 +124,82 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    MetricSeries:
+      type: object
+      description: A time series of metric data points for a specific metric type on an SAP HANA Cloud service instance.
+      properties:
+        metricType:
+          type: string
+          description: The type of metric (e.g., cpu_usage, memory_used, disk_used, active_connections).
+          example: example_value
+        unit:
+          type: string
+          description: The unit of measurement (e.g., percent, bytes, count).
+          example: example_value
+        dataPoints:
+          type: array
+          description: The time-ordered list of metric data points.
+          items:
+            $ref: '#/components/schemas/MetricDataPoint'
+          example: []
+    Error:
+      type: object
+      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
+      properties:
+        error:
+          type: string
+          description: The error code identifying the type of error.
+          example: example_value
+        description:
+          type: string
+          description: A human-readable description of the error.
+          example: A sample description.
+        statusCode:
+          type: integer
+          description: The HTTP status code associated with the error.
+          example: 10
+    MetricValueList:
+      type: object
+      description: A collection of metric data points for an SAP HANA Cloud service instance.
+      properties:
+        metrics:
+          type: array
+          description: The list of metric series.
+          items:
+            $ref: '#/components/schemas/MetricSeries'
+          example: []
     MetricDataPoint:
       type: object
       description: A single metric data point at a specific timestamp.
@@ -154,81 +229,6 @@ components:
           format: double
           description: The average value observed during the aggregation interval.
           example: 42.5
-    Error:
-      type: object
-      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
-      properties:
-        error:
-          type: string
-          description: The error code identifying the type of error.
-          example: example_value
-        description:
-          type: string
-          description: A human-readable description of the error.
-          example: A sample description.
-        statusCode:
-          type: integer
-          description: The HTTP status code associated with the error.
-          example: 10
-    MetricSeries:
-      type: object
-      description: A time series of metric data points for a specific metric type on an SAP HANA Cloud service instance.
-      properties:
-        metricType:
-          type: string
-          description: The type of metric (e.g., cpu_usage, memory_used, disk_used, active_connections).
-          example: example_value
-        unit:
-          type: string
-          description: The unit of measurement (e.g., percent, bytes, count).
-          example: example_value
-        dataPoints:
-          type: array
-          description: The time-ordered list of metric data points.
-          items:
-            $ref: '#/components/schemas/MetricDataPoint'
-          example: []
-    MetricValueList:
-      type: object
-      description: A collection of metric data points for an SAP HANA Cloud service instance.
-      properties:
-        metrics:
-          type: array
-          description: The list of metric series.
-          items:
-            $ref: '#/components/schemas/MetricSeries'
-          example: []
-  responses:
-    InternalServerError:
-      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     ServiceInstanceId:
       name: serviceInstanceId
