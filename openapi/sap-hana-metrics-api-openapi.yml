@@ -125,12 +125,6 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    NotFound:
-      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     InternalServerError:
       description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
       content:
@@ -143,19 +137,35 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: The API rate limit has been exceeded. Retry the request after the duration indicated in the Retry-After response header.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found. Verify the instance identifier and ensure it exists in the current subaccount.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    MetricValueList:
+      type: object
+      description: A collection of metric data points for an SAP HANA Cloud service instance.
+      properties:
+        metrics:
+          type: array
+          description: The list of metric series.
+          items:
+            $ref: '#/components/schemas/MetricSeries'
+          example: []
     MetricSeries:
       type: object
       description: A time series of metric data points for a specific metric type on an SAP HANA Cloud service instance.
@@ -190,16 +200,6 @@ components:
           type: integer
           description: The HTTP status code associated with the error.
           example: 10
-    MetricValueList:
-      type: object
-      description: A collection of metric data points for an SAP HANA Cloud service instance.
-      properties:
-        metrics:
-          type: array
-          description: The list of metric series.
-          items:
-            $ref: '#/components/schemas/MetricSeries'
-          example: []
     MetricDataPoint:
       type: object
       description: A single metric data point at a specific timestamp.
