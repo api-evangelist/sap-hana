@@ -978,6 +978,10 @@ apis:
   - type: JSONLD
     url: json-ld/sap-hana-cloud-rest-context.jsonld
 common:
+- type: RateLimits
+  url: rate-limits/sap-hana-rate-limits.yml
+- type: FinOps
+  url: finops/sap-hana-finops.yml
 - type: Plans
   url: plans/sap-hana-plans-pricing.yml
 - type: Website
