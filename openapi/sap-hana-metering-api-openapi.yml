@@ -101,32 +101,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
-      properties:
-        error:
-          type: string
-          description: The error code identifying the type of error.
-          example: example_value
-        description:
-          type: string
-          description: A human-readable description of the error.
-          example: A sample description.
-        statusCode:
-          type: integer
-          description: The HTTP status code associated with the error.
-          example: 10
-    MeteringValueList:
-      type: object
-      description: A collection of metering data points for billing and capacity tracking.
-      properties:
-        values:
-          type: array
-          description: The list of metering records.
-          items:
-            $ref: '#/components/schemas/MeteringValue'
-          example: []
     MeteringValue:
       type: object
       description: A metering data record representing resource consumption for billing purposes.
@@ -156,15 +130,41 @@ components:
           format: double
           description: The backup storage consumption in gigabytes during the metering period.
           example: 42.5
+    Error:
+      type: object
+      description: Standard error response returned by the SAP HANA Cloud REST API when a request fails.
+      properties:
+        error:
+          type: string
+          description: The error code identifying the type of error.
+          example: example_value
+        description:
+          type: string
+          description: A human-readable description of the error.
+          example: A sample description.
+        statusCode:
+          type: integer
+          description: The HTTP status code associated with the error.
+          example: 10
+    MeteringValueList:
+      type: object
+      description: A collection of metering data points for billing and capacity tracking.
+      properties:
+        values:
+          type: array
+          description: The list of metering records.
+          items:
+            $ref: '#/components/schemas/MeteringValue'
+          example: []
   responses:
-    InternalServerError:
-      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
+    Forbidden:
+      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The authenticated user does not have sufficient permissions to perform this operation on the requested resource.
+    Unauthorized:
+      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
       content:
         application/json:
           schema:
@@ -175,8 +175,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The OAuth 2.0 access token is missing, expired, or invalid. Obtain a new token using the client credentials flow.
+    InternalServerError:
+      description: An unexpected error occurred on the server. If the issue persists, contact SAP support with the request correlation ID.
       content:
         application/json:
           schema:
