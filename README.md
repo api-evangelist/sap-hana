@@ -1,4 +1,4 @@
-# SAP HANA (sap-hana)
+# SAP HANA
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,378 +66,263 @@
 
 APIs for SAP HANA, an in-memory, column-oriented, relational database management system developed and marketed by SAP SE.
 
-**APIs.json:** [https://www.sap.com/products/technology-platform/hana.html](https://www.sap.com/products/technology-platform/hana.html)
-
-## Scope
-
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
-
-## Tags
-
-- Analytics
-- Cloud
-- Database
-- Enterprise
-- In-Memory
-
-## Timestamps
-
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
-
-## APIs
-
-### SAP HANA Cloud REST API
-
-REST API for managing SAP HANA Cloud instances, monitoring, and administration.
-
-- **Human URL:** [https://help.sap.com/docs/HANA_CLOUD](https://help.sap.com/docs/HANA_CLOUD)
-- **Base URL:** `https://api.cf.{region}.hana.ondemand.com`
-
-#### Tags
-
-- Administration
-- Cloud
-- Database Management
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/)
-- [OpenAPI](openapi/sap-hana-cloud-rest-api.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/3670474a58c24ac2b082e76cbbd9dc19.html)
-- [Tutorials](https://developers.sap.com/tutorials/hana-cloud-automation-rest..html)
-- [JSON Schema](json-schema/sap-hana-database-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-service-instance-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-service-instance-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-instance-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-last-operation-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-create-service-instance-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-update-service-instance-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-inventory-instance-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-inventory-instance-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-alert-event-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-alert-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-alert-rule-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-alert-rule-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-update-alert-rules-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-metric-value-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-metric-series-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-metric-data-point-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-metering-value-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-metering-value-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-instance-mapping-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-instance-mapping-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-create-instance-mapping-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sap-hana-cloud-rest-error-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-service-instance-list-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-service-instance-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-instance-parameters-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-last-operation-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-create-service-instance-request-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-update-service-instance-request-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-inventory-instance-list-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-inventory-instance-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-alert-event-list-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-alert-event-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-alert-rule-list-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-alert-rule-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-update-alert-rules-request-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-metric-value-list-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-metric-series-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-metric-data-point-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-metering-value-list-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-metering-value-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-instance-mapping-list-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-instance-mapping-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-create-instance-mapping-request-structure.json)
-- [JSON Structure](json-structure/sap-hana-cloud-rest-error-structure.json)
-- [Example](examples/sap-hana-cloud-rest-service-instance-list-example.json)
-- [Example](examples/sap-hana-cloud-rest-service-instance-example.json)
-- [Example](examples/sap-hana-cloud-rest-instance-parameters-example.json)
-- [Example](examples/sap-hana-cloud-rest-last-operation-example.json)
-- [Example](examples/sap-hana-cloud-rest-create-service-instance-request-example.json)
-- [Example](examples/sap-hana-cloud-rest-update-service-instance-request-example.json)
-- [Example](examples/sap-hana-cloud-rest-inventory-instance-list-example.json)
-- [Example](examples/sap-hana-cloud-rest-inventory-instance-example.json)
-- [Example](examples/sap-hana-cloud-rest-alert-event-list-example.json)
-- [Example](examples/sap-hana-cloud-rest-alert-event-example.json)
-- [Example](examples/sap-hana-cloud-rest-alert-rule-list-example.json)
-- [Example](examples/sap-hana-cloud-rest-alert-rule-example.json)
-- [Example](examples/sap-hana-cloud-rest-update-alert-rules-request-example.json)
-- [Example](examples/sap-hana-cloud-rest-metric-value-list-example.json)
-- [Example](examples/sap-hana-cloud-rest-metric-series-example.json)
-- [Example](examples/sap-hana-cloud-rest-metric-data-point-example.json)
-- [Example](examples/sap-hana-cloud-rest-metering-value-list-example.json)
-- [Example](examples/sap-hana-cloud-rest-metering-value-example.json)
-- [Example](examples/sap-hana-cloud-rest-instance-mapping-list-example.json)
-- [Example](examples/sap-hana-cloud-rest-instance-mapping-example.json)
-- [Example](examples/sap-hana-cloud-rest-create-instance-mapping-request-example.json)
-- [Example](examples/sap-hana-cloud-rest-error-example.json)
-- [JSON-LD](json-ld/sap-hana-cloud-rest-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+**Areas:** Analytics · Cloud · Database · Enterprise · In-Memory
+
+## SAP HANA on APIs.io
+
+Everything profiled for SAP HANA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/sap-hana/](https://apis.io/providers/sap-hana/)** — or go straight to one of the APIs or properties below.
+
+### APIs (17)
+
+- [SAP HANA SQL API](https://apis.io/apis/sap-hana/sap-hana-sql-api/) — SQL interface for querying and managing data in SAP HANA databases.
+- [SAP HANA XS Engine API](https://apis.io/apis/sap-hana/sap-hana-xs-engine-api/) — Extended Application Services (XS) for building applications directly on SAP HANA.
+- [SAP HANA Cockpit API](https://apis.io/apis/sap-hana/sap-hana-cockpit-api/) — RESTful API for SAP HANA Cockpit administration and monitoring.
+- [SAP HANA Smart Data Integration API](https://apis.io/apis/sap-hana/sap-hana-smart-data-integration-api/) — APIs for data provisioning, replication, and integration.
+- [SAP HANA Cloud Alerts and Metrics REST API](https://apis.io/apis/sap-hana/sap-hana-cloud-alerts-and-metrics-rest-api/) — REST API for accessing triggered alerts, database metrics, and metering data for SAP HANA Cloud instances.
+- [SAP HANA Spatial Services API](https://apis.io/apis/sap-hana/sap-hana-spatial-services-api/) — REST API providing geocoding, routing, and mapping services through a unified interface supporting multiple back-end service providers.
+- [SAP HANA Cloud Data Lake Files REST API](https://apis.io/apis/sap-hana/sap-hana-cloud-data-lake-files-rest-api/) — REST API for managing, uploading, reading, deleting, and listing files in SAP HANA Cloud Data Lake file containers.
+- [SAP HANA Deployment Infrastructure (HDI) API](https://apis.io/apis/sap-hana/sap-hana-deployment-infrastructure-hdi-api/) — API for managing HDI containers used to deploy database artifacts in isolated schemas with dependency management and lifecycle support.
+- [SAP HANA Predictive Analysis Library (PAL) API](https://apis.io/apis/sap-hana/sap-hana-predictive-analysis-library-pal-api/) — In-database machine learning and statistical algorithms library providing clustering, classification, regression, and time series analysis capabilities.
+- [SAP HANA JSON Document Store API](https://apis.io/apis/sap-hana/sap-hana-json-document-store-api/) — API for storing, querying, and managing semi-structured JSON documents within SAP HANA using a hybrid relational and document-oriented approach.
+- [SAP HANA Graph Engine API](https://apis.io/apis/sap-hana/sap-hana-graph-engine-api/) — Graph processing engine for network analysis with built-in algorithms for path finding, pattern matching, and knowledge graph capabilities using OpenCypher…
+- [SAP HANA REST Info API](https://apis.io/apis/sap-hana/sap-hana-rest-info-api/) — REST API for retrieving system information and metadata about SAP HANA Platform instances.
+- [SAP HANA Alerts API](https://apis.io/apis/sap-hana/sap-hana-alerts-api/) — Operations for accessing and managing triggered alerts for SAP HANA Cloud instances, including alert state queries, severity filtering, and alert rule…
+- [SAP HANA Instance Mappings API](https://apis.io/apis/sap-hana/sap-hana-instance-mappings-api/) — Operations for creating and managing instance mappings that associate SAP HANA Cloud instances across subaccounts and environments.
+- [SAP HANA Instances API](https://apis.io/apis/sap-hana/sap-hana-instances-api/) — Operations for managing SAP HANA Cloud database instances including provisioning, configuration, lifecycle management, and status retrieval.
+- [SAP HANA Metering API](https://apis.io/apis/sap-hana/sap-hana-metering-api/) — Operations for accessing consumption metering data used for billing and capacity planning for SAP HANA Cloud instances.
+- [SAP HANA Metrics API](https://apis.io/apis/sap-hana/sap-hana-metrics-api/) — Operations for retrieving database performance metrics and resource utilization data for SAP HANA Cloud instances.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Sap Hana Agentic Access](https://apis.io/agentic-access/sap-hana/sap-hana-agentic-access/)
+
+#### JSON Schema (45)
+
+The data models the API reads and writes.
+
+- [AlertEvent](https://apis.io/schemas/sap-hana/sap-hana-alertevent/)
+- [AlertEventList](https://apis.io/schemas/sap-hana/sap-hana-alerteventlist/)
+- [AlertRule](https://apis.io/schemas/sap-hana/sap-hana-alertrule/)
+- [AlertRuleList](https://apis.io/schemas/sap-hana/sap-hana-alertrulelist/)
+- [AlertEvent](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-alert-event/)
+- [AlertEventList](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-alert-event-list/)
+- [AlertRule](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-alert-rule/)
+- [AlertRuleList](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-alert-rule-list/)
+- [CreateInstanceMappingRequest](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-create-instance-mapping-request/)
+- [CreateServiceInstanceRequest](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-create-service-instance-request/)
+- [Error](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-error/)
+- [InstanceMapping](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-instance-mapping/)
+- [InstanceMappingList](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-instance-mapping-list/)
+- [InstanceParameters](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-instance-parameters/)
+- [InventoryInstance](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-inventory-instance/)
+- [InventoryInstanceList](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-inventory-instance-list/)
+- [LastOperation](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-last-operation/)
+- [MeteringValue](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-metering-value/)
+- [MeteringValueList](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-metering-value-list/)
+- [MetricDataPoint](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-metric-data-point/)
+- [MetricSeries](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-metric-series/)
+- [MetricValueList](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-metric-value-list/)
+- [ServiceInstance](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-service-instance/)
+- [ServiceInstanceList](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-service-instance-list/)
+- [UpdateAlertRulesRequest](https://apis.io/schemas/sap-hana/sap-hana-cloud-rest-update-alert-rules-request/)
+- …and 20 more published on APIs.io
+
+#### JSON Structure (23)
+
+Data models expressed in JSON Structure.
+
+- [Sap Hana Cloud Rest Alert Event List Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-alert-event-list-structure/)
+- [Sap Hana Cloud Rest Alert Event Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-alert-event-structure/)
+- [Sap Hana Cloud Rest Alert Rule List Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-alert-rule-list-structure/)
+- [Sap Hana Cloud Rest Alert Rule Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-alert-rule-structure/)
+- [Sap Hana Cloud Rest Create Instance Mapping Request Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-create-instance-mapping-request-structure/)
+- [Sap Hana Cloud Rest Create Service Instance Request Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-create-service-instance-request-structure/)
+- [Sap Hana Cloud Rest Error Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-error-structure/)
+- [Sap Hana Cloud Rest Instance Mapping List Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-instance-mapping-list-structure/)
+- [Sap Hana Cloud Rest Instance Mapping Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-instance-mapping-structure/)
+- [Sap Hana Cloud Rest Instance Parameters Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-instance-parameters-structure/)
+- [Sap Hana Cloud Rest Inventory Instance List Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-inventory-instance-list-structure/)
+- [Sap Hana Cloud Rest Inventory Instance Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-inventory-instance-structure/)
+- [Sap Hana Cloud Rest Last Operation Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-last-operation-structure/)
+- [Sap Hana Cloud Rest Metering Value List Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-metering-value-list-structure/)
+- [Sap Hana Cloud Rest Metering Value Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-metering-value-structure/)
+- [Sap Hana Cloud Rest Metric Data Point Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-metric-data-point-structure/)
+- [Sap Hana Cloud Rest Metric Series Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-metric-series-structure/)
+- [Sap Hana Cloud Rest Metric Value List Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-metric-value-list-structure/)
+- [Sap Hana Cloud Rest Service Instance List Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-service-instance-list-structure/)
+- [Sap Hana Cloud Rest Service Instance Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-service-instance-structure/)
+- [Sap Hana Cloud Rest Update Alert Rules Request Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-update-alert-rules-request-structure/)
+- [Sap Hana Cloud Rest Update Service Instance Request Structure](https://apis.io/json-structure/sap-hana/sap-hana-cloud-rest-update-service-instance-request-structure/)
+- [Sap Hana Structure](https://apis.io/json-structure/sap-hana/sap-hana-structure/)
+
+#### JSON-LD (2)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Sap Hana Cloud Rest Context](https://apis.io/jsonld/sap-hana/sap-hana-cloud-rest-context/)
+- [Sap Hana Context](https://apis.io/jsonld/sap-hana/sap-hana-context/)
 
-### SAP HANA SQL API
+#### Vocabulary (1)
 
-SQL interface for querying and managing data in SAP HANA databases.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://help.sap.com/docs/SAP_HANA_PLATFORM](https://help.sap.com/docs/SAP_HANA_PLATFORM)
-- **Base URL:** `jdbc:sap://{host}:{port}`
+- [SAP HANA Domain Vocabulary](https://apis.io/vocabularies/sap-hana/sap-hana-vocabulary/)
 
-#### Tags
+#### Examples (34)
 
-- Database
-- Query
-- SQL
+Example requests and responses.
 
-#### Properties
+- [Sap Hana Cloud Rest Alert Event Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-alert-event-example/)
+- [Sap Hana Cloud Rest Alert Event List Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-alert-event-list-example/)
+- [Sap Hana Cloud Rest Alert Rule Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-alert-rule-example/)
+- [Sap Hana Cloud Rest Alert Rule List Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-alert-rule-list-example/)
+- [Sap Hana Cloud Rest Create Instance Mapping Request Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-create-instance-mapping-request-example/)
+- [Sap Hana Cloud Rest Create Service Instance Request Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-create-service-instance-request-example/)
+- [Sap Hana Cloud Rest Error Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-error-example/)
+- [Sap Hana Cloud Rest Instance Mapping Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-instance-mapping-example/)
+- [Sap Hana Cloud Rest Instance Mapping List Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-instance-mapping-list-example/)
+- [Sap Hana Cloud Rest Instance Parameters Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-instance-parameters-example/)
+- [Sap Hana Cloud Rest Inventory Instance Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-inventory-instance-example/)
+- [Sap Hana Cloud Rest Inventory Instance List Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-inventory-instance-list-example/)
+- [Sap Hana Cloud Rest Last Operation Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-last-operation-example/)
+- [Sap Hana Cloud Rest Metering Value Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-metering-value-example/)
+- [Sap Hana Cloud Rest Metering Value List Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-metering-value-list-example/)
+- [Sap Hana Cloud Rest Metric Data Point Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-metric-data-point-example/)
+- [Sap Hana Cloud Rest Metric Series Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-metric-series-example/)
+- [Sap Hana Cloud Rest Metric Value List Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-metric-value-list-example/)
+- [Sap Hana Cloud Rest Service Instance Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-service-instance-example/)
+- [Sap Hana Cloud Rest Service Instance List Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-service-instance-list-example/)
+- [Sap Hana Cloud Rest Update Alert Rules Request Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-update-alert-rules-request-example/)
+- [Sap Hana Cloud Rest Update Service Instance Request Example](https://apis.io/examples/sap-hana/sap-hana-cloud-rest-update-service-instance-request-example/)
+- [Sap Hana Createinstancemapping Example](https://apis.io/examples/sap-hana/sap-hana-createinstancemapping-example/)
+- [Sap Hana Createserviceinstance Example](https://apis.io/examples/sap-hana/sap-hana-createserviceinstance-example/)
+- [Sap Hana Getmeteringvalues Example](https://apis.io/examples/sap-hana/sap-hana-getmeteringvalues-example/)
+- …and 9 more published on APIs.io
 
-- [Documentation](https://help.sap.com/docs/SAP_HANA_PLATFORM/4fe29514fd584807ac9f2a04f6754767/)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (11)
 
-### SAP HANA XS Engine API
+Postman and Open Collection request collections.
 
-Extended Application Services (XS) for building applications directly on SAP HANA.
+- [SAP HANA Cloud REST Alerts API](https://apis.io/collections/sap-hana/open-sap-hana-alerts-api/)
+- [SAP HANA Cloud REST API](https://apis.io/collections/sap-hana/open-sap-hana-cloud-rest-api/)
+- [SAP HANA Cloud REST Alerts Instance Mappings API](https://apis.io/collections/sap-hana/open-sap-hana-instance-mappings-api/)
+- [SAP HANA Cloud REST Alerts Instances API](https://apis.io/collections/sap-hana/open-sap-hana-instances-api/)
+- [SAP HANA Cloud REST Alerts Metering API](https://apis.io/collections/sap-hana/open-sap-hana-metering-api/)
+- [SAP HANA Cloud REST Alerts Metrics API](https://apis.io/collections/sap-hana/open-sap-hana-metrics-api/)
+- [SAP HANA Cloud REST Alerts API](https://apis.io/collections/sap-hana/postman-sap-hana-alerts-api/)
+- [SAP HANA Cloud REST Alerts Instance Mappings API](https://apis.io/collections/sap-hana/postman-sap-hana-instance-mappings-api/)
+- [SAP HANA Cloud REST Alerts Instances API](https://apis.io/collections/sap-hana/postman-sap-hana-instances-api/)
+- [SAP HANA Cloud REST Alerts Metering API](https://apis.io/collections/sap-hana/postman-sap-hana-metering-api/)
+- [SAP HANA Cloud REST Alerts Metrics API](https://apis.io/collections/sap-hana/postman-sap-hana-metrics-api/)
 
-- **Human URL:** [https://help.sap.com/docs/SAP_HANA_PLATFORM](https://help.sap.com/docs/SAP_HANA_PLATFORM)
-- **Base URL:** `https://{host}:{port}`
+#### Governance rules (2)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Application Development
-- JavaScript
-- OData
-- XS
+- [SAP HANA — jsonschema rules](https://apis.io/rules/sap-hana/sap-hana-jsonschema-spectral-rules/)
+- [SAP HANA API Rules](https://apis.io/rules/sap-hana/sap-hana-spectral-rules/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://help.sap.com/docs/SAP_HANA_PLATFORM/4505d0bdaf4948449b7f7379d24d0f0d/)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### SAP HANA Cockpit API
+- [Sap Hana Authentication](https://apis.io/security/sap-hana/sap-hana-authentication/)
+- [Sap Hana Domain Security](https://apis.io/security/sap-hana/sap-hana-domain-security/)
+- [Sap Hana Vulnerability Disclosure](https://apis.io/security/sap-hana/sap-hana-vulnerability-disclosure/)
 
-RESTful API for SAP HANA Cockpit administration and monitoring.
+#### OAuth scopes (1)
 
-- **Human URL:** [https://help.sap.com/docs/SAP_HANA_COCKPIT](https://help.sap.com/docs/SAP_HANA_COCKPIT)
-- **Base URL:** `https://{host}:{port}/sap/hana/`
+The permissions the API asks for.
 
-#### Tags
+- [Sap Hana Scopes](https://apis.io/scopes/sap-hana/sap-hana-scopes/)
 
-- Administration
-- Management
-- Monitoring
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://help.sap.com/docs/SAP_HANA_COCKPIT/afa922439b204e9caf22c78b6b69e4f2/)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Sap Hana Plans Pricing](https://apis.io/plans/sap-hana/sap-hana-plans-pricing/)
 
-### SAP HANA Smart Data Integration API
+#### Rate limits (1)
 
-APIs for data provisioning, replication, and integration.
+Published request limits.
 
-- **Human URL:** [https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION](https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION)
-- **Base URL:** `https://{host}:{port}`
+- [Sap Hana Rate Limits](https://apis.io/rate-limits/sap-hana/sap-hana-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Data Integration
-- ETL
-- Replication
+What the API costs to run, by operation.
 
-#### Properties
+- [Sap Hana Finops](https://apis.io/finops/sap-hana/sap-hana-finops/)
 
-- [Documentation](https://help.sap.com/docs/SAP_HANA_SMART_DATA_INTEGRATION/7952ef28a6914997abc01745fef1b607/)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-### SAP HANA Cloud Alerts and Metrics REST API
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-REST API for accessing triggered alerts, database metrics, and metering data for SAP HANA Cloud instances.
-
-- **Human URL:** [https://developers.sap.com/tutorials/hana-cloud-alerts-rest-api.html](https://developers.sap.com/tutorials/hana-cloud-alerts-rest-api.html)
-- **Base URL:** `https://api.cf.{region}.hana.ondemand.com`
-
-#### Tags
-
-- Alerts
-- Metering
-- Metrics
-- Monitoring
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/r/64f7d2b06c6b40a9b3097860c5930641/Cloud/en-US/9f02513389e64490a0652955fedce2ad.html)
-- [Tutorials](https://developers.sap.com/tutorials/hana-cloud-alerts-rest-api.html)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SAP HANA Spatial Services API
-
-REST API providing geocoding, routing, and mapping services through a unified interface supporting multiple back-end service providers.
-
-- **Human URL:** [https://help.sap.com/docs/sap-hana-spatial-services](https://help.sap.com/docs/sap-hana-spatial-services)
-- **Base URL:** `https://api.cf.{region}.hana.ondemand.com`
-
-#### Tags
-
-- Geocoding
-- Location
-- Mapping
-- Routing
-- Spatial
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/sap-hana-spatial-services)
-- [Tutorials](https://developers.sap.com/tutorials/hana-spatial-services-apis..html)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SAP HANA Cloud Data Lake Files REST API
-
-REST API for managing, uploading, reading, deleting, and listing files in SAP HANA Cloud Data Lake file containers.
-
-- **Human URL:** [https://help.sap.com/docs/hana-cloud-data-lake](https://help.sap.com/docs/hana-cloud-data-lake)
-- **Base URL:** `https://{host}:{port}`
-
-#### Tags
-
-- Cloud Storage
-- Data Lake
-- File Storage
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/hana-cloud-data-lake)
-- [Tutorials](https://developers.sap.com/tutorials/data-lake-file-containers-restapi..html)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SAP HANA Deployment Infrastructure (HDI) API
-
-API for managing HDI containers used to deploy database artifacts in isolated schemas with dependency management and lifecycle support.
-
-- **Human URL:** [https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-deployment-infrastructure-hdi-reference/sap-hana-cloud-sap-hana-database-deployment-infrastructure-reference](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-deployment-infrastructure-hdi-reference/sap-hana-cloud-sap-hana-database-deployment-infrastructure-reference)
-- **Base URL:** `https://{host}:{port}`
-
-#### Tags
-
-- Containers
-- Deployment
-- DevOps
-- HDI
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-deployment-infrastructure-hdi-reference/sap-hana-cloud-sap-hana-database-deployment-infrastructure-reference)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SAP HANA Predictive Analysis Library (PAL) API
-
-In-database machine learning and statistical algorithms library providing clustering, classification, regression, and time series analysis capabilities.
-
-- **Human URL:** [https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal)
-- **Base URL:** `https://{host}:{port}`
-
-#### Tags
-
-- AI
-- Machine Learning
-- Predictive Analytics
-- Statistics
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-predictive-analysis-library/sap-hana-cloud-sap-hana-database-predictive-analysis-library-pal)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SAP HANA JSON Document Store API
-
-API for storing, querying, and managing semi-structured JSON documents within SAP HANA using a hybrid relational and document-oriented approach.
-
-- **Human URL:** [https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/5e783b7f5a9749bcbfffe167524aeccc.html](https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/5e783b7f5a9749bcbfffe167524aeccc.html)
-- **Base URL:** `https://{host}:{port}`
-
-#### Tags
-
-- Document Store
-- JSON
-- Multi-Model
-- NoSQL
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/5e783b7f5a9749bcbfffe167524aeccc.html)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SAP HANA Graph Engine API
-
-Graph processing engine for network analysis with built-in algorithms for path finding, pattern matching, and knowledge graph capabilities using OpenCypher and SPARQL.
-
-- **Human URL:** [https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-knowledge-graph-guide/sap-hana-cloud-sap-hana-database-knowledge-graph-engine-guide](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-knowledge-graph-guide/sap-hana-cloud-sap-hana-database-knowledge-graph-engine-guide)
-- **Base URL:** `https://{host}:{port}`
-
-#### Tags
-
-- Graph
-- Knowledge Graph
-- Multi-Model
-- Network Analysis
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-knowledge-graph-guide/sap-hana-cloud-sap-hana-database-knowledge-graph-engine-guide)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SAP HANA REST Info API
-
-REST API for retrieving system information and metadata about SAP HANA Platform instances.
-
-- **Human URL:** [https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html](https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html)
-- **Base URL:** `https://{host}:{port}`
-
-#### Tags
-
-- Metadata
-- REST
-- System Information
-
-#### Properties
-
-- [Documentation](https://help.sap.com/docs/SAP_HANA_PLATFORM/b3d0daf2a98e49ada00bf31b7ca7a42e/0e5335b66a9e4c64993605fc24ccd6d1.html)
-- [Postman Collection](collections/sap-hana-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sap-hana-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/showcase/sap-hana)
-- [Developer Portal](https://api.sap.com/)
-- [Support](https://support.sap.com/)
+- [Website](https://sap.com)
+- [Getting started](https://www.sap.com/products/data-cloud/hana/get-started.html)
 - [Pricing](https://www.sap.com/products/technology-platform/hana/pricing.html)
-- [Status Page](https://www.sap.com/about/trust-center/cloud-service-status.html)
-- [Terms of Service](https://www.sap.com/about/trust-center/agreements.html)
-- [Getting Started](https://www.sap.com/products/data-cloud/hana/get-started.html)
-- [Tutorials](https://developers.sap.com/tutorial-navigator.html)
-- [GitHub Repository](https://github.com/SAP-samples)
-- [Privacy Policy](https://www.sap.com/about/legal/privacy.html)
-- [JSON-LD](json-ld/sap-hana-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/sap-hana-spectral-rules.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Support](https://support.sap.com/)
+- [Terms of service](https://www.sap.com/about/trust-center/agreements.html)
+- [Privacy policy](https://www.sap.com/about/legal/privacy.html)
+- [Status](https://www.sap.com/about/trust-center/cloud-service-status.html)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 45.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 69.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 27.4 |
+| Access clarity | 31.6 |
+
+**Agent readiness 26.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 40.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/sap-hana/](https://apis.io/providers/sap-hana/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SAP HANA: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/sap-hana/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
